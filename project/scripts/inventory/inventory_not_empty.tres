@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Inv" load_steps=12 format=3 uid="uid://b3ni5hv6st7ax"]
+
+[ext_resource type="Script" uid="uid://ban5iquu3lkal" path="res://project/scripts/inventory/inv_slot.gd" id="2_fv4sa"]
+[ext_resource type="Script" uid="uid://dacpll3ybhcrd" path="res://project/scripts/inventory/inventory.gd" id="5_tvtki"]
+
+[sub_resource type="Resource" id="Resource_fv4sa"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_bsnpx"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_ogpvs"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_towsa"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_ia6im"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_vu4yr"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_fsvqv"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_tvtki"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[sub_resource type="Resource" id="Resource_643bp"]
+script = ExtResource("2_fv4sa")
+amount = 0
+metadata/_custom_type_script = "uid://ban5iquu3lkal"
+
+[resource]
+script = ExtResource("5_tvtki")
+slots = Array[ExtResource("2_fv4sa")]([SubResource("Resource_fv4sa"), SubResource("Resource_bsnpx"), SubResource("Resource_ogpvs"), SubResource("Resource_towsa"), SubResource("Resource_ia6im"), SubResource("Resource_vu4yr"), SubResource("Resource_fsvqv"), SubResource("Resource_tvtki"), SubResource("Resource_643bp")])
+metadata/_custom_type_script = "uid://dacpll3ybhcrd"

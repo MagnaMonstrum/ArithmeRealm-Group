@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootNum" load_steps=3 format=3 uid="uid://by10hspqpck64"]
+
+[ext_resource type="Script" uid="uid://doaaasbbfp0pr" path="res://project/scripts/inventory/loot_num_resource.gd" id="1_acmrl"]
+[ext_resource type="Texture2D" uid="uid://dybavpfo2pfdp" path="res://project/art/sprites/numbers/0zero.png" id="2_rqhil"]
+
+[resource]
+script = ExtResource("1_acmrl")
+number = 0
+texture = ExtResource("2_rqhil")
+metadata/_custom_type_script = "uid://doaaasbbfp0pr"

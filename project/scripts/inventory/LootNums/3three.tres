@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LootNumResource" load_steps=3 format=3 uid="uid://ciutugpgo0hgd"]
+
+[ext_resource type="Script" uid="uid://doaaasbbfp0pr" path="res://project/scripts/inventory/loot_num_resource.gd" id="1_7d1r7"]
+[ext_resource type="Texture2D" uid="uid://ci2mlp85duww1" path="res://project/art/sprites/numbers/3three.png" id="2_shein"]
+
+[resource]
+script = ExtResource("1_7d1r7")
+value = 3
+texture = ExtResource("2_shein")
+metadata/_custom_type_script = "uid://doaaasbbfp0pr"
