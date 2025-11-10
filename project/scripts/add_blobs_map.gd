@@ -6,7 +6,7 @@ extends Node2D
 var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
 
 @onready var player = $Player 
-
+ 
 # signal loot_spawned(num: int)
 
 var num_sprites_paths = {
