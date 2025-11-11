@@ -14,6 +14,10 @@ config/name="ArithmeRealm"
 run/main_scene="uid://ba32leeatnqc6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 up={

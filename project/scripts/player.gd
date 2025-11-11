@@ -102,7 +102,7 @@ func handle_attack() -> void:
 
 func collect(loot_num: LootNumResource) -> void:
 	inventory.insert(loot_num)
-	inv.update_slots()
+	inv.update_slots(inventory.slots)
 
 func _on_damage_area_entered(area:Area2D) -> void:
 	if area.get_parent().name == "Enemy":
