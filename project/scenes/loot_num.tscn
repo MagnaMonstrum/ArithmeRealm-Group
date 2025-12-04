@@ -154,7 +154,6 @@ radius = 5.0
 script = ExtResource("1_u302n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_n6y7d")
 animation = &"0"

@@ -1151,7 +1151,7 @@ rotation = -0.000527713
 position = Vector2(321, 202)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="."]
-position = Vector2(160, -117)
+position = Vector2(175, -118)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="."]
 position = Vector2(75, -118)
