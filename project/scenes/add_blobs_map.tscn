@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://ba32leeatnqc6"]
+[gd_scene load_steps=53 format=4 uid="uid://ba32leeatnqc6"]
 
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="1_87h6n"]
 [ext_resource type="Script" uid="uid://bheyk3ixxln54" path="res://project/scripts/add_blobs_map.gd" id="1_qwqeu"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://j0ol27dg6niy" path="res://project/art/sprites/tilesets/walls/walls.png" id="11_k5ohf"]
 [ext_resource type="Texture2D" uid="uid://cx7tb56edxigj" path="res://project/art/sprites/tilesets/walls/wooden_door.png" id="12_g5ebd"]
 [ext_resource type="Texture2D" uid="uid://bakjgu5pi1vbo" path="res://project/art/sprites/tilesets/walls/wooden_door_b.png" id="13_aedai"]
-[ext_resource type="PackedScene" uid="uid://bxcrhsdhnf0sq" path="res://project/scenes/enemy.tscn" id="18_8ty0v"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="19_8ty0v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gkipi"]
@@ -1087,15 +1086,14 @@ size = Vector2(2.03125, 433)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ty0v"]
 size = Vector2(368, 4.25)
 
-[sub_resource type="Curve2D" id="Curve2D_8jjku"]
+[sub_resource type="Curve2D" id="Curve2D_47avk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 16.1393, -263.992, 0, 0, 0, 0, 299.139, -263.842, 0, 0, 0, 0, 300.078, -147.842, 0, 0, 0, 0, 129.078, -147.932, 0, 0, 0, 0, 127.103, -195.933, 0, 0, 0, 0, 81.104, -196.957, 0, 0, 0, 0, 80.077, -145.958, 0, 0, 0, 0, 18.0776, -146.99, 0, 0, 0, 0, 16.1388, -262.992)
+"points": PackedVector2Array(0, 0, 0, 0, 23.1398, -264.988, 0, 0, 0, 0, 295.136, -256.844, 0, 0, 0, 0, 295.076, -144.844, 0, 0, 0, 0, 23.1398, -264.988)
 }
-point_count = 9
+point_count = 4
 
 [node name="AddBlobsMap" type="Node2D"]
 script = ExtResource("1_qwqeu")
-enemy_scene = ExtResource("18_8ty0v")
 
 [node name="Entire" type="TileMapLayer" parent="."]
 
@@ -1154,12 +1152,14 @@ position = Vector2(17, 121)
 rotation = -0.000527713
 
 [node name="Path2D" type="Path2D" parent="Player"]
-curve = SubResource("Curve2D_8jjku")
+position = Vector2(-8.81048, 0)
+scale = Vector2(1.04636, 1)
+curve = SubResource("Curve2D_47avk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
 unique_name_in_owner = true
-position = Vector2(16.1393, -263.992)
-rotation = 0.000527749
+position = Vector2(23.1398, -264.988)
+rotation = 0.0299327
 
 [node name="addition_blob" parent="." instance=ExtResource("19_8ty0v")]
 position = Vector2(321, 202)

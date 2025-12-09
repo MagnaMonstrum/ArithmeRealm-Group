@@ -18,20 +18,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# move()
+	move()
 	handle_death()
 
 func move() -> void:
-	if !taking_damage:
-		velocity = position.direction_to(player.global_position) * SPEED
-		move_and_slide()
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * 30.0
+	move_and_slide()
 
 func handle_death() -> void:
 	var death_position = global_position
 	var random_num = randi_range(0, 9)
 	if health_amount <= health_amount_min:
 		emit_signal("drop_num", death_position, random_num)
-		
+
 		queue_free()
 
 func take_damage(dmg: int) -> void:

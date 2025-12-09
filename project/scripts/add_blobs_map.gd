@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene
 @export var loot_num_resource: LootNumResource
 @export var max_enemies: int = 4
 
@@ -37,13 +36,14 @@ func _process(_delta: float) -> void:
 	pass
 
 func spawn_enemy() -> void:
-	var new_mob = enemy_scene.instantiate()
-	%PathFollow2D.progress_ratio= randf()
+	var new_mob = preload("res://project/scenes/enemy.tscn").instantiate()
+	%PathFollow2D.progress_ratio = randf()
 	new_mob.global_position = %PathFollow2D.global_position
 	add_child(new_mob)
-	current_enemy_count += 1
 
+	current_enemy_count += 1
 	new_mob.tree_exited.connect(_on_enemy_removed)
+	new_mob.drop_num.connect(spawn_loot_num)
 
 func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 	var loot_num_instance = loot_num_scene.instantiate()
@@ -55,5 +55,3 @@ func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 
 func _on_enemy_removed() -> void:
 	current_enemy_count -= 1
-
-# func add_item_to_player(loot_num_resource):
