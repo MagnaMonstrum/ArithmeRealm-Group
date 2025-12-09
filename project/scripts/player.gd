@@ -101,7 +101,7 @@ func handle_attack() -> void:
 		damage_collisionV.disabled = true
 
 func collect(loot_num: LootNumResource) -> void:
-	inventory.insert(loot_num)
+	inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 
 func _on_damage_area_entered(area:Area2D) -> void:

@@ -45,8 +45,8 @@ func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 	loot_num_instance.global_position = pos
 	loot_num_instance.set_loot_num_item(num_loot)
 	add_child(loot_num_instance)
-	var sprite := loot_num_instance.get_node("Area2D").get_node("Sprite2D") as Sprite2D
-	sprite.texture = load(num_sprites_paths[num_loot])
+	var sprite := loot_num_instance.get_node("Area2D").get_node("Label") as Label
+	sprite.text = str(loot_num_instance.loot_num_resource.value)
 
 # func add_item_to_player(loot_num_resource):
 	
