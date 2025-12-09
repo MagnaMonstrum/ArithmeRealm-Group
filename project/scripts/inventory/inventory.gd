@@ -13,5 +13,8 @@ func insert(value: int) -> void:
 			print(value)
 			slots[i].amount += 1
 			break
+		elif slots[i].value == value:
+			slots[i].amount += 1
+			break
 
 	emit_signal("update_signal", slots)
