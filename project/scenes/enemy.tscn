@@ -116,7 +116,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.069252, 0.0297947)

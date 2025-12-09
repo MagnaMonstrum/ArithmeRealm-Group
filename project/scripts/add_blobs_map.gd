@@ -1,12 +1,14 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene
 @export var loot_num_resource: LootNumResource
+@export var max_enemies: int = 4
 
 var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
 
-@onready var player = $Player 
-  
+@onready var player = $Player
+
+var current_enemy_count: int = 0
+
 # signal loot_spawned(num: int)
 
 var num_sprites_paths = {
@@ -24,21 +26,22 @@ var num_sprites_paths = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_enemy()
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func spawn_enemy() -> void:
-	var spawn_0 = $EnemySpawnPoint
-	# var spawn_1 = $EnemySpawnPoint2
-	# var spawn_2 = $EnemySpawnPoint3
-	
-	var enemy_0 = enemy_scene.instantiate() 
-	enemy_0.global_position = spawn_0.global_position
-	add_child(enemy_0)
-	enemy_0.drop_num.connect(self.spawn_loot_num)
+	var new_mob = preload("res://project/scenes/enemy.tscn").instantiate()
+	%PathFollow2D.progress_ratio = randf()
+	new_mob.global_position = %PathFollow2D.global_position
+	add_child(new_mob)
+
+	current_enemy_count += 1
+	new_mob.tree_exited.connect(_on_enemy_removed)
+	new_mob.drop_num.connect(spawn_loot_num)
 
 func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 	var loot_num_instance = loot_num_scene.instantiate()
@@ -48,5 +51,10 @@ func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 	var sprite := loot_num_instance.get_node("Area2D").get_node("Label") as Label
 	sprite.text = str(loot_num_instance.loot_num_resource.value)
 
-# func add_item_to_player(loot_num_resource):
-	
+func _on_enemy_removed() -> void:
+	current_enemy_count -= 1
+
+
+func _on_timer_timeout() -> void:
+	if current_enemy_count < max_enemies:
+		spawn_enemy()
