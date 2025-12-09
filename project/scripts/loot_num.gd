@@ -44,16 +44,12 @@ func _process(delta: float) -> void:
 
 func set_loot_num_item(num_loot_value: int) -> void:
 	var res := load(loot_num_paths[num_loot_value]) as LootNumResource
-	print("res ", res) # should NOT be null
 
 	loot_num_resource = res
 	loot_num_resource.texture = load(num_sprites_paths[num_loot_value])
-	print("resource is ready")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("player entered")
 	if loot_num_resource:
-		print("value ", loot_num_resource.value)
 		if body is Player:
 			body.collect(loot_num_resource)
 			queue_free()
