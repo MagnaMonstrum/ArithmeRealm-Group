@@ -1088,7 +1088,7 @@ size = Vector2(368, 4.25)
 
 [sub_resource type="Curve2D" id="Curve2D_47avk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 23.1398, -264.988, 0, 0, 0, 0, 295.136, -256.844, 0, 0, 0, 0, 295.076, -144.844, 0, 0, 0, 0, 23.1398, -264.988)
+"points": PackedVector2Array(0, 0, 0, 0, 26.5456, -266.189, 0, 0, 0, 0, 287.743, -262.981, 0, 0, 0, 0, 290.427, -152.844, 0, 0, 0, 0, 26.5456, -266.189)
 }
 point_count = 4
 
@@ -1148,18 +1148,8 @@ position = Vector2(153, -164)
 shape = SubResource("RectangleShape2D_8ty0v")
 
 [node name="Player" parent="." instance=ExtResource("10_3x7qf")]
-position = Vector2(17, 121)
+position = Vector2(208, 43)
 rotation = -0.000527713
-
-[node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-8.81048, 0)
-scale = Vector2(1.04636, 1)
-curve = SubResource("Curve2D_47avk")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
-unique_name_in_owner = true
-position = Vector2(23.1398, -264.988)
-rotation = 0.0299327
 
 [node name="addition_blob" parent="." instance=ExtResource("19_8ty0v")]
 position = Vector2(321, 202)
@@ -1172,3 +1162,19 @@ position = Vector2(75, -118)
 
 [node name="EnemySpawnPoint3" type="Marker2D" parent="."]
 position = Vector2(284, -119)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(8.18952, 121.005)
+rotation = -0.000527713
+scale = Vector2(1.0573, 0.98094)
+curve = SubResource("Curve2D_47avk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(26.5456, -266.189)
+rotation = 0.0122804
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
