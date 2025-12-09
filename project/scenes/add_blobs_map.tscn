@@ -1172,7 +1172,7 @@ curve = SubResource("Curve2D_47avk")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
 position = Vector2(26.5456, -266.189)
-rotation = 0.0122804
+rotation = 0.0122813
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

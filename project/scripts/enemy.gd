@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Enemy
+extends CharacterBody2D
 
 signal drop_num(pos: Vector2, num_loot: int)
 
@@ -13,7 +13,6 @@ var health_amount_min := 0
 var taking_damage := false
 
 func _ready() -> void:
-	player.hit_enemy.connect(self.take_damage)
 	animated_sprite.play("default")
 
 
