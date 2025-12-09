@@ -1148,7 +1148,7 @@ position = Vector2(153, -164)
 shape = SubResource("RectangleShape2D_8ty0v")
 
 [node name="Player" parent="." instance=ExtResource("10_3x7qf")]
-position = Vector2(208, 43)
+position = Vector2(113, -107)
 rotation = -0.000527713
 
 [node name="addition_blob" parent="." instance=ExtResource("19_8ty0v")]

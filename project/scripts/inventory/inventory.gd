@@ -6,9 +6,12 @@ signal update_signal
 
 
 @export var slots: Array[InvSlot]
-
-func insert(loot_num: LootNumResource) -> void:
-	slots[loot_num.value].loot_num = loot_num
-	slots[loot_num.value].amount += 1
+func insert(value: int) -> void:
+	for i in range(9):
+		if slots[i].value == -1:
+			slots[i].value = value
+			print(value)
+			slots[i].amount += 1
+			break
 
 	emit_signal("update_signal", slots)

@@ -32,9 +32,11 @@ libraries = {
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_u302n")
+
+[node name="Label" type="Label" parent="Area2D"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
