@@ -3,6 +3,9 @@ extends StaticBody2D
 class_name LootNumNode
 
 @export var loot_num_resource: LootNumResource
+@onready var label: Label = $Area2D/Label
+
+var current_value: int
 
 var loot_num_paths = {
 	0: "res://project/scripts/inventory/LootNums/0zero.tres",
@@ -43,11 +46,13 @@ func _process(delta: float) -> void:
 	pass
 
 func set_loot_num_item(num_loot_value: int) -> void:
-	var res := load(loot_num_paths[num_loot_value]) as LootNumResource
+	print(num_loot_value)
+	var res := LootNumResource.new()
+	res.value = num_loot_value
+
 	print("res ", res) # should NOT be null
 
 	loot_num_resource = res
-	loot_num_resource.texture = load(num_sprites_paths[num_loot_value])
 	print("resource is ready")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
