@@ -54,7 +54,6 @@ func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 func _on_enemy_removed() -> void:
 	current_enemy_count -= 1
 
-
 func _on_timer_timeout() -> void:
 	if current_enemy_count < max_enemies:
 		spawn_enemy()

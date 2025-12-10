@@ -8,6 +8,12 @@ extends Area2D
 @export var int_A: int
 @export var int_B: int
 
+@export var interaction_name: String
+@export var is_interactible := true
+
+var interact := func():
+	pass
+
 var num_sprites_paths = {
 	0: "res://project/art/sprites/numbers/0zero.png",
 	1: "res://project/art/sprites/numbers/1one.png",
