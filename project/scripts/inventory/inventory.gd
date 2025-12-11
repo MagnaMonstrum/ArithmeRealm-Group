@@ -4,13 +4,15 @@ class_name Inv
 
 signal update_signal
 
-
 @export var slots: Array[InvSlot]
-func insert(value: int) -> void:
+
+func insert(value: int) -> bool:
+	if not slots.any(func(slot): return slot.value == -1):
+		return false
+
 	for i in range(9):
 		if slots[i].value == -1:
 			slots[i].value = value
-			print(value)
 			slots[i].amount += 1
 			break
 		elif slots[i].value == value:
@@ -18,3 +20,5 @@ func insert(value: int) -> void:
 			break
 
 	emit_signal("update_signal", slots)
+	
+	return true
