@@ -19,3 +19,11 @@ func insert(value: int) -> void:
 			break
 
 	emit_signal("update_signal", slots)
+
+func get_items() -> Array[int]:
+	var values = []
+	
+	for i in range(len(slots)):
+		values.append(slots[i].InvSlot.value)
+	
+	return values

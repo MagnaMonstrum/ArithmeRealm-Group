@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 			interact_label.hide()
 
 			await current_interactions[0].interact.call()
+
 			can_interact = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +34,6 @@ func _sort_by_nearest(area1, area2):
 	var area2_dist = global_position.distance_to(area2.global_position)
 
 	return area1_dist < area2_dist
-
 
 func _on_interact_range_area_entered(area:Area2D) -> void:
 	current_interactions.push_back(area)

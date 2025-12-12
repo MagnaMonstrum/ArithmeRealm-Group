@@ -1,13 +1,12 @@
 extends Node2D
 
-@export var loot_num_resource: LootNumResource
-@export var max_enemies: int = 4
-
-var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
-
 @onready var player = $Player
+@onready var add_blob = $AdditionBlob
 
-var current_enemy_count: int = 0
+@export var max_enemies := 4
+@export var loot_num_resource: LootNumResource
+var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
+var current_enemy_count := 0
 
 # signal loot_spawned(num: int)
 
@@ -26,9 +25,8 @@ var num_sprites_paths = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
-
+	add_blob.use_player_inv.connect(player.provide_loot_num_values)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

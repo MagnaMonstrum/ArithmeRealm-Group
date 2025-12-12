@@ -24,9 +24,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m033"]
 radius = 140.0
 
-[node name="addition_blob" type="Node2D"]
+[node name="AdditionBlob" type="Node2D"]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_sgjle")
+int_A = null
+int_B = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
