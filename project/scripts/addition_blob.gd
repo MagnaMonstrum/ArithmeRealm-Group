@@ -31,7 +31,8 @@ func _ready() -> void:
 	set_A_and_B()
 
 func _on_interact() -> void:
-	print("Currently interacting")
+	print("currently interacting")
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -16,7 +16,6 @@ func _input(event: InputEvent) -> void:
 			interact_label.hide()
 
 			await current_interactions[0].interact.call()
-			
 			can_interact = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
