@@ -1,6 +1,6 @@
-extends Area2D
+extends Node2D
 
-
+@onready var interactable := $Interactable
 @onready var timer = $Timer
 @onready var display_A = $"Control Problem Holder/Control Num A/TR Num A"
 @onready var display_B = $"Control Problem Holder/Control Num B/TR Num B"
@@ -8,11 +8,7 @@ extends Area2D
 @export var int_A: int
 @export var int_B: int
 
-@export var interaction_name: String
-@export var is_interactible := true
 
-var interact := func():
-	pass
 
 var num_sprites_paths = {
 	0: "res://project/art/sprites/numbers/0zero.png",
@@ -31,7 +27,11 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	interactable.interact = _on_interact
 	set_A_and_B()
+
+func _on_interact() -> void:
+	print("Currently interacting")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -50,4 +50,3 @@ func set_A_and_B() -> void:
 
 # func _on_timer_timeout() -> void:
 # 	set_A_and_B()
-

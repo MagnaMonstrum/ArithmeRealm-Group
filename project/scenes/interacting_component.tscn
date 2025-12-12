@@ -35,3 +35,6 @@ text = "E to Interact"
 label_settings = SubResource("LabelSettings_nojx0")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="area_entered" from="InteractRange" to="." method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="InteractRange" to="." method="_on_interact_range_area_exited"]
