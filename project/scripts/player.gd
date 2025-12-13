@@ -106,11 +106,12 @@ func collect(loot_num: LootNumResource) -> void:
 
 func _on_damage_area_entered(area:Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
-		print(area.get_parent().has_method("take_damage"))
+		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
 
-func provide_loot_num_values() -> void:
-	emit_signal("provide_inv", inventory.get_items())
+func provide_loot_num_values(blob) -> void: # This function gives the inventory values to the blob.
+	var inv_array := inventory.get_items()
+	blob.receive_inv_values(inv_array)

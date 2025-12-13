@@ -25,8 +25,10 @@ var num_sprites_paths = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_blob.use_player_inv.connect(player.provide_loot_num_values)
-	
+	# When Player interacts with AddBlob a request is sent to Player to provide the invetory values.
+	# This is so that the math problems the player gets are always solvable (for now this seems like the best for the game experience during the prototype).
+	add_blob.request_inventory.connect(player.provide_loot_num_values) 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

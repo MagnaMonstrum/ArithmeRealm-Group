@@ -11,7 +11,6 @@ func insert(value: int) -> void:
 	for i in range(inv_size):
 		if slots[i].value == -1:
 			slots[i].value = value
-			print(value)
 			slots[i].amount += 1
 			break
 		elif slots[i].value == value:
@@ -20,10 +19,12 @@ func insert(value: int) -> void:
 
 	emit_signal("update_signal", slots)
 
-func get_items() -> Array[int]:
+
+# this function is used to provide the values of the current inventory. Currently only AddBlob is uses it.
+func get_items() -> Array: 
 	var values = []
 	
 	for i in range(len(slots)):
-		values.append(slots[i].InvSlot.value)
-	
+		values.append(slots[i].value)
+
 	return values

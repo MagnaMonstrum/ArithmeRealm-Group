@@ -8,7 +8,9 @@ extends Node2D
 @export var int_A: int
 @export var int_B: int
 
-var curr_player_inv_values := Array[int]
+signal request_inventory(blob: Node2D)
+
+var curr_player_inv_values: Array
 
 var num_sprites_paths = {
 	0: "res://project/art/sprites/numbers/0zero.png",
@@ -31,9 +33,11 @@ func _ready() -> void:
 	set_A_and_B()
 
 func _on_interact() -> void:
-	print(curr_player_inv_values)
+	# Requesting the player inventory, this signal is connected to the player via add_blobs_map
+	emit_signal("request_inventory", self) 
+	print("curr_inv: ", curr_player_inv_values)
 
-func use_player_inv(player_inv: Array[int]) -> void:
+func receive_inv_values(player_inv: Array) -> void:
 	curr_player_inv_values = player_inv	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
