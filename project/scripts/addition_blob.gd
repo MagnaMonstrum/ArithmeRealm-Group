@@ -1,14 +1,16 @@
 extends Node2D
 
+const ProblemUiScene := preload("res://project/scenes/problem_ui.tscn")
+
 @onready var interactable := $Interactable
 @onready var timer = $Timer
-@onready var display_A = $"Control Problem Holder/Control Num A/TR Num A"
-@onready var display_B = $"Control Problem Holder/Control Num B/TR Num B"
 
 @export var int_A: int
 @export var int_B: int
 
 signal request_inventory(blob: Node2D)
+
+var problem_ui: Control
 
 var curr_player_inv_values: Array
 
@@ -37,6 +39,18 @@ func _on_interact() -> void:
 	emit_signal("request_inventory", self) 
 	print("curr_inv: ", curr_player_inv_values)
 
+	if !is_instance_valid(problem_ui):
+		problem_ui = ProblemUiScene.instantiate()
+		problem_ui.top_level = true # Avoid inheriting transforms/scale from the blob so the UI fills the viewport
+		var target_parent = get_tree().current_scene if get_tree().current_scene else get_tree().root
+		target_parent.add_child(problem_ui)
+		print("Problem UI instanced and added")
+
+	if !problem_ui.is_node_ready():
+		await problem_ui.ready
+	problem_ui.open(self, curr_player_inv_values)
+	print("Problem UI open called")
+
 func receive_inv_values(player_inv: Array) -> void:
 	curr_player_inv_values = player_inv	
 
@@ -49,11 +63,3 @@ func set_A_and_B() -> void:
 	int_B = rng.randi_range(0, 9)
 
 	var correct_answer = int_A + int_B
-
-	display_A.texture = load(num_sprites_paths[int_A])
-	display_B.texture = load(num_sprites_paths[int_B])
-
-
-
-# func _on_timer_timeout() -> void:
-# 	set_A_and_B()
