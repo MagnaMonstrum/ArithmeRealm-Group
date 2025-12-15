@@ -26,5 +26,6 @@ func set_loot_num_item(num_loot_value: int) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if loot_num_resource:
 		if body is Player:
-			body.collect(loot_num_resource)
-			queue_free()
+			var successful = body.collect(loot_num_resource)
+			if successful:
+				queue_free()
