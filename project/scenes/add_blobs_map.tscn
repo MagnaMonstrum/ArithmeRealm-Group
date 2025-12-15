@@ -1148,11 +1148,11 @@ position = Vector2(153, -164)
 shape = SubResource("RectangleShape2D_8ty0v")
 
 [node name="Player" parent="." instance=ExtResource("10_3x7qf")]
-position = Vector2(113, -107)
+position = Vector2(140, 96)
 rotation = -0.000527713
 
-[node name="addition_blob" parent="." instance=ExtResource("19_8ty0v")]
-position = Vector2(321, 202)
+[node name="AdditionBlob" parent="." instance=ExtResource("19_8ty0v")]
+position = Vector2(127, 128)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="."]
 position = Vector2(175, -118)

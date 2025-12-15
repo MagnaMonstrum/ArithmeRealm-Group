@@ -1,13 +1,12 @@
 extends Node2D
 
-@export var loot_num_resource: LootNumResource
-@export var max_enemies: int = 4
-
-var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
-
 @onready var player = $Player
+@onready var add_blob = $AdditionBlob
 
-var current_enemy_count: int = 0
+@export var max_enemies := 4
+@export var loot_num_resource: LootNumResource
+var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
+var current_enemy_count := 0
 
 # signal loot_spawned(num: int)
 
@@ -26,8 +25,9 @@ var num_sprites_paths = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	# When Player interacts with AddBlob a request is sent to Player to provide the invetory values.
+	# This is so that the math problems the player gets are always solvable (for now this seems like the best for the game experience during the prototype).
+	add_blob.request_inventory.connect(player.provide_loot_num_values) 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -53,7 +53,6 @@ func spawn_loot_num(pos: Vector2, num_loot: int) -> void:
 
 func _on_enemy_removed() -> void:
 	current_enemy_count -= 1
-
 
 func _on_timer_timeout() -> void:
 	if current_enemy_count < max_enemies:
