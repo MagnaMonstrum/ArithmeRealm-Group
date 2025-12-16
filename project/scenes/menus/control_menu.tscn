@@ -41,6 +41,49 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Zwaard slaan uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Wanneer je linkermuis knop gebruikt. Kan je met je zwaard slaan"
+
+[node name="G Uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Druk op \"g\" om de inventory te openen"
+
+[node name="E Uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Druk op \"e\" bij een blob om de blob interactie menu te openen"
+
+[node name="W lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Gebruik \"w\" of pijltje naar boven, om naar boven te lopen"
+
+[node name="A lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Gebruik \"a\" of pijltje naar links, om naar links te lopen"
+
+[node name="S lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Gebruik \"s\" of pijltje naar beneden, om naar beneden te lopen"
+
+[node name="D lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Gebruik \"d\" of pijltje naar rechts, om naar rechts te lopen"
+
+[node name="Blob voeren uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sleep getal van de inventory naar de blob met je muis"
+
 [node name="Back" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
