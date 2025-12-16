@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://ba32leeatnqc6"]
+[gd_scene load_steps=54 format=4 uid="uid://ba32leeatnqc6"]
 
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="1_87h6n"]
 [ext_resource type="Script" uid="uid://bheyk3ixxln54" path="res://project/scripts/add_blobs_map.gd" id="1_qwqeu"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://j0ol27dg6niy" path="res://project/art/sprites/tilesets/walls/walls.png" id="11_k5ohf"]
 [ext_resource type="Texture2D" uid="uid://cx7tb56edxigj" path="res://project/art/sprites/tilesets/walls/wooden_door.png" id="12_g5ebd"]
 [ext_resource type="Texture2D" uid="uid://bakjgu5pi1vbo" path="res://project/art/sprites/tilesets/walls/wooden_door_b.png" id="13_aedai"]
+[ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="19_8jjku"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="19_8ty0v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gkipi"]
@@ -1168,4 +1169,24 @@ rotation = 0.0122813
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_bottom = 63.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "Pauze"
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("19_8jjku")]
+unique_name_in_owner = true
+visible = false
+offset_left = 0.0
+offset_right = 0.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]

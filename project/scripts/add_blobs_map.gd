@@ -27,7 +27,7 @@ var num_sprites_paths = {
 func _ready() -> void:
 	# When Player interacts with AddBlob a request is sent to Player to provide the invetory values.
 	# This is so that the math problems the player gets are always solvable (for now this seems like the best for the game experience during the prototype).
-	add_blob.request_inventory.connect(player.provide_loot_num_values) 
+	add_blob.request_inventory.connect(player.provide_loot_num_values)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -57,3 +57,8 @@ func _on_enemy_removed() -> void:
 func _on_timer_timeout() -> void:
 	if current_enemy_count < max_enemies:
 		spawn_enemy()
+
+
+func _on_button_pressed() -> void:
+	get_tree().paused = not get_tree().paused
+	%Pause.visible = true

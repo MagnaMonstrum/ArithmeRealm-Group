@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ArithmeRealm Group"
-run/main_scene="uid://ba32leeatnqc6"
+run/main_scene="uid://1wf5u0688elr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]
