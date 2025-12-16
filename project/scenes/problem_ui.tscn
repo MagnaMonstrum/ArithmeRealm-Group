@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://bokrw4pdx5xf5"]
+
+[ext_resource type="Script" uid="uid://dlopx6vewc6jb" path="res://project/scripts/problem_ui.gd" id="1_42bhk"]
+[ext_resource type="PackedScene" uid="uid://cjkpk2n4oaco2" path="res://project/scenes/addition_blob_ui.tscn" id="2_mfm7k"]
+[ext_resource type="PackedScene" uid="uid://cdjwnt3hnjdlh" path="res://project/scenes/inv_ui.tscn" id="3_2xak6"]
+[ext_resource type="Script" uid="uid://bcioi86xrr37t" path="res://project/scripts/problem_ui_drop_receiver.gd" id="4_drop"]
+
+[node name="ProblemUi" type="Control"]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_42bhk")
+
+[node name="DropReceiver" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_drop")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dimmer" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="InvUI" parent="CanvasLayer" instance=ExtResource("3_2xak6")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = -204.0
+offset_right = -365.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 274.0
+offset_top = -24.0
+offset_right = 274.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="AdditionBlob" parent="CanvasLayer/Control" instance=ExtResource("2_mfm7k")]

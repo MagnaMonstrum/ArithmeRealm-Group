@@ -13,18 +13,18 @@ class_name Player
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
-signal hit_enemy(damage: int)
+var attack_damage = 10
 
-var attack_damage = 10	
-
-enum facing_direction {WEST, EAST, NORTH, SOUTH} 
+enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir : int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
 
+signal provide_inv(loot_num_values: Array)
+
 func _ready() -> void:
-	# damage_areaH.area_entered.connect(_on_damage_area_entered)
 	pass
+
 func _physics_process(delta: float) -> void:
 	set_direction()
 	handle_movement()
@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 
 func set_direction() -> void:
 	if Input.is_action_pressed("left"):
-		current_dir = facing_direction.WEST 
+		current_dir = facing_direction.WEST
 		damage_areaH.scale.x = -1
 	elif Input.is_action_pressed("right"):
-		current_dir = facing_direction.EAST 
+		current_dir = facing_direction.EAST
 		damage_areaH.scale.x = 1
 	elif Input.is_action_pressed("up"):
 		current_dir = facing_direction.NORTH
@@ -74,7 +74,7 @@ func handle_movement():
 				animated_sprite.play("idle_n")
 			facing_direction.SOUTH:
 				animated_sprite.play("idle_s")
-			 
+
 func handle_attack() -> void:
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
@@ -96,17 +96,23 @@ func handle_attack() -> void:
 		damage_collisionV.disabled = false
 
 		await get_tree().create_timer(0.2).timeout
-		
+
 		damage_collisionH.disabled = true
 		damage_collisionV.disabled = true
 
-func collect(loot_num: LootNumResource) -> void:
-	inventory.insert(loot_num)
+func collect(loot_num: LootNumResource) -> bool:
+	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
+	return successful
 
 func _on_damage_area_entered(area:Area2D) -> void:
-	if area.get_parent().name == "Enemy":
-		emit_signal("hit_enemy", 50) # Only fires when the collision shape is enabled.
+	if (area.get_parent().has_method("take_damage")):
+		# print(area.get_parent().has_method("take_damage"))
+		area.get_parent().take_damage(50)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
+
+func provide_loot_num_values(blob) -> void: # This function gives the inventory values to the blob.
+	var inv_array := inventory.get_items()
+	blob.receive_inv_values(inv_array)
