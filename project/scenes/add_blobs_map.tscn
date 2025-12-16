@@ -1154,15 +1154,6 @@ rotation = -0.000527713
 [node name="AdditionBlob" parent="." instance=ExtResource("19_8ty0v")]
 position = Vector2(127, 128)
 
-[node name="EnemySpawnPoint" type="Marker2D" parent="."]
-position = Vector2(175, -118)
-
-[node name="EnemySpawnPoint2" type="Marker2D" parent="."]
-position = Vector2(75, -118)
-
-[node name="EnemySpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(284, -119)
-
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(8.18952, 121.005)
 rotation = -0.000527713
