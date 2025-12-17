@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://q3virnvx827g"]
+
+[ext_resource type="Script" uid="uid://clxjnl2egiidl" path="res://project/scenes/menus/pause_menu.gd" id="1_e1f27"]
+[ext_resource type="PackedScene" uid="uid://d1b5p27ddprw8" path="res://project/scenes/menus/control_menu.tscn" id="2_gjbd4"]
+[ext_resource type="PackedScene" uid="uid://cnt34xc6kdyc8" path="res://project/scenes/menus/settings_menu.tscn" id="3_wf6qf"]
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_e1f27")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.345098)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Hervatten"
+
+[node name="Controls" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Besturing"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Instellingen"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Afsluiten"
+
+[node name="Controls" parent="." instance=ExtResource("2_gjbd4")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+
+[node name="Settings" parent="." instance=ExtResource("3_wf6qf")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="Controls" method="show"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="Settings" method="show"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
