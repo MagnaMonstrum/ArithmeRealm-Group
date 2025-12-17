@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bokrw4pdx5xf5"]
 
-[ext_resource type="Script" uid="uid://dlopx6vewc6jb" path="res://project/scripts/problem_ui.gd" id="1_42bhk"]
+[ext_resource type="Script" path="res://project/scripts/problem_ui.gd" id="1_42bhk"]
 [ext_resource type="PackedScene" uid="uid://cjkpk2n4oaco2" path="res://project/scenes/addition_blob_ui.tscn" id="2_mfm7k"]
 [ext_resource type="PackedScene" uid="uid://cdjwnt3hnjdlh" path="res://project/scenes/inv_ui.tscn" id="3_2xak6"]
 [ext_resource type="Script" uid="uid://bcioi86xrr37t" path="res://project/scripts/problem_ui_drop_receiver.gd" id="4_drop"]
@@ -65,3 +65,4 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 
 [node name="AdditionBlob" parent="CanvasLayer/Control" instance=ExtResource("2_mfm7k")]
+texture_filter = 1

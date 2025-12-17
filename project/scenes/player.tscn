@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d1t73u1dvsei6" path="res://project/scripts/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://b3ni5hv6st7ax" path="res://project/scripts/inventory/inventory_not_empty.tres" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cdjwnt3hnjdlh" path="res://project/scenes/inv_ui.tscn" id="3_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://cha304r3kbe7e" path="res://project/scenes/interacting_component.tscn" id="5_c52q7"]
+[ext_resource type="PackedScene" uid="uid://cjwypl11ylp10" path="res://project/scenes/interacting_component.tscn" id="5_c52q7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
 atlas = ExtResource("1_3vyb7")
