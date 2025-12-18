@@ -1176,6 +1176,7 @@ position = Vector2(26.5456, -266.189)
 rotation = 0.0122813
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 4.5
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

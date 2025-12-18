@@ -3,7 +3,9 @@ extends Node2D
 @onready var player = $Player
 @onready var add_blob = $AdditionBlob
 
-@export var max_enemies := 4
+@export var max_enemies := 3 # Maximum number of enemies at once
+@export var spawn_interval := 4.5 # Time interval between spawns (seconds)
+@export var safe_spawn_distance := 140.0 # Minimum distance to player when spawning
 @export var loot_num_resource: LootNumResource
 var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
 var current_enemy_count := 0
@@ -25,16 +27,34 @@ var num_sprites_paths = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(max_enemies):
-		spawn_enemy()
 	# When Player interacts with AddBlob a request is sent to Player to provide the invetory values.
 	# This is so that the math problems the player gets are always solvable (for now this seems like the best for the game experience during the prototype).
 	add_blob.request_inventory.connect(player.provide_loot_num_values)
 
+	# Adjust spawn rate via the Timer in the scene
+	var timer := get_node_or_null("Timer") as Timer
+	if timer:
+		timer.wait_time = spawn_interval
+
 func spawn_enemy() -> void:
+	# Choose a spawn point along the path that isn't too close to the player.
+	var tries := 6
+	var spawn_pos := Vector2.ZERO
+	var found_valid := false
+	while tries > 0 and not found_valid:
+		%PathFollow2D.progress_ratio = randf()
+		spawn_pos = %PathFollow2D.global_position
+		if not is_instance_valid(player) or spawn_pos.distance_to(player.global_position) >= safe_spawn_distance:
+			found_valid = true
+		else:
+			tries -= 1
+
+	if not found_valid:
+		# Skip this cycle to avoid overwhelming the player nearby
+		return
+
 	var new_mob = preload("res://project/scenes/enemy.tscn").instantiate()
-	%PathFollow2D.progress_ratio = randf()
-	new_mob.global_position = %PathFollow2D.global_position
+	new_mob.global_position = spawn_pos
 	add_child(new_mob)
 
 	current_enemy_count += 1

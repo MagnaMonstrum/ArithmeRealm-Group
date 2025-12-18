@@ -12,19 +12,23 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_interact:
 		if current_interactions:
-			can_interact = false
-			interact_label.hide()
+			var nearest = current_interactions[0]
+			# Only interact if it's an actual interactable object
+			if nearest.has_method("get") and "interact" in nearest:
+				can_interact = false
+				interact_label.hide()
 
-			await current_interactions[0].interact.call()
+				await nearest.interact.call()
 
-			can_interact = true
+				can_interact = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if current_interactions and can_interact:
 		current_interactions.sort_custom(_sort_by_nearest)
-		if current_interactions[0].is_interactable:
-			interact_label.text = current_interactions[0].interaction_name
+		var nearest = current_interactions[0]
+		if nearest.has_method("get") and "is_interactable" in nearest and nearest.is_interactable:
+			interact_label.text = nearest.interaction_name
 			interact_label.show()
 	else:
 		interact_label.hide()
