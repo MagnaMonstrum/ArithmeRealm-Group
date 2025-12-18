@@ -1151,7 +1151,7 @@ shape = SubResource("RectangleShape2D_8ty0v")
 position = Vector2(153, -164)
 shape = SubResource("RectangleShape2D_8ty0v")
 
-[node name="Player" parent="." instance=ExtResource("10_3x7qf")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("10_3x7qf")]
 position = Vector2(140, 96)
 rotation = -0.000527713
 

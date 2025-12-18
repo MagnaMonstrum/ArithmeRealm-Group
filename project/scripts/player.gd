@@ -29,6 +29,7 @@ enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
+var gem_amount = 0
 
 signal provide_inv(loot_num_values: Array)
 
@@ -129,7 +130,11 @@ func collect(loot_num: LootNumResource) -> bool:
 	inv.update_slots(inventory.slots)
 	return successful
 
-func _on_damage_area_entered(area: Area2D) -> void:
+func _on_add_gem() -> void:
+	gem_amount += 1
+	print("gem_amount: ", gem_amount)
+
+func _on_damage_area_entered(area:Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
 		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
