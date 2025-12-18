@@ -16,7 +16,7 @@ const JUMP_VELOCITY = -400.0
 var attack_damage = 10
 
 enum facing_direction {WEST, EAST, NORTH, SOUTH}
-var current_dir : int
+var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
 
@@ -105,7 +105,7 @@ func collect(loot_num: LootNumResource) -> bool:
 	inv.update_slots(inventory.slots)
 	return successful
 
-func _on_damage_area_entered(area:Area2D) -> void:
+func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
 		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
@@ -116,3 +116,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func provide_loot_num_values(blob) -> void: # This function gives the inventory values to the blob.
 	var inv_array := inventory.get_items()
 	blob.receive_inv_values(inv_array)
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true

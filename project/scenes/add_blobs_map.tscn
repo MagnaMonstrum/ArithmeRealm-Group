@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://ba32leeatnqc6"]
+[gd_scene load_steps=55 format=4 uid="uid://ba32leeatnqc6"]
 
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="1_87h6n"]
 [ext_resource type="Script" uid="uid://bheyk3ixxln54" path="res://project/scripts/add_blobs_map.gd" id="1_qwqeu"]
@@ -1093,6 +1093,9 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jjku"]
+size = Vector2(274.116, 130.663)
+
 [node name="AddBlobsMap" type="Node2D"]
 script = ExtResource("1_qwqeu")
 
@@ -1161,6 +1164,12 @@ rotation = -0.000527713
 scale = Vector2(1.0573, 0.98094)
 curve = SubResource("Curve2D_47avk")
 
+[node name="EnemyArea" type="Area2D" parent="Path2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/EnemyArea"]
+position = Vector2(159.815, -206.868)
+shape = SubResource("RectangleShape2D_8jjku")
+
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
 position = Vector2(26.5456, -266.189)
@@ -1187,6 +1196,8 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
+[connection signal="body_entered" from="Path2D/EnemyArea" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Path2D/EnemyArea" to="Player" method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]

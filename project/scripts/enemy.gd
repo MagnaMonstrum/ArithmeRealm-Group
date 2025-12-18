@@ -16,8 +16,9 @@ func _ready() -> void:
 	animated_sprite.play("default")
 
 
-func _physics_process(delta: float) -> void:
-	move()
+func _physics_process(_delta: float) -> void:
+	if Global.player_in_enemy_area:
+		move()
 	handle_death()
 
 func move() -> void:
@@ -35,7 +36,3 @@ func handle_death() -> void:
 
 func take_damage(dmg: int) -> void:
 	health_amount -= dmg
-
-# # placeholder until defeating enemy mechanic works
-# func _on_timer_timeout() -> void:
-# 	health_amount -= 10
