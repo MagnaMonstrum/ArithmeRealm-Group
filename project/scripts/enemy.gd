@@ -10,12 +10,12 @@ const SPEED := 18
 var health_amount := 50
 var health_amount_min := 0
 var taking_damage := false
-var attack_damage := 6  # Damage dealt to player on collision
-var attack_cooldown := 1.6  # Time between attacks
+var attack_damage := 6 # Damage dealt to player on collision
+var attack_cooldown := 1.6 # Time between attacks
 var can_attack := true
 var attacking := false
 var player_in_range := false
-var attack_windup := 0.5  # Delay before damage is applied
+var attack_windup := 0.5 # Delay before damage is applied
 var hitstun_duration := 0.4
 var knockback: Vector2 = Vector2.ZERO
 var knockback_decay := 10.0
@@ -24,7 +24,7 @@ func _ready() -> void:
 	# Ensure enemy is on correct collision layer (layer 3)
 	collision_layer = 3
 	collision_mask = 3
-	
+
 	animated_sprite.play("default")
 	# Connect HurtBox signals to detect player proximity
 	var hurtbox = get_node_or_null("HurtBox")
@@ -34,7 +34,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	move()
+	if Global.player_in_enemy_area:
+		move()
 	handle_death()
 
 	# Apply knockback decay

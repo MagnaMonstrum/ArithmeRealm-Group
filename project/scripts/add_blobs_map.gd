@@ -3,9 +3,9 @@ extends Node2D
 @onready var player = $Player
 @onready var add_blob = $AdditionBlob
 
-@export var max_enemies := 3          # Maximum number of enemies at once
-@export var spawn_interval := 4.5     # Time interval between spawns (seconds)
-@export var safe_spawn_distance := 140.0  # Minimum distance to player when spawning
+@export var max_enemies := 3 # Maximum number of enemies at once
+@export var spawn_interval := 4.5 # Time interval between spawns (seconds)
+@export var safe_spawn_distance := 140.0 # Minimum distance to player when spawning
 @export var loot_num_resource: LootNumResource
 var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
 var current_enemy_count := 0
@@ -35,10 +35,6 @@ func _ready() -> void:
 	var timer := get_node_or_null("Timer") as Timer
 	if timer:
 		timer.wait_time = spawn_interval
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func spawn_enemy() -> void:
 	# Choose a spawn point along the path that isn't too close to the player.

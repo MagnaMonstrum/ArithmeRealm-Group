@@ -18,7 +18,7 @@ const JUMP_VELOCITY = -400.0
 var max_health := 100
 var current_health := 100
 var is_invincible := false
-var invincibility_duration := 0.5  # seconds of invincibility after taking damage
+var invincibility_duration := 0.5 # seconds of invincibility after taking damage
 
 var attack_damage = 10
 
@@ -26,7 +26,7 @@ signal health_changed(current_health: int, max_health: int)
 signal player_died
 
 enum facing_direction {WEST, EAST, NORTH, SOUTH}
-var current_dir : int
+var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
 
@@ -36,20 +36,20 @@ func _ready() -> void:
 	print("Player _ready called for: ", self.name)
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
-	
+
 	# Initialize health and update HUD
 	current_health = max_health
 	if hud and hud.has_method("update_health"):
 		hud.update_health(current_health, max_health)
-	
+
 	# Connect health signal if HUD exists
 	if hud:
 		health_changed.connect(_on_health_changed)
 
 func _physics_process(_delta: float) -> void:
 	if current_health <= 0:
-		return  # Don't process if dead
-		
+		return # Don't process if dead
+
 	set_direction()
 	handle_movement()
 	handle_attack()
@@ -129,7 +129,7 @@ func collect(loot_num: LootNumResource) -> bool:
 	inv.update_slots(inventory.slots)
 	return successful
 
-func _on_damage_area_entered(area:Area2D) -> void:
+func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
 		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
@@ -145,19 +145,19 @@ func take_damage(damage: int) -> void:
 	# Player takes damage from enemies
 	if is_invincible or current_health <= 0:
 		return
-	
+
 	current_health = max(0, current_health - damage)
 	health_changed.emit(current_health, max_health)
-	
+
 	if current_health <= 0:
 		die()
 	else:
 		# Brief invincibility after a hit (invincibility frames)
 		is_invincible = true
 		# Visual feedback: temporarily tint the sprite red
-		animated_sprite.modulate = Color(1, 0.5, 0.5, 1)  # Red tint
+		animated_sprite.modulate = Color(1, 0.5, 0.5, 1) # Red tint
 		await get_tree().create_timer(invincibility_duration).timeout
-		animated_sprite.modulate = Color(1, 1, 1, 1)  # Restore color
+		animated_sprite.modulate = Color(1, 1, 1, 1) # Restore color
 		is_invincible = false
 
 func heal(amount: int) -> void:
@@ -170,7 +170,7 @@ func die() -> void:
 	player_died.emit()
 	velocity = Vector2.ZERO
 	attacking = false
-	
+
 	# Play death animation if available, otherwise fade out
 	if animated_sprite.sprite_frames.has_animation("death"):
 		animated_sprite.play("death")
@@ -180,7 +180,7 @@ func die() -> void:
 		var tween = create_tween()
 		tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5)
 		await tween.finished
-	
+
 	# Game over logic - you can expand this
 	get_tree().reload_current_scene()
 
@@ -188,3 +188,11 @@ func _on_health_changed(health: int, max_hp: int) -> void:
 	# Update HUD when health changes
 	if hud and hud.has_method("update_health"):
 		hud.update_health(health, max_hp)
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
