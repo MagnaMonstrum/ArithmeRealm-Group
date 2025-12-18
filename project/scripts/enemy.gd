@@ -62,9 +62,6 @@ func handle_death() -> void:
 		queue_free()
 
 func take_damage(dmg: int) -> void:
-<< << << < HEAD
-	health_amount -= dmg
-== == == =
 	health_amount -= dmg
 	# Brief hitstun and knockback to prevent instant mutual hits
 	can_attack = false
@@ -100,4 +97,3 @@ func _attacking_sequence() -> void:
 # # placeholder until defeating enemy mechanic works
 # func _on_timer_timeout() -> void:
 # 	health_amount -= 10
->> >> >> > origin / dev

@@ -189,54 +189,6 @@ func _on_health_changed(health: int, max_hp: int) -> void:
 	if hud and hud.has_method("update_health"):
 		hud.update_health(health, max_hp)
 
-func take_damage(damage: int) -> void:
-	# Player takes damage from enemies
-	if is_invincible or current_health <= 0:
-		return
-
-	current_health = max(0, current_health - damage)
-	health_changed.emit(current_health, max_health)
-
-	if current_health <= 0:
-		die()
-	else:
-		# Brief invincibility after a hit (invincibility frames)
-		is_invincible = true
-		# Visual feedback: temporarily tint the sprite red
-		animated_sprite.modulate = Color(1, 0.5, 0.5, 1) # Red tint
-		await get_tree().create_timer(invincibility_duration).timeout
-		animated_sprite.modulate = Color(1, 1, 1, 1) # Restore color
-		is_invincible = false
-
-func heal(amount: int) -> void:
-	# Heal the player (clamped to max_health)
-	current_health = min(max_health, current_health + amount)
-	health_changed.emit(current_health, max_health)
-
-func die() -> void:
-	# Handle player death
-	player_died.emit()
-	velocity = Vector2.ZERO
-	attacking = false
-
-	# Play death animation if available, otherwise fade out
-	if animated_sprite.sprite_frames.has_animation("death"):
-		animated_sprite.play("death")
-		await animated_sprite.animation_finished
-	else:
-		# Fade out effect
-		var tween = create_tween()
-		tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5)
-		await tween.finished
-
-	# Game over logic - you can expand this
-	get_tree().reload_current_scene()
-
-func _on_health_changed(health: int, max_hp: int) -> void:
-	# Update HUD when health changes
-	if hud and hud.has_method("update_health"):
-		hud.update_health(health, max_hp)
-
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		Global.player_in_enemy_area = false
