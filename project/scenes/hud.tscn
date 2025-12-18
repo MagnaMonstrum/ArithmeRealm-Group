@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0cvflea14qv"]
+
+[ext_resource type="PackedScene" uid="uid://mb4bobspgevc" path="res://project/scenes/player_health.tscn" id="1_63f62"]
+[ext_resource type="Script" uid="uid://dp7340gvhlf58" path="res://project/scripts/hud.gd" id="2_hud_script"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_hud_script")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerHealth" parent="CanvasLayer" instance=ExtResource("1_63f62")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -75.0
+offset_right = 231.0
+offset_bottom = -8.0
+grow_horizontal = 1
+grow_vertical = 0

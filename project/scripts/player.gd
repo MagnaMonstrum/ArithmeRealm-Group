@@ -9,14 +9,24 @@ class_name Player
 @onready var damage_collisionH = $DamagAreaH.get_node("CollisionShape2D")
 @onready var damage_collisionV = $DamagAreaV.get_node("CollisionShape2DV")
 @onready var inv = $InvUI
+@onready var hud = $Hud
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
+# Health system
+var max_health := 100
+var current_health := 100
+var is_invincible := false
+var invincibility_duration := 0.5 # seconds of invincibility after taking damage
+
 var attack_damage = 10
 
+signal health_changed(current_health: int, max_health: int)
+signal player_died
+
 enum facing_direction {WEST, EAST, NORTH, SOUTH}
-var current_dir : int
+var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
 var gem_amount = 0
@@ -24,9 +34,23 @@ var gem_amount = 0
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
-	pass
+	print("Player _ready called for: ", self.name)
+	# Add player to group "player" for identification in the world
+	add_to_group("player")
 
-func _physics_process(delta: float) -> void:
+	# Initialize health and update HUD
+	current_health = max_health
+	if hud and hud.has_method("update_health"):
+		hud.update_health(current_health, max_health)
+
+	# Connect health signal if HUD exists
+	if hud:
+		health_changed.connect(_on_health_changed)
+
+func _physics_process(_delta: float) -> void:
+	if current_health <= 0:
+		return # Don't process if dead
+
 	set_direction()
 	handle_movement()
 	handle_attack()
@@ -121,3 +145,59 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func provide_loot_num_values(blob) -> void: # This function gives the inventory values to the blob.
 	var inv_array := inventory.get_items()
 	blob.receive_inv_values(inv_array)
+
+func take_damage(damage: int) -> void:
+	# Player takes damage from enemies
+	if is_invincible or current_health <= 0:
+		return
+
+	current_health = max(0, current_health - damage)
+	health_changed.emit(current_health, max_health)
+
+	if current_health <= 0:
+		die()
+	else:
+		# Brief invincibility after a hit (invincibility frames)
+		is_invincible = true
+		# Visual feedback: temporarily tint the sprite red
+		animated_sprite.modulate = Color(1, 0.5, 0.5, 1) # Red tint
+		await get_tree().create_timer(invincibility_duration).timeout
+		animated_sprite.modulate = Color(1, 1, 1, 1) # Restore color
+		is_invincible = false
+
+func heal(amount: int) -> void:
+	# Heal the player (clamped to max_health)
+	current_health = min(max_health, current_health + amount)
+	health_changed.emit(current_health, max_health)
+
+func die() -> void:
+	# Handle player death
+	player_died.emit()
+	velocity = Vector2.ZERO
+	attacking = false
+
+	# Play death animation if available, otherwise fade out
+	if animated_sprite.sprite_frames.has_animation("death"):
+		animated_sprite.play("death")
+		await animated_sprite.animation_finished
+	else:
+		# Fade out effect
+		var tween = create_tween()
+		tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.5)
+		await tween.finished
+
+	# Game over logic - you can expand this
+	get_tree().reload_current_scene()
+
+func _on_health_changed(health: int, max_hp: int) -> void:
+	# Update HUD when health changes
+	if hud and hud.has_method("update_health"):
+		hud.update_health(health, max_hp)
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
