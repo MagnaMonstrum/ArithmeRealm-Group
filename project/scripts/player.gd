@@ -29,11 +29,14 @@ enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
-var gem_amount = 0
+var gem_counter = Global.gem_amount 
+
 
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
+	var init_gem_amount = 0
+
 	print("Player _ready called for: ", self.name)
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
@@ -47,6 +50,9 @@ func _ready() -> void:
 	if hud:
 		health_changed.connect(_on_health_changed)
 
+		hud.update_gem_counter(init_gem_amount)
+
+		
 func _physics_process(_delta: float) -> void:
 	if current_health <= 0:
 		return # Don't process if dead
@@ -131,8 +137,10 @@ func collect(loot_num: LootNumResource) -> bool:
 	return successful
 
 func _on_add_gem() -> void:
-	gem_amount += 1
-	print("gem_amount: ", gem_amount)
+	gem_counter += 1
+
+	if hud:
+		hud.update_gem_counter(gem_counter)
 
 func _on_damage_area_entered(area:Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
@@ -155,7 +163,7 @@ func take_damage(damage: int) -> void:
 	health_changed.emit(current_health, max_health)
 
 	if current_health <= 0:
-		die()
+		handle_death()
 	else:
 		# Brief invincibility after a hit (invincibility frames)
 		is_invincible = true
@@ -170,7 +178,7 @@ func heal(amount: int) -> void:
 	current_health = min(max_health, current_health + amount)
 	health_changed.emit(current_health, max_health)
 
-func die() -> void:
+func handle_death() -> void:
 	# Handle player death
 	player_died.emit()
 	velocity = Vector2.ZERO
@@ -193,6 +201,10 @@ func _on_health_changed(health: int, max_hp: int) -> void:
 	# Update HUD when health changes
 	if hud and hud.has_method("update_health"):
 		hud.update_health(health, max_hp)
+
+func _on_gem_counter_changed(current_gem_amount: int) -> void:
+	if hud and hud.has_method("update_gem_counter"):
+		hud.update_gem_counter(current_gem_amount)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
