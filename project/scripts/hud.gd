@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func update_health(current_health: int, max_health: int) -> void:
 	if health_bar:
-		health_bar.max_value = max_health
+		health_bar.max_value = max_health 
 		health_bar.value = current_health
 	
 	if health_label:

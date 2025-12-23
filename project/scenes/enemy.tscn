@@ -78,9 +78,9 @@ radius = 7.0
 radius = 16.0
 
 [node name="Enemy" type="CharacterBody2D"]
+position = Vector2(-0.069252, -0.0297947)
 collision_layer = 3
 collision_mask = 3
-position = Vector2(-0.069252, -0.0297947)
 script = ExtResource("1_md0e3")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -119,7 +119,6 @@ autostart = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.069252, 0.0297947)
