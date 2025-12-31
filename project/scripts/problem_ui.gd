@@ -82,7 +82,7 @@ func _set_problem_label() -> void:
 	var target = inv_values[rng.randi_range(0, inv_values.size() - 1)]
 
 	# Generate a simple sum A+B=target with non-negative addends.
-	var a: int = rng.randi_range(0, target)
+	var a: int = rng.randi_range(1, target)
 	var b: int = target - a
 	label.text = "%d + %d" % [a, b]
 	
