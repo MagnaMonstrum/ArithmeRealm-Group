@@ -57,7 +57,7 @@ func move() -> void:
 
 func handle_death() -> void:
 	var death_position = global_position
-	var random_num = randi_range(0, 100)
+	var random_num = randi_range(1, 1000)
 	if current_health <= 0:
 		emit_signal("drop_num", death_position, random_num)
 
