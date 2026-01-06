@@ -1,11 +1,12 @@
-[gd_scene load_steps=61 format=3 uid="uid://bcx507qw46mnd"]
+[gd_scene load_steps=62 format=3 uid="uid://bcx507qw46mnd"]
 
 [ext_resource type="Texture2D" uid="uid://bevoi5psnmi4c" path="res://project/art/sprites/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d1t73u1dvsei6" path="res://project/scripts/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://b3ni5hv6st7ax" path="res://project/scripts/inventory/inventory_not_empty.tres" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cdjwnt3hnjdlh" path="res://project/scenes/inv_ui.tscn" id="3_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://cjwypl11ylp10" path="res://project/scenes/interacting_component.tscn" id="5_c52q7"]
+[ext_resource type="PackedScene" uid="uid://cha304r3kbe7e" path="res://project/scenes/interacting_component.tscn" id="5_c52q7"]
 [ext_resource type="PackedScene" uid="uid://w0cvflea14qv" path="res://project/scenes/hud.tscn" id="6_dbuw4"]
+[ext_resource type="AudioStream" uid="uid://cq0ioax62n7qj" path="res://project/sounds/hit.ogg" id="7_hit"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
 atlas = ExtResource("1_3vyb7")
@@ -492,6 +493,9 @@ scale = Vector2(0.7, 0.7)
 [node name="InteractingComponent" parent="." instance=ExtResource("5_c52q7")]
 
 [node name="Hud" parent="." instance=ExtResource("6_dbuw4")]
+
+[node name="DamageSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hit")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="DamagAreaH" to="." method="_on_damage_area_entered"]

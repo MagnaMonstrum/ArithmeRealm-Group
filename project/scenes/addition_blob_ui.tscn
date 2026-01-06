@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjkpk2n4oaco2"]
+[gd_scene load_steps=3 format=3 uid="uid://cjkpk2n4oaco2"]
 
 [ext_resource type="Texture2D" uid="uid://vvogbq07snt" path="res://project/art/sprites/characters/blob_sum.png" id="1_blob"]
+[ext_resource type="Script" uid="uid://c21by6c5qfl6h" path="res://project/scripts/addition_blob_ui.gd" id="2_script"]
 
 [node name="AdditionBlobUI" type="Node2D"]
 z_index = 2
+script = ExtResource("2_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -28,3 +30,5 @@ theme_override_font_sizes/font_size = 36
 text = "99 + 99"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

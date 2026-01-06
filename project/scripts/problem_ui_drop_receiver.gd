@@ -157,7 +157,7 @@ func _on_correct(slot_idx: int) -> void:
 		emit_signal("add_gem")
 		
 	# Play correct animation (if available) then close UI
-	var blob = problem_ui.get_node_or_null("CanvasLayer/AdditionBlob")
+	var blob = problem_ui.get_node_or_null("CanvasLayer/Control/AdditionBlob")
 	if blob and blob.has_method("play_correct_animation"):
 		await blob.play_correct_animation()
 	else:
@@ -167,7 +167,7 @@ func _on_correct(slot_idx: int) -> void:
 
 func _on_wrong() -> void:
 	# Play wrong animation (if available); UI remains open
-	var blob = problem_ui.get_node_or_null("CanvasLayer/AdditionBlob")
+	var blob = problem_ui.get_node_or_null("CanvasLayer/Control/AdditionBlob")
 	if blob and blob.has_method("play_wrong_animation"):
 		await blob.play_wrong_animation()
 	

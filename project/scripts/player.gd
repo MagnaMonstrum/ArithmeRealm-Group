@@ -10,6 +10,7 @@ class_name Player
 @onready var damage_collisionV = $DamagAreaV.get_node("CollisionShape2DV")
 @onready var inv = $InvUI
 @onready var hud = $Hud
+@onready var damage_sfx: AudioStreamPlayer = $DamageSfx
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
@@ -158,6 +159,10 @@ func take_damage(damage: int) -> void:
 	# Player takes damage from enemies
 	if is_invincible or current_health <= 0:
 		return
+
+	if damage_sfx:
+		damage_sfx.stop()
+		damage_sfx.play()
 
 	current_health = max(0, current_health - damage)
 	health_changed.emit(current_health, max_health)
