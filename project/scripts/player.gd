@@ -143,10 +143,10 @@ func _on_add_gem() -> void:
 	if hud:
 		hud.update_gem_counter(gem_counter)
 
-func _on_damage_area_entered(area:Area2D) -> void:
+func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
 		# print(area.get_parent().has_method("take_damage"))
-		area.get_parent().take_damage(50)
+		area.get_parent().take_damage(10)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxcrhsdhnf0sq"]
+[gd_scene load_steps=18 format=3 uid="uid://bxcrhsdhnf0sq"]
 
 [ext_resource type="Texture2D" uid="uid://c4lag5ow4wn7c" path="res://project/art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://clvgfo5t2oasw" path="res://project/scripts/enemy.gd" id="1_md0e3"]
@@ -77,6 +77,20 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 16.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vauk8"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6rad"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(-0.069252, -0.0297947)
 collision_layer = 3
@@ -123,5 +137,33 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.069252, 0.0297947)
 shape = SubResource("CircleShape2D_md0e3")
+
+[node name="EnemyHealth" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 19.0
+offset_bottom = -13.0
+grow_horizontal = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="EnemyHealth"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0693
+offset_top = 31.0298
+offset_right = -11.9307
+offset_bottom = 25.0298
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vauk8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h6rad")
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
