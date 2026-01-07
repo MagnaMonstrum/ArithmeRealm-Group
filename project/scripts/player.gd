@@ -17,7 +17,7 @@ class_name Player
 
 var level_tilemap: TileMap = null
 
-const SPEED = 100.0
+@export var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 # Health system
@@ -245,3 +245,28 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		Global.player_in_enemy_area = true
+
+
+func _on_enemy_area_1_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_1_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_enemy_area_2_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_2_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_enemy_area_3_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_3_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
