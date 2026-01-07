@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @export var inventory: Inv
+@export var level_tilemap_layer: TileMapLayer
+
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var damage_areaH = $DamagAreaH
@@ -11,6 +13,9 @@ class_name Player
 @onready var inv = $InvUI
 @onready var hud = $Hud
 @onready var damage_sfx: AudioStreamPlayer = $DamageSfx
+@onready var cam: Camera2D = $Camera2D
+
+var level_tilemap: TileMap = null
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
@@ -30,7 +35,7 @@ enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
-var gem_counter = Global.gem_amount 
+var gem_counter = Global.gem_amount
 
 
 signal provide_inv(loot_num_values: Array)
@@ -53,7 +58,16 @@ func _ready() -> void:
 
 		hud.update_gem_counter(init_gem_amount)
 
-		
+	if level_tilemap_layer == null:
+		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
+		return
+	if cam == null:
+		push_warning("CameraBounds: 'camera' is not set. Assign a Camera2D in the Inspector.")
+		return
+
+	_apply_camera_limits_from_tilemap(level_tilemap_layer)
+
+
 func _physics_process(_delta: float) -> void:
 	if current_health <= 0:
 		return # Don't process if dead
@@ -143,7 +157,7 @@ func _on_add_gem() -> void:
 	if hud:
 		hud.update_gem_counter(gem_counter)
 
-func _on_damage_area_entered(area:Area2D) -> void:
+func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
 		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
@@ -201,6 +215,19 @@ func handle_death() -> void:
 
 	# Game over logic - you can expand this
 	get_tree().reload_current_scene()
+
+func _apply_camera_limits_from_tilemap(tilemap_layer: TileMapLayer) -> void:
+	var used_rect: Rect2i = tilemap_layer.get_used_rect() # in tiles
+	var tile_size: Vector2i = tilemap_layer.tile_set.tile_size
+
+	var origin: Vector2 = Vector2(used_rect.position) * Vector2(tile_size)
+	var size: Vector2 = Vector2(used_rect.size) * Vector2(tile_size)
+	var rect := Rect2(origin, size)
+
+	cam.limit_left = int(rect.position.x)
+	cam.limit_top = int(rect.position.y)
+	cam.limit_right = int(rect.position.x + rect.size.x)
+	cam.limit_bottom = int(rect.position.y + rect.size.y)
 
 func _on_health_changed(health: int, max_hp: int) -> void:
 	# Update HUD when health changes
