@@ -43,7 +43,6 @@ signal provide_inv(loot_num_values: Array)
 func _ready() -> void:
 	var init_gem_amount = 0
 
-	print("Player _ready called for: ", self.name)
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
 
@@ -159,7 +158,6 @@ func _on_add_gem() -> void:
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
-		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(50)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
