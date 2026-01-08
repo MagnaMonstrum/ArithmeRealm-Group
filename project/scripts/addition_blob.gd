@@ -31,35 +31,32 @@ var num_sprites_paths = {
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:		
+func _ready() -> void:
 	interactable.interact = _on_interact
 	set_A_and_B()
 
 func _on_interact() -> void:
 	# Requesting the player inventory, this signal is connected to the player via add_blobs_map
-	emit_signal("request_inventory", self) 
-	print("curr_inv: ", curr_player_inv_values)
+	emit_signal("request_inventory", self)
 
 	if !is_instance_valid(problem_ui):
 		problem_ui = ProblemUiScene.instantiate()
 		problem_ui.top_level = true # Avoid inheriting transforms/scale from the blob so the UI fills the viewport
 		var target_parent = get_tree().current_scene if get_tree().current_scene else get_tree().root
 		target_parent.add_child(problem_ui)
-		
+
 		var drop_receiver = problem_ui.get_node("DropReceiver")
-		
+
 		if player:
 			drop_receiver.add_gem.connect(player._on_add_gem)
 
-		print("Problem UI instanced and added")
 
 	if !problem_ui.is_node_ready():
 		await problem_ui.ready
 	problem_ui.open(self, curr_player_inv_values)
-	print("Problem UI open called")
 
 func receive_inv_values(player_inv: Array) -> void:
-	curr_player_inv_values = player_inv	
+	curr_player_inv_values = player_inv
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

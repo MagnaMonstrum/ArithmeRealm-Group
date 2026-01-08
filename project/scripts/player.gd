@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @export var inventory: Inv
+@export var level_tilemap_layer: TileMapLayer
+
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var damage_areaH = $DamagAreaH
@@ -11,8 +13,11 @@ class_name Player
 @onready var inv = $InvUI
 @onready var hud = $Hud
 @onready var damage_sfx: AudioStreamPlayer = $DamageSfx
+@onready var cam: Camera2D = $Camera2D
 
-const SPEED = 100.0
+var level_tilemap: TileMap = null
+
+@export var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 # Health system
@@ -30,15 +35,18 @@ enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
-var gem_counter = Global.gem_amount 
+# var gem_counter = Global.gem_amount
+
+
+var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
 
 
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
-	var init_gem_amount = 0
+	var init_gem_amount = 100
+	Global.gem_amount = 100
 
-	print("Player _ready called for: ", self.name)
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
 
@@ -53,7 +61,16 @@ func _ready() -> void:
 
 		hud.update_gem_counter(init_gem_amount)
 
-		
+	if level_tilemap_layer == null:
+		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
+		return
+	if cam == null:
+		push_warning("CameraBounds: 'camera' is not set. Assign a Camera2D in the Inspector.")
+		return
+
+	_apply_camera_limits_from_tilemap(level_tilemap_layer)
+
+
 func _physics_process(_delta: float) -> void:
 	if current_health <= 0:
 		return # Don't process if dead
@@ -80,6 +97,14 @@ func handle_movement():
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
 	move_and_slide()
+
+	var padding := Vector2.ZERO
+	var min_x := world_bounds.position.x + padding.x
+	var min_y := world_bounds.position.y + padding.y
+	var max_x := world_bounds.position.x + world_bounds.size.x - padding.x
+	var max_y := world_bounds.position.y + world_bounds.size.y - padding.y
+	global_position.x = clamp(global_position.x, min_x, max_x)
+	global_position.y = clamp(global_position.y, min_y, max_y)
 
 	if velocity and !attacking:
 		match current_dir:
@@ -138,14 +163,19 @@ func collect(loot_num: LootNumResource) -> bool:
 	return successful
 
 func _on_add_gem() -> void:
-	gem_counter += 1
+	Global.gem_amount += 1
 
 	if hud:
-		hud.update_gem_counter(gem_counter)
+		hud.update_gem_counter(Global.gem_amount)
+
+func _on_remove_gems(count: int) -> void:
+	Global.gem_amount -= count
+
+	if hud:
+		hud.update_gem_counter(Global.gem_amount)
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
-		# print(area.get_parent().has_method("take_damage"))
 		area.get_parent().take_damage(10)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -202,6 +232,21 @@ func handle_death() -> void:
 	# Game over logic - you can expand this
 	get_tree().reload_current_scene()
 
+func _apply_camera_limits_from_tilemap(tilemap_layer: TileMapLayer) -> void:
+	var used_rect: Rect2i = tilemap_layer.get_used_rect() # in tiles
+	var tile_size: Vector2i = tilemap_layer.tile_set.tile_size
+
+	var origin: Vector2 = Vector2(used_rect.position) * Vector2(tile_size)
+	var size: Vector2 = Vector2(used_rect.size) * Vector2(tile_size)
+	var rect := Rect2(origin, size)
+
+	cam.limit_left = int(rect.position.x)
+	cam.limit_top = int(rect.position.y)
+	cam.limit_right = int(rect.position.x + rect.size.x)
+	cam.limit_bottom = int(rect.position.y + rect.size.y)
+
+	world_bounds = rect
+
 func _on_health_changed(health: int, max_hp: int) -> void:
 	# Update HUD when health changes
 	if hud and hud.has_method("update_health"):
@@ -218,3 +263,28 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		Global.player_in_enemy_area = true
+
+
+func _on_enemy_area_1_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_1_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_enemy_area_2_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_2_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
+
+func _on_enemy_area_3_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = true
+
+func _on_enemy_area_3_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		Global.player_in_enemy_area = false
