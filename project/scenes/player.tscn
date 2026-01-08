@@ -459,10 +459,6 @@ shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)
-limit_left = -30
-limit_top = -164
-limit_right = 337
-limit_bottom = 268
 
 [node name="DamagAreaH" type="Area2D" parent="."]
 collision_layer = 2
