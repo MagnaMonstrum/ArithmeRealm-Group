@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=4 uid="uid://btxkf5qr6ctai"]
 
+[ext_resource type="Script" path="res://project/scripts/map_2.gd" id="1_86gyv"]
 [ext_resource type="Texture2D" uid="uid://n7qex316phou" path="res://project/art/sprites/tilesets/decor_8x8.png" id="1_jd1r5"]
-[ext_resource type="Script" uid="uid://c7bkhe2ogi02r" path="res://project/scripts/map2/map_2.gd" id="1_sh74m"]
 [ext_resource type="Texture2D" uid="uid://bqof66noe2r87" path="res://project/art/sprites/tilesets/decor_16x16.png" id="2_sh74m"]
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="3_n5118"]
 [ext_resource type="Texture2D" uid="uid://bnuyr460q1ljr" path="res://project/art/sprites/tilesets/grass.png" id="4_ghcwm"]
@@ -318,7 +318,7 @@ point_count = 3
 size = Vector2(209, 123)
 
 [node name="map2" type="Node2D"]
-script = ExtResource("1_sh74m")
+script = ExtResource("1_86gyv")
 
 [node name="Entire" type="TileMapLayer" parent="."]
 
