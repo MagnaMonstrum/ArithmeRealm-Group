@@ -336,7 +336,6 @@ position = Vector2(528, -3.99998)
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("15_7mdhg")]
 position = Vector2(-166, -219)
 level_tilemap_layer = NodePath("../Entire/GroundLayer")
-SPEED = 400.0
 
 [node name="enemy spawns" type="Node2D" parent="."]
 
