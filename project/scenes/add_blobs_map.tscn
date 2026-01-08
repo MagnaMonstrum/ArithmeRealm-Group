@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://ba32leeatnqc6"]
+[gd_scene load_steps=55 format=4 uid="uid://ba32leeatnqc6"]
 
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="1_87h6n"]
 [ext_resource type="Script" uid="uid://bheyk3ixxln54" path="res://project/scripts/add_blobs_map.gd" id="1_qwqeu"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="19_8jjku"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="19_8ty0v"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="20_eubj0"]
+[ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="21_chest"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gkipi"]
 
@@ -1177,6 +1178,9 @@ offset_right = 0.0
 
 [node name="Node2D" parent="." instance=ExtResource("20_eubj0")]
 position = Vector2(37, 124)
+
+[node name="Chest" parent="." instance=ExtResource("21_chest")]
+position = Vector2(300, 66)
 
 [connection signal="body_entered" from="Path2D/EnemyArea" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Path2D/EnemyArea" to="Player" method="_on_area_2d_body_exited"]
