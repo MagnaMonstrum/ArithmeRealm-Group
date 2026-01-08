@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=4 uid="uid://btxkf5qr6ctai"]
 
-[ext_resource type="Script" path="res://project/scripts/map_2.gd" id="1_86gyv"]
+[ext_resource type="Script" uid="uid://c7bkhe2ogi02r" path="res://project/scripts/map_2.gd" id="1_86gyv"]
 [ext_resource type="Texture2D" uid="uid://n7qex316phou" path="res://project/art/sprites/tilesets/decor_8x8.png" id="1_jd1r5"]
 [ext_resource type="Texture2D" uid="uid://bqof66noe2r87" path="res://project/art/sprites/tilesets/decor_16x16.png" id="2_sh74m"]
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/plains.png" id="3_n5118"]
@@ -385,6 +385,9 @@ position = Vector2(258, -316)
 position = Vector2(105.5, 60.5)
 shape = SubResource("RectangleShape2D_n5118")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseButton" type="Button" parent="CanvasLayer"]
@@ -403,14 +406,11 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="body_entered" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
 [connection signal="body_exited" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
 [connection signal="body_entered" from="enemy spawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
 [connection signal="body_exited" from="enemy spawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_exited"]
 [connection signal="body_entered" from="enemy spawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_entered"]
 [connection signal="body_exited" from="enemy spawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]

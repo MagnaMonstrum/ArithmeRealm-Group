@@ -78,5 +78,5 @@ func _on_timer_timeout() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().paused = not get_tree().paused
+	get_tree().paused = true
 	%Pause.visible = true
