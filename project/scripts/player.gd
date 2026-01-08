@@ -38,6 +38,9 @@ var attack_animations := ["attack_e", "attack_n", "attack_s"]
 # var gem_counter = Global.gem_amount
 
 
+var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
+
+
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
@@ -94,6 +97,14 @@ func handle_movement():
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
 	move_and_slide()
+
+	var padding := Vector2.ZERO
+	var min_x := world_bounds.position.x + padding.x
+	var min_y := world_bounds.position.y + padding.y
+	var max_x := world_bounds.position.x + world_bounds.size.x - padding.x
+	var max_y := world_bounds.position.y + world_bounds.size.y - padding.y
+	global_position.x = clamp(global_position.x, min_x, max_x)
+	global_position.y = clamp(global_position.y, min_y, max_y)
 
 	if velocity and !attacking:
 		match current_dir:
@@ -233,6 +244,8 @@ func _apply_camera_limits_from_tilemap(tilemap_layer: TileMapLayer) -> void:
 	cam.limit_top = int(rect.position.y)
 	cam.limit_right = int(rect.position.x + rect.size.x)
 	cam.limit_bottom = int(rect.position.y + rect.size.y)
+
+	world_bounds = rect
 
 func _on_health_changed(health: int, max_hp: int) -> void:
 	# Update HUD when health changes

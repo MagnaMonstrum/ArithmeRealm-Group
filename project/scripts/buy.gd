@@ -3,7 +3,7 @@ extends Node2D
 @onready var InteractableBuy := $InteractableBuy
 
 var player: Node
-var gem_price = 10
+@export var gem_price = 10
 
 func _ready() -> void:
 	%CostLabel.text = "It will cost you: " + str(gem_price) + " gems!"
