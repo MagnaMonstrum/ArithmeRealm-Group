@@ -3,12 +3,13 @@ extends CharacterBody2D
 
 signal drop_num(pos: Vector2, num_loot: int)
 
+@onready var enemy_health_bar = $EnemyHealth/ProgressBar
 @onready var player := get_tree().get_current_scene().get_node("Player")
 @onready var animated_sprite = $AnimatedSprite2D
 
 const SPEED := 18
-var health_amount := 50
-var health_amount_min := 0
+var max_health = 100
+var current_health = 100
 var taking_damage := false
 var attack_damage := 6 # Damage dealt to player on collision
 var attack_cooldown := 1.6 # Time between attacks
@@ -21,6 +22,7 @@ var knockback: Vector2 = Vector2.ZERO
 var knockback_decay := 10.0
 
 func _ready() -> void:
+	update_health(max_health, max_health)
 	# Ensure enemy is on correct collision layer (layer 3)
 	collision_layer = 3
 	collision_mask = 3
@@ -55,14 +57,15 @@ func move() -> void:
 
 func handle_death() -> void:
 	var death_position = global_position
-	var random_num = randi_range(0, 1000)
-	if health_amount <= health_amount_min:
+	var random_num = randi_range(1, 1000)
+	if current_health <= 0:
 		emit_signal("drop_num", death_position, random_num)
 
 		queue_free()
 
 func take_damage(dmg: int) -> void:
-	health_amount -= dmg
+	current_health -= dmg
+	update_health(current_health, max_health)
 	# Brief hitstun and knockback to prevent instant mutual hits
 	can_attack = false
 	attacking = false
@@ -93,6 +96,12 @@ func _attacking_sequence() -> void:
 			await get_tree().create_timer(attack_cooldown).timeout
 			can_attack = true
 	attacking = false
+
+func update_health(current_health: int, max_health: int) -> void:
+	if enemy_health_bar:
+		enemy_health_bar.max_value = max_health
+		enemy_health_bar.value = current_health
+
 
 # # placeholder until defeating enemy mechanic works
 # func _on_timer_timeout() -> void:

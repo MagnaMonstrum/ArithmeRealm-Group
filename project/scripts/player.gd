@@ -176,7 +176,7 @@ func _on_remove_gems(count: int) -> void:
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
-		area.get_parent().take_damage(50)
+		area.get_parent().take_damage(10)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
