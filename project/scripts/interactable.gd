@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var interaction_name := ""
+@export var interaction_name := "additionBlob"
 @export var is_interactable := true
 
 var interact := func():

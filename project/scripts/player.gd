@@ -35,13 +35,14 @@ enum facing_direction {WEST, EAST, NORTH, SOUTH}
 var current_dir: int
 var attacking := false
 var attack_animations := ["attack_e", "attack_n", "attack_s"]
-var gem_counter = Global.gem_amount
+# var gem_counter = Global.gem_amount
 
 
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
-	var init_gem_amount = 0
+	var init_gem_amount = 100
+	Global.gem_amount = 100
 
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
@@ -151,10 +152,16 @@ func collect(loot_num: LootNumResource) -> bool:
 	return successful
 
 func _on_add_gem() -> void:
-	gem_counter += 1
+	Global.gem_amount += 1
 
 	if hud:
-		hud.update_gem_counter(gem_counter)
+		hud.update_gem_counter(Global.gem_amount)
+
+func _on_remove_gems(count: int) -> void:
+	Global.gem_amount -= count
+
+	if hud:
+		hud.update_gem_counter(Global.gem_amount)
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
