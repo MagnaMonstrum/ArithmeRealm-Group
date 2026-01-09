@@ -163,6 +163,8 @@ func collect(loot_num: LootNumResource) -> bool:
 	print()
 	if inventory.get_amount_of_nums_in_inventory() > 2:
 		get_tree().current_scene.get_node("AdditionBlob").visible = true
+		if hud:
+			hud.show_spawn_alert()
 	else:
 		get_tree().current_scene.get_node("AdditionBlob").visible = false
 
