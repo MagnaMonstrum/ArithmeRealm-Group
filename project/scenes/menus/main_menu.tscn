@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://1wf5u0688elr"]
+
+[ext_resource type="Script" uid="uid://b65qo6bp7yawk" path="res://project/scenes/menus/main_menu.gd" id="1_7bf60"]
+[ext_resource type="PackedScene" uid="uid://cnt34xc6kdyc8" path="res://project/scenes/menus/settings_menu.tscn" id="2_l2nei"]
+[ext_resource type="PackedScene" uid="uid://d1b5p27ddprw8" path="res://project/scenes/menus/control_menu.tscn" id="3_v0c3b"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7bf60")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.000278697, 0.000344163, 0.000413104, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.0
+offset_top = 52.0
+offset_right = 198.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "Hoofd Scherm"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Spelen"
+
+[node name="Controls" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Besturing"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Instellingen"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Afsluiten"
+
+[node name="Settings" parent="." instance=ExtResource("2_l2nei")]
+visible = false
+layout_mode = 1
+
+[node name="Controls" parent="." instance=ExtResource("3_v0c3b")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="Controls" method="show"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="Settings" method="show"]

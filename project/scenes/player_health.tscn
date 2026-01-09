@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://mb4bobspgevc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jop32"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fnjg"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PlayerHealth" type="Control"]
+layout_mode = 3
+anchor_right = 0.156
+anchor_bottom = 0.083
+offset_right = 0.287994
+offset_bottom = 0.215996
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32
+anchor_right = 1.0
+anchor_bottom = 0.963
+offset_top = 9.72
+offset_bottom = -0.00200272
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_jop32")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3fnjg")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 23.0
+text = "HP: 100/100"
+horizontal_alignment = 1

@@ -2,6 +2,7 @@ extends Node2D
 
 const ProblemUiScene := preload("res://project/scenes/problem_ui.tscn")
 
+@onready var player := get_tree().get_first_node_in_group("player")
 @onready var interactable := $Interactable
 @onready var timer = $Timer
 
@@ -36,30 +37,33 @@ func _ready() -> void:
 
 func _on_interact() -> void:
 	# Requesting the player inventory, this signal is connected to the player via add_blobs_map
-	emit_signal("request_inventory", self) 
-	print("curr_inv: ", curr_player_inv_values)
+	emit_signal("request_inventory", self)
 
 	if !is_instance_valid(problem_ui):
 		problem_ui = ProblemUiScene.instantiate()
 		problem_ui.top_level = true # Avoid inheriting transforms/scale from the blob so the UI fills the viewport
 		var target_parent = get_tree().current_scene if get_tree().current_scene else get_tree().root
 		target_parent.add_child(problem_ui)
-		print("Problem UI instanced and added")
+
+		var drop_receiver = problem_ui.get_node("DropReceiver")
+
+		if player:
+			drop_receiver.add_gem.connect(player._on_add_gem)
+
 
 	if !problem_ui.is_node_ready():
 		await problem_ui.ready
 	problem_ui.open(self, curr_player_inv_values)
-	print("Problem UI open called")
 
 func receive_inv_values(player_inv: Array) -> void:
-	curr_player_inv_values = player_inv	
+	curr_player_inv_values = player_inv
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func set_A_and_B() -> void:
-	int_A = rng.randi_range(0, 9)
-	int_B = rng.randi_range(0, 9)
-
-	var correct_answer = int_A + int_B
+	# Pull operands from the global difficulty profile so they scale with level.
+	var problem := ProblemGenerator.make_problem(Global.current_level)
+	int_A = problem.get("a", rng.randi_range(0, 9))
+	int_B = problem.get("b", rng.randi_range(0, 9))

@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://w0cvflea14qv"]
+
+[ext_resource type="PackedScene" uid="uid://mb4bobspgevc" path="res://project/scenes/player_health.tscn" id="1_63f62"]
+[ext_resource type="Script" uid="uid://dp7340gvhlf58" path="res://project/scripts/hud.gd" id="2_hud_script"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hapr2"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_hud_script")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpawnAlert" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 126.0
+offset_right = 261.0
+offset_bottom = 181.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Er is een blob gespawned![/b]"
+fit_content = true
+
+[node name="PlayerHealth" parent="CanvasLayer" instance=ExtResource("1_63f62")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -75.0
+offset_right = 231.0
+offset_bottom = -8.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="GemCounter" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 238.0
+offset_top = -54.0
+offset_right = 404.0
+offset_bottom = 24.0
+grow_vertical = 0
+scale = Vector2(0.634063, 0.634063)
+
+[node name="GemSprite" type="Control" parent="CanvasLayer/GemCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -128.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.02168, 2.02168)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/GemCounter/GemSprite"]
+position = Vector2(18.7963, 20.7748)
+scale = Vector2(37.4129, 37.4129)
+texture = SubResource("PlaceholderTexture2D_hapr2")
+
+[node name="GemValue" type="Control" parent="CanvasLayer/GemCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = 8.0
+offset_right = -11.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/GemCounter/GemValue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 50
+text = "10"

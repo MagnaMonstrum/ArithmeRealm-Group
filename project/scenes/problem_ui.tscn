@@ -65,3 +65,4 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 
 [node name="AdditionBlob" parent="CanvasLayer/Control" instance=ExtResource("2_mfm7k")]
+texture_filter = 1

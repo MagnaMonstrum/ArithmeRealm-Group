@@ -20,6 +20,8 @@ var mouse_was_pressed := false
 var drag_label_instance: Control = null
 var drag_label: Label = null
 
+signal add_gem
+
 func _ready() -> void:
 	# Initialize references and create a dedicated CanvasLayer for the drag label
 	problem_ui = get_parent() as Control
@@ -144,14 +146,18 @@ func _on_correct(slot_idx: int) -> void:
 	# Remove number from inventory and notify UI
 	if player and player.inventory and slot_idx < player.inventory.slots.size():
 		var slot = player.inventory.slots[slot_idx]
+
+		# Consume Num from Player Inventory
 		if slot.amount > 0:
 			slot.amount -= 1
 			if slot.amount == 0:
 				slot.value = -1
+
 		player.inventory.emit_signal("update_signal", player.inventory.slots)
-	
+		emit_signal("add_gem")
+		
 	# Play correct animation (if available) then close UI
-	var blob = problem_ui.get_node_or_null("CanvasLayer/AdditionBlob")
+	var blob = problem_ui.get_node_or_null("CanvasLayer/Control/AdditionBlob")
 	if blob and blob.has_method("play_correct_animation"):
 		await blob.play_correct_animation()
 	else:
@@ -161,7 +167,7 @@ func _on_correct(slot_idx: int) -> void:
 
 func _on_wrong() -> void:
 	# Play wrong animation (if available); UI remains open
-	var blob = problem_ui.get_node_or_null("CanvasLayer/AdditionBlob")
+	var blob = problem_ui.get_node_or_null("CanvasLayer/Control/AdditionBlob")
 	if blob and blob.has_method("play_wrong_animation"):
 		await blob.play_wrong_animation()
 	
