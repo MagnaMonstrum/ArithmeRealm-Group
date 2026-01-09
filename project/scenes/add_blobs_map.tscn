@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="19_8jjku"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="19_8ty0v"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="20_eubj0"]
-[ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="21_chest"]
+[ext_resource type="PackedScene" path="res://project/scenes/chest.tscn" id="21_chest"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gkipi"]
 
