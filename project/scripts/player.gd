@@ -17,7 +17,7 @@ class_name Player
 
 var level_tilemap: TileMap = null
 
-@export var SPEED = 80.0
+@export var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 # Health system
