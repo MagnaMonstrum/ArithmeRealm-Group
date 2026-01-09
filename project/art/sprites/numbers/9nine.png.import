@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6vov3p1b2g77"
-path="res://.godot/imported/9nine.png-6462260252ba8a9dbed5400452771fcb.ctex"
+path="res://.godot/imported/9nine.png-997da084bfc6a24553541764d0f2d415.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/art/sprites/numbers/9nine.png"
-dest_files=["res://.godot/imported/9nine.png-6462260252ba8a9dbed5400452771fcb.ctex"]
+source_file="res://art/sprites/numbers/9nine.png"
+dest_files=["res://.godot/imported/9nine.png-997da084bfc6a24553541764d0f2d415.ctex"]
 
 [params]
 

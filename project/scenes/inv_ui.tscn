@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdjwnt3hnjdlh"]
 
-[ext_resource type="Script" uid="uid://cnukjsjnb66wr" path="res://project/scripts/inventory/inv_ui.gd" id="1_wefod"]
-[ext_resource type="Texture2D" uid="uid://c60vv8pn0rk7u" path="res://project/art/sprites/inventory/inv_slotred.png" id="2_tmo6b"]
-[ext_resource type="PackedScene" uid="uid://bhjv3o77xfngn" path="res://project/scenes/inv_ui_slot.tscn" id="3_tmo6b"]
+[ext_resource type="Script" uid="uid://cnukjsjnb66wr" path="res:///scripts/inventory/inv_ui.gd" id="1_wefod"]
+[ext_resource type="Texture2D" uid="uid://c60vv8pn0rk7u" path="res:///art/sprites/inventory/inv_slotred.png" id="2_tmo6b"]
+[ext_resource type="PackedScene" uid="uid://bhjv3o77xfngn" path="res:///scenes/inv_ui_slot.tscn" id="3_tmo6b"]
 
 [node name="InvUI" type="Control"]
 texture_filter = 1

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="ArithmeRealm Group"
-run/main_scene="uid://1wf5u0688elr"
+run/main_scene="uid://c31xjnf3llgy5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-SettingsManager="*res://project/scenes/menus/settings_manager.gd"
-Global="*res://project/scripts/global.gd"
+SettingsManager="*res:///scenes/menus/settings_manager.gd"
+Global="*res:///scripts/global.gd"
 
 [display]
 

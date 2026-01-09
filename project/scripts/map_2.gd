@@ -12,23 +12,23 @@ extends Node2D
 @export var spawn_interval := 4.5 # Time interval between spawns (seconds)
 @export var safe_spawn_distance := 140.0 # Minimum distance to player when spawning
 @export var loot_num_resource: LootNumResource
-var loot_num_scene = preload("res://project/scenes/loot_num.tscn")
+var loot_num_scene = preload("res:///scenes/loot_num.tscn")
 var current_enemy_count := 0
 
 
 # signal loot_spawned(num: int)
 
 var num_sprites_paths = {
-	0: "res://project/art/sprites/numbers/0zero.png",
-	1: "res://project/art/sprites/numbers/1one.png",
-	2: "res://project/art/sprites/numbers/2two.png",
-	3: "res://project/art/sprites/numbers/3three.png",
-	4: "res://project/art/sprites/numbers/4four.png",
-	5: "res://project/art/sprites/numbers/5five.png",
-	6: "res://project/art/sprites/numbers/6six.png",
-	7: "res://project/art/sprites/numbers/7seven.png",
-	8: "res://project/art/sprites/numbers/8eight.png",
-	9: "res://project/art/sprites/numbers/9nine.png"
+	0: "res:///art/sprites/numbers/0zero.png",
+	1: "res:///art/sprites/numbers/1one.png",
+	2: "res:///art/sprites/numbers/2two.png",
+	3: "res:///art/sprites/numbers/3three.png",
+	4: "res:///art/sprites/numbers/4four.png",
+	5: "res:///art/sprites/numbers/5five.png",
+	6: "res:///art/sprites/numbers/6six.png",
+	7: "res:///art/sprites/numbers/7seven.png",
+	8: "res:///art/sprites/numbers/8eight.png",
+	9: "res:///art/sprites/numbers/9nine.png"
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -60,7 +60,7 @@ func spawn_enemy(path_follow: PathFollow2D) -> void:
 		# Skip this cycle to avoid overwhelming the player nearby
 		return
 
-	var new_mob = preload("res://project/scenes/enemy.tscn").instantiate()
+	var new_mob = preload("res:///scenes/enemy.tscn").instantiate()
 	new_mob.global_position = spawn_pos
 	add_child(new_mob)
 

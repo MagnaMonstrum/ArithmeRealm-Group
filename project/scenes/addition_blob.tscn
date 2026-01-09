@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://6n1ps3kk17bg"]
 
-[ext_resource type="Script" uid="uid://8ilwcfi04wi0" path="res://project/scripts/addition_blob.gd" id="1_sgjle"]
-[ext_resource type="Texture2D" uid="uid://iut8lvorqpae" path="res://project/art/sprites/characters/blob_simple.png" id="2_js2wn"]
-[ext_resource type="Texture2D" uid="uid://bi7hn14qowaq8" path="res://project/art/sprites/characters/blob_simple_1.png" id="3_blob1"]
-[ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res://project/scenes/interactable.tscn" id="4_4m033"]
-[ext_resource type="Texture2D" uid="uid://diea15mm13hpd" path="res://project/art/sprites/characters/blob_simple_2.png" id="4_blob2"]
+[ext_resource type="Script" uid="uid://8ilwcfi04wi0" path="res:///scripts/addition_blob.gd" id="1_sgjle"]
+[ext_resource type="Texture2D" uid="uid://iut8lvorqpae" path="res:///art/sprites/characters/blob_simple.png" id="2_js2wn"]
+[ext_resource type="Texture2D" uid="uid://bi7hn14qowaq8" path="res:///art/sprites/characters/blob_simple_1.png" id="3_blob1"]
+[ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res:///scenes/interactable.tscn" id="4_4m033"]
+[ext_resource type="Texture2D" uid="uid://diea15mm13hpd" path="res:///art/sprites/characters/blob_simple_2.png" id="4_blob2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2cvt"]
 animations = [{

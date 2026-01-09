@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biktjukg4js2c"
-path="res://.godot/imported/inv_slotgrey.png-84dc21e11405ac9cb9bf1ebb1dad9375.ctex"
+path="res://.godot/imported/inv_slotgrey.png-d6645f58a62dfc77dc4ee13bd1671332.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/art/sprites/inventory/inv_slotgrey.png"
-dest_files=["res://.godot/imported/inv_slotgrey.png-84dc21e11405ac9cb9bf1ebb1dad9375.ctex"]
+source_file="res://art/sprites/inventory/inv_slotgrey.png"
+dest_files=["res://.godot/imported/inv_slotgrey.png-d6645f58a62dfc77dc4ee13bd1671332.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c72omvq854bdl"]
 
-[ext_resource type="Script" uid="uid://dsl1gi5nnpjx1" path="res://project/scripts/loot_num.gd" id="1_u302n"]
+[ext_resource type="Script" uid="uid://dsl1gi5nnpjx1" path="res:///scripts/loot_num.gd" id="1_u302n"]
 
 [sub_resource type="Animation" id="Animation_k4at8"]
 length = 0.001
