@@ -23,7 +23,8 @@ func _on_no_pressed() -> void:
 	get_tree().paused = false
 
 func _on_yes_pressed() -> void:
-	if Global.gem_amount > gem_price:
+	if Global.gem_amount >= gem_price:
 		player._on_remove_gems(gem_price)
+		Global.advance_level()
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://project/scenes/levels/map2.tscn")

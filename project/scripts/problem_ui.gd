@@ -74,20 +74,18 @@ func _set_problem_label() -> void:
 			inv_values.append(v)
 
 	if inv_values.is_empty():
-		# Fallback: show a simple 1+1
-		label.text = "1 + 1"
-		self.target_answer = 2
+		# Fallback: show a random problem (player can't answer anyway without inventory)
+		var problem := ProblemGenerator.make_problem(Global.current_level)
+		label.text = problem.get("label", "? + ?")
+		self.target_answer = problem.get("answer", -1)
 		return
 
 	var target = inv_values[rng.randi_range(0, inv_values.size() - 1)]
+	var problem := ProblemGenerator.make_problem(Global.current_level, target, "inventory")
+	label.text = problem.get("label", "%d + %d" % [target, 0])
 
-	# Generate a simple sum A+B=target with non-negative addends.
-	var a: int = rng.randi_range(1, target)
-	var b: int = target - a
-	label.text = "%d + %d" % [a, b]
-	
 	# Store target for drag/drop validation
-	self.target_answer = target
+	self.target_answer = problem.get("answer", target)
 
 
 func close():

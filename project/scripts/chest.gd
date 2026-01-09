@@ -10,6 +10,7 @@ const ChestUiScene := preload("res://project/scenes/chest_ui.tscn")
 
 @export var int_A: int
 @export var int_B: int
+var problem_data: Dictionary = {}
 
 var chest_ui: Control
 var target_answer: int = 0
@@ -40,12 +41,13 @@ func _on_interact() -> void:
 	if !chest_ui.is_node_ready():
 		await chest_ui.ready
 	
-	chest_ui.open(self, int_A, int_B, target_answer)
+	chest_ui.open(self, problem_data)
 
 func generate_problem() -> void:
-	int_A = rng.randi_range(1, 999)
-	int_B = rng.randi_range(1, 999)
-	target_answer = int_A + int_B
+	problem_data = ProblemGenerator.make_problem(Global.current_level, -1, "chest")
+	int_A = problem_data.get("a", rng.randi_range(1, 9))
+	int_B = problem_data.get("b", rng.randi_range(1, 9))
+	target_answer = problem_data.get("answer", int_A + int_B)
 
 func on_correct_answer() -> void:
 	if is_opened:
