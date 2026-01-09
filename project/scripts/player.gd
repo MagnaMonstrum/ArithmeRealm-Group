@@ -26,7 +26,7 @@ var current_health := 100
 var is_invincible := false
 var invincibility_duration := 0.5 # seconds of invincibility after taking damage
 
-var attack_damage = 10
+@export var attack_damage = 10
 
 signal health_changed(current_health: int, max_health: int)
 signal player_died
@@ -176,7 +176,7 @@ func _on_remove_gems(count: int) -> void:
 
 func _on_damage_area_entered(area: Area2D) -> void:
 	if (area.get_parent().has_method("take_damage")):
-		area.get_parent().take_damage(10)
+		area.get_parent().take_damage(attack_damage)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
