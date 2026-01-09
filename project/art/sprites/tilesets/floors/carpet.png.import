@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btljlb3v48k71"
-path="res://.godot/imported/carpet.png-f4f3888ec00088883bcaa026cf06a8f3.ctex"
+path="res://.godot/imported/carpet.png-75e49768930da941a8d079324d680fbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/tilesets/floors/carpet.png"
-dest_files=["res://.godot/imported/carpet.png-f4f3888ec00088883bcaa026cf06a8f3.ctex"]
+source_file="res://project/art/sprites/tilesets/floors/carpet.png"
+dest_files=["res://.godot/imported/carpet.png-75e49768930da941a8d079324d680fbb.ctex"]
 
 [params]
 

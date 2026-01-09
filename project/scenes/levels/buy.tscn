@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://eftgu3yxm55t"]
 
-[ext_resource type="Script" uid="uid://ex7dot2nyvco" path="res:///scripts/buy.gd" id="1_yx2u7"]
-[ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res:///scenes/interactable.tscn" id="2_p2jja"]
+[ext_resource type="Script" uid="uid://ex7dot2nyvco" path="res://project/scripts/buy.gd" id="1_yx2u7"]
+[ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res://project/scenes/interactable.tscn" id="2_p2jja"]
 
 [sub_resource type="Gradient" id="Gradient_qj714"]
 

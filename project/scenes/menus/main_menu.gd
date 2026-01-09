@@ -5,7 +5,7 @@ func _ready() -> void:
 	%Quit.pressed.connect(quit)
 
 func play() -> void:
-	get_tree().change_scene_to_file("res:///scenes/levels/tutorial_level.tscn")
+	get_tree().change_scene_to_file("res://project/scenes/levels/tutorial_level.tscn") 
 
 func quit() -> void:
 	get_tree().quit()

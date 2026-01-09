@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chq3s7vl3s5q6"]
 
-[ext_resource type="Script" path="res:///scripts/chest_ui.gd" id="1_chest_ui"]
+[ext_resource type="Script" path="res://project/scripts/chest_ui.gd" id="1_chest_ui"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.1, 0.1, 0.15, 0.95)

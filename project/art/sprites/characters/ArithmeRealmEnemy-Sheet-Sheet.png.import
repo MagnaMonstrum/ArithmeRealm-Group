@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4lag5ow4wn7c"
-path="res://.godot/imported/ArithmeRealmEnemy-Sheet-Sheet.png-f9e100452f61f413eaff8ac2f66a8d08.ctex"
+path="res://.godot/imported/ArithmeRealmEnemy-Sheet-Sheet.png-0e2f11c8b3e89b8b9cf1ff428abd2909.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png"
-dest_files=["res://.godot/imported/ArithmeRealmEnemy-Sheet-Sheet.png-f9e100452f61f413eaff8ac2f66a8d08.ctex"]
+source_file="res://project/art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png"
+dest_files=["res://.godot/imported/ArithmeRealmEnemy-Sheet-Sheet.png-0e2f11c8b3e89b8b9cf1ff428abd2909.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://w0cvflea14qv"]
 
-[ext_resource type="PackedScene" uid="uid://mb4bobspgevc" path="res:///scenes/player_health.tscn" id="1_63f62"]
-[ext_resource type="Script" uid="uid://dp7340gvhlf58" path="res:///scripts/hud.gd" id="2_hud_script"]
+[ext_resource type="PackedScene" uid="uid://mb4bobspgevc" path="res://project/scenes/player_health.tscn" id="1_63f62"]
+[ext_resource type="Script" uid="uid://dp7340gvhlf58" path="res://project/scripts/hud.gd" id="2_hud_script"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hapr2"]
 

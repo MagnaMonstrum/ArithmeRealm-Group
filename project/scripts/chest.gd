@@ -1,6 +1,6 @@
 extends Node2D
 
-const ChestUiScene := preload("res:///scenes/chest_ui.tscn")
+const ChestUiScene := preload("res://project/scenes/chest_ui.tscn")
 
 @onready var interactable := $Interactable
 @onready var sprite: Sprite2D = $Sprite2D
@@ -20,7 +20,7 @@ var is_fading := false
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void:		
 	interactable.interact = _on_interact
 	interactable.interaction_name = "Open Chest"
 	rng.randomize()
@@ -31,7 +31,7 @@ func _ready() -> void:
 func _on_interact() -> void:
 	if is_opened or is_fading:
 		return
-
+	
 	if !is_instance_valid(chest_ui):
 		chest_ui = ChestUiScene.instantiate()
 		chest_ui.top_level = true
@@ -40,7 +40,7 @@ func _on_interact() -> void:
 
 	if !chest_ui.is_node_ready():
 		await chest_ui.ready
-
+	
 	chest_ui.open(self, problem_data)
 
 func generate_problem() -> void:

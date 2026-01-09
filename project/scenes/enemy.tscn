@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://bxcrhsdhnf0sq"]
 
-[ext_resource type="Texture2D" uid="uid://c4lag5ow4wn7c" path="res:///art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://clvgfo5t2oasw" path="res:///scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Texture2D" uid="uid://cv36blgbjyq5q" path="res:///art/sprites/numbers/sprite_sheet_nums.png" id="2_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://c4lag5ow4wn7c" path="res://project/art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://clvgfo5t2oasw" path="res://project/scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://cv36blgbjyq5q" path="res://project/art/sprites/numbers/sprite_sheet_nums.png" id="2_4ra3w"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5uy6h"]
 particles_animation = true

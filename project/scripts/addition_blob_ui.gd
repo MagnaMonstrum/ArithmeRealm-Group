@@ -1,9 +1,9 @@
 extends Node2D
 
-const BASE_TEXTURE := preload("res:///art/sprites/characters/blob_sum.png")
-const SAD_TEXTURE := preload("res:///art/sprites/characters/blob_wrong.png")
-const CORRECT_SFX := preload("res:///sounds/correct.ogg")
-const INCORRECT_SFX := preload("res:///sounds/incorrect.ogg")
+const BASE_TEXTURE := preload("res://project/art/sprites/characters/blob_sum.png")
+const SAD_TEXTURE := preload("res://project/art/sprites/characters/blob_wrong.png")
+const CORRECT_SFX := preload("res://project/sounds/correct.ogg")
+const INCORRECT_SFX := preload("res://project/sounds/incorrect.ogg")
 const SAD_DURATION := 3.0
 
 @onready var sprite: Sprite2D = $Sprite2D
