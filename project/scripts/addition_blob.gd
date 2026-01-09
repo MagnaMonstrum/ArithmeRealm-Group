@@ -8,7 +8,7 @@ const ProblemUiScene := preload("res://project/scenes/problem_ui.tscn")
 
 @export var int_A: int
 @export var int_B: int
-
+ 
 signal request_inventory(blob: Node2D)
 
 var problem_ui: Control
