@@ -32,3 +32,10 @@ func get_items() -> Array:
 		values.append(slots[i].value)
 
 	return values
+
+func get_amount_of_nums_in_inventory() -> int:
+	var amount = 0
+	for i in range(len(slots)):
+		amount += slots[i].amount
+
+	return amount

@@ -160,6 +160,14 @@ func handle_attack() -> void:
 func collect(loot_num: LootNumResource) -> bool:
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
+	print()
+	if inventory.get_amount_of_nums_in_inventory() > 2:
+		get_tree().current_scene.get_node("AdditionBlob").visible = true
+		if hud:
+			hud.show_spawn_alert()
+	else:
+		get_tree().current_scene.get_node("AdditionBlob").visible = false
+
 	return successful
 
 func _on_add_gem() -> void:

@@ -14,7 +14,6 @@ func _ready() -> void:
 	InteractableBuy.interact = _on_interact
 
 func _on_interact() -> void:
-	print(Global.gem_amount)
 	%BuyMenu.visible = true
 	get_tree().paused = true
 
