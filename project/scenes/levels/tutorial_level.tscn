@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d16fxmncqvhgf" path="res://project/art/sprites/tilesets/floors/flooring.png" id="6_m7e31"]
 [ext_resource type="Texture2D" uid="uid://btljlb3v48k71" path="res://project/art/sprites/tilesets/floors/carpet.png" id="7_3feus"]
 [ext_resource type="Texture2D" uid="uid://j0ol27dg6niy" path="res://project/art/sprites/tilesets/walls/walls.png" id="8_o7q8f"]
-[ext_resource type="PackedScene" path="res://project/scenes/chest.tscn" id="9_h021s"]
+[ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="9_h021s"]
 [ext_resource type="Texture2D" uid="uid://sh0dqva04ljr" path="res://project/art/sprites/tilesets/floors/wooden.png" id="9_l2eku"]
 [ext_resource type="Texture2D" uid="uid://ycan4efbpoyd" path="res://project/art/sprites/tilesets/fences.png" id="10_krkpq"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="14_l2eku"]
