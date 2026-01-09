@@ -16,6 +16,25 @@ script = ExtResource("2_hud_script")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="SpawnAlert" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 126.0
+offset_right = 261.0
+offset_bottom = 181.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b]Er is een blob gespawned![/b]"
+fit_content = true
+
 [node name="PlayerHealth" parent="CanvasLayer" instance=ExtResource("1_63f62")]
 anchors_preset = 2
 anchor_top = 1.0

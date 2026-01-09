@@ -417,12 +417,12 @@ tile_map_data = PackedByteArray("AAAIAAoAAQACAAQAAAAJAAcAAQADAAQAAAAJAAgAAQABAAQ
 tile_set = SubResource("TileSet_sh74m")
 
 [node name="AdditionBlob" parent="." instance=ExtResource("14_m25kp")]
+visible = false
 position = Vector2(528, -3.99998)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("15_7mdhg")]
 position = Vector2(-367, 202)
 level_tilemap_layer = NodePath("../Entire/GroundLayer")
-SPEED = 400.0
 
 [node name="enemy spawns" type="Node2D" parent="."]
 
@@ -484,6 +484,8 @@ position = Vector2(258, -316)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy spawns/Enemy_spawn4/EnemyArea3"]
 position = Vector2(27, 563)
 shape = SubResource("RectangleShape2D_n5118")
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -503,9 +505,6 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="body_entered" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
 [connection signal="body_exited" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
 [connection signal="body_entered" from="enemy spawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
@@ -516,3 +515,4 @@ autostart = true
 [connection signal="body_exited" from="enemy spawns/Enemy_spawn4/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
