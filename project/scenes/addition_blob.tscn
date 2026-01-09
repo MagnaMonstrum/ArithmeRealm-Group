@@ -45,6 +45,7 @@ frame_progress = 0.248189
 autostart = true
 
 [node name="Interactable" parent="." instance=ExtResource("4_4m033")]
+interaction_name = "E om de Blob te voeden"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, 30)

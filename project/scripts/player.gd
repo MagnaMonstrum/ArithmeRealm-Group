@@ -17,7 +17,7 @@ class_name Player
 
 var level_tilemap: TileMap = null
 
-@export var SPEED = 80.0
+@export var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 # Health system
@@ -158,6 +158,8 @@ func handle_attack() -> void:
 		damage_collisionV.disabled = true
 
 func collect(loot_num: LootNumResource) -> bool:
+	if (Global.firstFight == false):
+		Global.firstFight = true
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 	print()

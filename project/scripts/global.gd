@@ -1,7 +1,9 @@
 extends Node
 
-var player_in_enemy_area: bool = false
-var gem_amount: int = 0
+var player_in_enemy_area := false
+var gem_amount := 0
+var firstFight = false;
+
 
 const MAX_LEVEL := 3
 var current_level: int = 1

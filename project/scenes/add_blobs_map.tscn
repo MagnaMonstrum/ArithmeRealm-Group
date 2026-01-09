@@ -1178,7 +1178,7 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[node name="Node2D" parent="." instance=ExtResource("20_eubj0")]
+[node name="Buy" parent="." instance=ExtResource("20_eubj0")]
 position = Vector2(37, 124)
 
 [node name="Chest" parent="." instance=ExtResource("21_chest")]
