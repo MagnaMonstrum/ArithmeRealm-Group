@@ -17,7 +17,7 @@ class_name Player
 
 var level_tilemap: TileMap = null
 
-@export var SPEED = 100.0
+@export var SPEED = 80.0
 const JUMP_VELOCITY = -400.0
 
 # Health system
@@ -44,7 +44,7 @@ var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
-	var init_gem_amount = 100
+	var init_gem_amount = 0
 	Global.gem_amount = 100
 
 	# Add player to group "player" for identification in the world
