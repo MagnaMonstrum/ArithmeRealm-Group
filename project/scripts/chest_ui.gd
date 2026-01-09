@@ -9,6 +9,7 @@ var paused_before_open := false
 var target_answer: int = 0
 var int_A: int = 0
 var int_B: int = 0
+var op_symbol := "+"
 var rng := RandomNumberGenerator.new()
 
 @onready var label: Label = $CanvasLayer/CenterContainer/PanelContainer/VBoxContainer/ProblemLabel
@@ -40,18 +41,19 @@ func _ready():
 		feedback_label.text = ""
 		feedback_label.modulate = Color.WHITE
 
-func open(chest_node: Node, a: int, b: int, answer: int) -> void:
+func open(chest_node: Node, problem: Dictionary) -> void:
 	self.chest = chest_node
-	self.int_A = a
-	self.int_B = b
-	self.target_answer = answer
+	self.int_A = problem.get("a", 0)
+	self.int_B = problem.get("b", 0)
+	self.target_answer = problem.get("answer", int_A + int_B)
+	op_symbol = problem.get("operator_symbol", "+")
 	
 	paused_before_open = get_tree().paused
 	get_tree().paused = true
 	
 	# Set the problem text
 	if label:
-		label.text = "%d + %d = ?" % [int_A, int_B]
+		label.text = "%d %s %d = ?" % [int_A, op_symbol, int_B]
 	
 	# Clear input and feedback
 	if line_edit:

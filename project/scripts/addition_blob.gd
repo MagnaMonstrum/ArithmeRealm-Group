@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 	pass
 
 func set_A_and_B() -> void:
-	int_A = rng.randi_range(0, 9)
-	int_B = rng.randi_range(0, 9)
-
-	var correct_answer = int_A + int_B
+	# Pull operands from the global difficulty profile so they scale with level.
+	var problem := ProblemGenerator.make_problem(Global.current_level)
+	int_A = problem.get("a", rng.randi_range(0, 9))
+	int_B = problem.get("b", rng.randi_range(0, 9))
