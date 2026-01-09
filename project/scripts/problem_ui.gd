@@ -80,14 +80,11 @@ func _set_problem_label() -> void:
 		return
 
 	var target = inv_values[rng.randi_range(0, inv_values.size() - 1)]
+	var problem := ProblemGenerator.make_problem(Global.current_level, target, "inventory")
+	label.text = problem.get("label", "%d + %d" % [target, 0])
 
-	# Generate a simple sum A+B=target with non-negative addends.
-	var a: int = rng.randi_range(1, target)
-	var b: int = target - a
-	label.text = "%d + %d" % [a, b]
-	
 	# Store target for drag/drop validation
-	self.target_answer = target
+	self.target_answer = problem.get("answer", target)
 
 
 func close():
