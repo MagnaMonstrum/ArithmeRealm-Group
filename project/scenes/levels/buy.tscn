@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_qj714")
 script = ExtResource("1_yx2u7")
 
 [node name="InteractableBuy" parent="." instance=ExtResource("2_p2jja")]
-interaction_name = "Buy Next Level"
+interaction_name = "E om het volgende level te kopen"
 
 [node name="Sprite2D" type="Sprite2D" parent="InteractableBuy"]
 scale = Vector2(0.0585938, 13.5)

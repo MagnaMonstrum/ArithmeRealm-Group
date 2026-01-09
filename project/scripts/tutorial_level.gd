@@ -3,9 +3,8 @@ extends Node2D
 @onready var player = $Player
 @onready var add_blob = $AdditionBlob
 @onready var spawns = [
-		%PathFollow2D_enemy1,
-		%PathFollow2D_enemy2,
-		%PathFollow2D_enemy3,
+		%PathFollow2DEnemy1,
+		%PathFollow2DEnemy2,
 	]
 
 @export var max_enemies := 3 # Maximum number of enemies at once
@@ -44,6 +43,8 @@ func _ready() -> void:
 
 
 func spawn_enemy(path_follow: PathFollow2D) -> void:
+	if (Global.firstFight):
+		%Fighting.visible = false
 	# Choose a spawn point along the path that isn't too close to the player.
 	var tries := 6
 	var spawn_pos := Vector2.ZERO

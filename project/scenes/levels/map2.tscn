@@ -424,64 +424,64 @@ position = Vector2(528, -3.99998)
 position = Vector2(-367, 202)
 level_tilemap_layer = NodePath("../Entire/GroundLayer")
 
-[node name="enemy spawns" type="Node2D" parent="."]
+[node name="EnemySpawns" type="Node2D" parent="."]
 
-[node name="Enemy_spawn1" type="Path2D" parent="enemy spawns"]
+[node name="Enemy_spawn1" type="Path2D" parent="EnemySpawns"]
 curve = SubResource("Curve2D_jd1r5")
 
-[node name="PathFollow2D_enemy1" type="PathFollow2D" parent="enemy spawns/Enemy_spawn1"]
+[node name="PathFollow2D_enemy1" type="PathFollow2D" parent="EnemySpawns/Enemy_spawn1"]
 unique_name_in_owner = true
 position = Vector2(-423, -279)
 rotation = 1.61314
 
-[node name="EnemyArea1" type="Area2D" parent="enemy spawns/Enemy_spawn1"]
+[node name="EnemyArea1" type="Area2D" parent="EnemySpawns/Enemy_spawn1"]
 position = Vector2(-416, -275)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy spawns/Enemy_spawn1/EnemyArea1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/Enemy_spawn1/EnemyArea1"]
 position = Vector2(95, 52.5)
 shape = SubResource("RectangleShape2D_jd1r5")
 
-[node name="Enemy_spawn2" type="Path2D" parent="enemy spawns"]
+[node name="Enemy_spawn2" type="Path2D" parent="EnemySpawns"]
 curve = SubResource("Curve2D_sh74m")
 
-[node name="PathFollow2D_enemy2" type="PathFollow2D" parent="enemy spawns/Enemy_spawn2"]
+[node name="PathFollow2D_enemy2" type="PathFollow2D" parent="EnemySpawns/Enemy_spawn2"]
 unique_name_in_owner = true
 position = Vector2(28, -58)
 rotation = 1.5708
 
-[node name="EnemyArea2" type="Area2D" parent="enemy spawns/Enemy_spawn2"]
+[node name="EnemyArea2" type="Area2D" parent="EnemySpawns/Enemy_spawn2"]
 position = Vector2(29, -54)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy spawns/Enemy_spawn2/EnemyArea2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/Enemy_spawn2/EnemyArea2"]
 position = Vector2(122, 66)
 shape = SubResource("RectangleShape2D_sh74m")
 
-[node name="Enemy_spawn3" type="Path2D" parent="enemy spawns"]
+[node name="Enemy_spawn3" type="Path2D" parent="EnemySpawns"]
 curve = SubResource("Curve2D_n5118")
 
-[node name="PathFollow2D_enemy3" type="PathFollow2D" parent="enemy spawns/Enemy_spawn3"]
+[node name="PathFollow2D_enemy3" type="PathFollow2D" parent="EnemySpawns/Enemy_spawn3"]
 unique_name_in_owner = true
 position = Vector2(259, -314)
 rotation = 1.56253
 
-[node name="EnemyArea3" type="Area2D" parent="enemy spawns/Enemy_spawn3"]
+[node name="EnemyArea3" type="Area2D" parent="EnemySpawns/Enemy_spawn3"]
 position = Vector2(258, -316)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy spawns/Enemy_spawn3/EnemyArea3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/Enemy_spawn3/EnemyArea3"]
 position = Vector2(105.5, 60.5)
 shape = SubResource("RectangleShape2D_n5118")
 
-[node name="Enemy_spawn4" type="Path2D" parent="enemy spawns"]
+[node name="Enemy_spawn4" type="Path2D" parent="EnemySpawns"]
 curve = SubResource("Curve2D_n5118")
 
-[node name="PathFollow2D_enemy3" type="PathFollow2D" parent="enemy spawns/Enemy_spawn4"]
+[node name="PathFollow2D_enemy3" type="PathFollow2D" parent="EnemySpawns/Enemy_spawn4"]
 position = Vector2(259, -314)
 rotation = 1.56253
 
-[node name="EnemyArea3" type="Area2D" parent="enemy spawns/Enemy_spawn4"]
+[node name="EnemyArea3" type="Area2D" parent="EnemySpawns/Enemy_spawn4"]
 position = Vector2(258, -316)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy spawns/Enemy_spawn4/EnemyArea3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/Enemy_spawn4/EnemyArea3"]
 position = Vector2(27, 563)
 shape = SubResource("RectangleShape2D_n5118")
 
@@ -506,14 +506,14 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[connection signal="body_entered" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
-[connection signal="body_exited" from="enemy spawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
-[connection signal="body_entered" from="enemy spawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
-[connection signal="body_exited" from="enemy spawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_exited"]
-[connection signal="body_entered" from="enemy spawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_entered"]
-[connection signal="body_exited" from="enemy spawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
-[connection signal="body_entered" from="enemy spawns/Enemy_spawn4/EnemyArea3" to="Player" method="_on_enemy_area_3_body_entered"]
-[connection signal="body_exited" from="enemy spawns/Enemy_spawn4/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
+[connection signal="body_entered" from="EnemySpawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/Enemy_spawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
+[connection signal="body_entered" from="EnemySpawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/Enemy_spawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_exited"]
+[connection signal="body_entered" from="EnemySpawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/Enemy_spawn3/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
+[connection signal="body_entered" from="EnemySpawns/Enemy_spawn4/EnemyArea3" to="Player" method="_on_enemy_area_3_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/Enemy_spawn4/EnemyArea3" to="Player" method="_on_enemy_area_3_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]

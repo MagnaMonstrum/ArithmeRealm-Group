@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://c31xjnf3llgy5"]
+[gd_scene load_steps=32 format=4 uid="uid://bm10lqlre64xl"]
 
 [ext_resource type="Script" path="res://project/scripts/tutorial_level.gd" id="1_fsmf3"]
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="2_b3w10"]
@@ -600,6 +600,24 @@ sources/3 = SubResource("TileSetAtlasSource_iq00a")
 sources/4 = SubResource("TileSetAtlasSource_qf5hn")
 sources/5 = SubResource("TileSetAtlasSource_bi83a")
 
+[sub_resource type="Curve2D" id="Curve2D_l2eku"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -492, -248, 0, 0, 0, 0, -305, -247, 0, 0, 0, 0, -488, -146)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krkpq"]
+size = Vector2(200, 111)
+
+[sub_resource type="Curve2D" id="Curve2D_krkpq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 245, -248, 0, 0, 0, 0, 441, -249, 0, 0, 0, 0, 243, -65)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ttk4"]
+size = Vector2(198.98, 184)
+
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_fsmf3")
 
@@ -615,12 +633,81 @@ tile_map_data = PackedByteArray("AAAlAAEAAAABAAQAAAAlAAIAAAABAAUAAAAlAAMAAAABAAU
 tile_set = SubResource("TileSet_uhivd")
 
 [node name="AdditionBlob" parent="." instance=ExtResource("2_rpw2c")]
+visible = false
 position = Vector2(643, 68)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("3_7gra0")]
-position = Vector2(-403, 231)
+position = Vector2(-386, -56)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
+
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="EnemySpawn1" type="Path2D" parent="EnemySpawns"]
+curve = SubResource("Curve2D_l2eku")
+
+[node name="PathFollow2DEnemy1" type="PathFollow2D" parent="EnemySpawns/EnemySpawn1"]
+unique_name_in_owner = true
+position = Vector2(-492, -248)
+rotation = 0.00534754
+
+[node name="EnemyArea1" type="Area2D" parent="EnemySpawns/EnemySpawn1"]
+position = Vector2(-493, -248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/EnemySpawn1/EnemyArea1"]
+position = Vector2(90, 45.5)
+shape = SubResource("RectangleShape2D_krkpq")
+
+[node name="EnemySpawn2" type="Path2D" parent="EnemySpawns"]
+position = Vector2(-4.90913, -5.41304)
+scale = Vector2(1.0202, 0.978261)
+curve = SubResource("Curve2D_krkpq")
+
+[node name="PathFollow2DEnemy2" type="PathFollow2D" parent="EnemySpawns/EnemySpawn2"]
+unique_name_in_owner = true
+position = Vector2(245, -248)
+rotation = -0.005102
+
+[node name="EnemyArea2" type="Area2D" parent="EnemySpawns/EnemySpawn2"]
+position = Vector2(241.04, -246.956)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawns/EnemySpawn2/EnemyArea2"]
+position = Vector2(98.5099, 88.9334)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_6ttk4")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="TutorialFlags" type="Node2D" parent="."]
+
+[node name="Moving" type="Label" parent="TutorialFlags"]
+offset_left = -486.0
+offset_top = 164.0
+offset_right = -298.0
+offset_bottom = 213.0
+theme_override_constants/outline_size = 4
+text = "Gebruik WASD of de pijltes om te lopen"
+autowrap_mode = 2
+
+[node name="Fighting" type="Label" parent="TutorialFlags"]
+unique_name_in_owner = true
+offset_left = -493.0
+offset_top = -149.0
+offset_right = -240.0
+offset_bottom = -100.0
+theme_override_constants/outline_size = 4
+text = "Klik met de linker muisknop om een vijand te verslaan."
+autowrap_mode = 2
+
+[node name="NextLevel" type="Label" parent="TutorialFlags"]
+offset_left = 459.0
+offset_top = -92.0
+offset_right = 679.0
+offset_bottom = -17.0
+theme_override_constants/outline_size = 4
+text = "Als je meer dan 10 gems hebt, kan je door naar het volgende level."
+autowrap_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -646,5 +733,10 @@ position = Vector2(-239, -84)
 [node name="Buy" parent="." instance=ExtResource("14_l2eku")]
 position = Vector2(641, -145)
 
+[connection signal="body_entered" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
+[connection signal="body_entered" from="EnemySpawns/EnemySpawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
+[connection signal="body_exited" from="EnemySpawns/EnemySpawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]
