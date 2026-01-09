@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Move HTML5 templates into position 
+      - name: Move HTML5 templates into position
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
@@ -31,7 +31,7 @@ jobs:
         run: mkdir -v -p build/web
 
       - name: Build
-        run: godot -v --export-release --headless "Web" ../build/web/index.html project/project.godot
+        run: godot -v --export-release --headless "Web" ../build/web/index.html project.godot
 
       - name: Add coi-service-worker
         run: |
