@@ -7,7 +7,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - tutorial-level
+      - feature/tutorial-level
+      
 
 jobs:
   deploy:
