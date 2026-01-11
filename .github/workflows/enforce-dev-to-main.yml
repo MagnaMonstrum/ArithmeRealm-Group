@@ -1,0 +1,22 @@
+name: Enforce dev → main only
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  branch-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure PR comes from dev
+        run: |
+          echo "Base branch: ${{ github.base_ref }}"
+          echo "Head branch: ${{ github.head_ref }}"
+
+          if [[ "${{ github.base_ref }}" == "main" && "${{ github.head_ref }}" != "dev" ]]; then
+            echo "❌ Only 'dev' is allowed to merge into 'main'"
+            exit 1
+          fi
+
+          echo "✅ dev → main check passed"
