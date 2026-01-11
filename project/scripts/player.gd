@@ -6,10 +6,11 @@ class_name Player
 
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var damage_areaH = $DamagAreaH
-@onready var damage_areaV = $DamagAreaV
-@onready var damage_collisionH = $DamagAreaH.get_node("CollisionShape2D")
-@onready var damage_collisionV = $DamagAreaV.get_node("CollisionShape2DV")
+
+# Melee hitbox
+@onready var damage_area = $DamageArea
+@onready var damage_collision = $DamageArea.get_node("CollisionShape2D")
+
 @onready var inv = $InvUI
 @onready var hud = $Hud
 @onready var damage_sfx: AudioStreamPlayer = $DamageSfx
@@ -82,16 +83,16 @@ func _physics_process(_delta: float) -> void:
 func set_direction() -> void:
 	if Input.is_action_pressed("left"):
 		current_dir = facing_direction.WEST
-		damage_areaH.scale.x = -1
+		damage_area.rotation = deg_to_rad(-90)
 	elif Input.is_action_pressed("right"):
 		current_dir = facing_direction.EAST
-		damage_areaH.scale.x = 1
+		damage_area.rotation = deg_to_rad(90)
 	elif Input.is_action_pressed("up"):
 		current_dir = facing_direction.NORTH
-		damage_areaV.scale.y = -1
+		damage_area.rotation = deg_to_rad(0)
 	elif Input.is_action_pressed("down"):
-		damage_areaV.scale.y = 1
 		current_dir = facing_direction.SOUTH
+		damage_area.rotation = deg_to_rad(180)
 
 func handle_movement():
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -149,13 +150,13 @@ func handle_attack() -> void:
 				animated_sprite.play("attack_s")
 
 		# HitBox collision shapes
-		damage_collisionH.disabled = false
-		damage_collisionV.disabled = false
+		
+		damage_collision.disabled = false
 
 		await get_tree().create_timer(0.2).timeout
+		
+		damage_collision.disabled = true
 
-		damage_collisionH.disabled = true
-		damage_collisionV.disabled = true
 
 func collect(loot_num: LootNumResource) -> bool:
 	if (Global.firstFight == false):
