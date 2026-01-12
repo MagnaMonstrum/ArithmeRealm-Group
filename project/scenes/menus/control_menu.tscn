@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1b5p27ddprw8"]
+[gd_scene load_steps=10 format=3 uid="uid://d1b5p27ddprw8"]
 
 [ext_resource type="Script" uid="uid://d2kcq0f7vsubm" path="res://project/scenes/menus/controls.gd" id="1_f1ikg"]
+[ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="2_8bb8g"]
+[ext_resource type="Texture2D" uid="uid://cgfj23ymwkq7w" path="res://project/art/controls/G_Key_Light.png" id="3_dp201"]
+[ext_resource type="Texture2D" uid="uid://vgjxfktnnpat" path="res://project/art/controls/Mouse_Left_Key_Light.png" id="3_ply3o"]
+[ext_resource type="Texture2D" uid="uid://bo7memt8sduhl" path="res://project/art/controls/E_Key_Light.png" id="4_0cdav"]
+[ext_resource type="Texture2D" uid="uid://g1rd0640sby" path="res://project/art/controls/W_Key_Light.png" id="6_wbluk"]
+[ext_resource type="Texture2D" uid="uid://yer2aj2tr3k7" path="res://project/art/controls/A_Key_Light.png" id="7_81gh0"]
+[ext_resource type="Texture2D" uid="uid://du7xue06763sd" path="res://project/art/controls/S_Key_Light.png" id="8_8tffc"]
+[ext_resource type="Texture2D" uid="uid://c4emjd0usafjr" path="res://project/art/controls/D_Key_Light.png" id="9_oyn4g"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -20,16 +28,28 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8bb8g")
+expand_mode = 2
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -249.0
-offset_top = 53.0
-offset_right = 249.0
-offset_bottom = 136.0
+offset_left = -256.5
+offset_top = -3.0
+offset_right = 256.5
+offset_bottom = 80.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
 theme_override_font_sizes/font_size = 60
 text = "Besturing Scherm"
 
@@ -44,45 +64,110 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Zwaard slaan uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Linkermuis Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Wanneer je linkermuis knop gebruikt. Kan je met je zwaard slaan"
 
-[node name="G Uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/Linkermuis Uitleg"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Druk op \"g\" om de inventory te openen"
+texture = ExtResource("3_ply3o")
+expand_mode = 2
 
-[node name="E Uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Linkermuis Uitleg"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Druk op \"e\" bij een blob om de blob interactie menu te openen"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Slaan (met je zwaard)"
 
-[node name="W lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="E Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Gebruik \"w\" of pijltje naar boven, om naar boven te lopen"
 
-[node name="A lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/E Uitleg"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Gebruik \"a\" of pijltje naar links, om naar links te lopen"
+texture = ExtResource("4_0cdav")
+expand_mode = 2
 
-[node name="S lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/E Uitleg"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Gebruik \"s\" of pijltje naar beneden, om naar beneden te lopen"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Interacten"
 
-[node name="D lopen uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="G Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Gebruik \"d\" of pijltje naar rechts, om naar rechts te lopen"
 
-[node name="Blob voeren uitleg" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/G Uitleg"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Sleep getal van de inventory naar de blob met je muis"
+texture = ExtResource("3_dp201")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/G Uitleg"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Inventory openen/sluiten"
+
+[node name="W Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/W Uitleg"]
+layout_mode = 2
+texture = ExtResource("6_wbluk")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/W Uitleg"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Lopen, naar boven"
+
+[node name="A Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/A Uitleg"]
+layout_mode = 2
+texture = ExtResource("7_81gh0")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/A Uitleg"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Lopen, naar links"
+
+[node name="S Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/S Uitleg"]
+layout_mode = 2
+texture = ExtResource("8_8tffc")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/S Uitleg"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Lopen, naar beneden"
+
+[node name="D Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/D Uitleg"]
+layout_mode = 2
+texture = ExtResource("9_oyn4g")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/D Uitleg"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 45
+text = "Lopen, naar rechts"
 
 [node name="Back" type="Button" parent="."]
 unique_name_in_owner = true

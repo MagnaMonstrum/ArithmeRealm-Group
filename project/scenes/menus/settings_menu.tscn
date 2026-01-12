@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnt34xc6kdyc8"]
+[gd_scene load_steps=3 format=3 uid="uid://cnt34xc6kdyc8"]
 
 [ext_resource type="Script" uid="uid://b1savkdea0a3r" path="res://project/scenes/menus/settings.gd" id="1_3s2jp"]
+[ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="2_j6f1u"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -20,6 +21,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j6f1u")
+expand_mode = 2
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -30,8 +41,12 @@ offset_top = 52.0
 offset_right = 198.0
 offset_bottom = 135.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
 theme_override_font_sizes/font_size = 60
-text = "Instellingen Scherm"
+text = "Instellingen"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -49,13 +64,17 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 50
 text = "Full Screen"
 
 [node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+icon_alignment = 1
+expand_icon = true
 
 [node name="Back" type="Button" parent="."]
 unique_name_in_owner = true
