@@ -45,9 +45,6 @@ var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
 signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
-	var init_gem_amount = 0
-	Global.gem_amount = 0
-
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
 
@@ -60,7 +57,7 @@ func _ready() -> void:
 	if hud:
 		health_changed.connect(_on_health_changed)
 
-		hud.update_gem_counter(init_gem_amount)
+		hud.update_gem_counter(Global.gem_amount)
 
 	if level_tilemap_layer == null:
 		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
