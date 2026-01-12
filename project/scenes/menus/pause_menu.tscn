@@ -52,11 +52,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Instellingen"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Afsluiten"
-
 [node name="Controls" parent="." instance=ExtResource("2_gjbd4")]
 visible = false
 layout_mode = 2
@@ -70,4 +65,3 @@ anchors_preset = 0
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="Controls" method="show"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="Settings" method="show"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
