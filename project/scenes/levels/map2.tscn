@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="14_m25kp"]
 [ext_resource type="PackedScene" uid="uid://bcx507qw46mnd" path="res://project/scenes/player.tscn" id="15_7mdhg"]
 
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dusoi"]
 texture = ExtResource("1_jd1r5")
 0:0/0 = 0
