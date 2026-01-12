@@ -46,7 +46,7 @@ signal provide_inv(loot_num_values: Array)
 
 func _ready() -> void:
 	var init_gem_amount = 0
-	Global.gem_amount = 100
+	Global.gem_amount = 0
 
 	# Add player to group "player" for identification in the world
 	add_to_group("player")
@@ -150,11 +150,11 @@ func handle_attack() -> void:
 				animated_sprite.play("attack_s")
 
 		# HitBox collision shapes
-		
+
 		damage_collision.disabled = false
 
 		await get_tree().create_timer(0.2).timeout
-		
+
 		damage_collision.disabled = true
 
 
