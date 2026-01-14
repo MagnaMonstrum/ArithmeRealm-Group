@@ -640,7 +640,6 @@ point_count = 3
 size = Vector2(261, 112)
 
 [node name="level2" type="Node2D"]
-position = Vector2(0, -1)
 script = ExtResource("1_2hx2r")
 max_enemies = 10
 
