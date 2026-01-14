@@ -614,21 +614,21 @@ sources/5 = SubResource("TileSetAtlasSource_t5bre")
 
 [sub_resource type="Curve2D" id="Curve2D_3eoce"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -825, -697, 0, 0, 0, 0, -643, -695, 0, 0, 0, 0, -824, -596)
+"points": PackedVector2Array(0, 0, 0, 0, -820, -689, 0, 0, 0, 0, -702, -688, 0, 0, 0, 0, -818, -559)
 }
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khqd6"]
-size = Vector2(182, 97)
+size = Vector2(125, 134)
 
 [sub_resource type="Curve2D" id="Curve2D_u01t3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -549, -130, 0, 0, 0, 0, -397, -128, 0, 0, 0, 0, -545, 45)
+"points": PackedVector2Array(0, 0, 0, 0, 232.714, 656, 0, 0, 0, 0, 827.941, 654, 0, 0, 0, 0, 231.437, 751)
 }
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_autko"]
-size = Vector2(152, 180)
+size = Vector2(596.198, 91)
 
 [sub_resource type="Curve2D" id="Curve2D_kkvxu"]
 _data = {
@@ -672,8 +672,8 @@ curve = SubResource("Curve2D_3eoce")
 
 [node name="PathFollow2DEnemy1" type="PathFollow2D" parent="EnemySpawns/EnemySpawn1"]
 unique_name_in_owner = true
-position = Vector2(-825, -697)
-rotation = 0.0109886
+position = Vector2(-820, -689)
+rotation = 0.00847437
 
 [node name="EnemyArea1" type="Area2D" parent="EnemySpawns/EnemySpawn1"]
 position = Vector2(-826, -689)
@@ -689,8 +689,8 @@ curve = SubResource("Curve2D_u01t3")
 
 [node name="PathFollow2DEnemy2" type="PathFollow2D" parent="EnemySpawns/EnemySpawn2"]
 unique_name_in_owner = true
-position = Vector2(-549, -130)
-rotation = 0.0131571
+position = Vector2(232.714, 656)
+rotation = -0.00336005
 
 [node name="EnemyArea2" type="Area2D" parent="EnemySpawns/EnemySpawn2"]
 position = Vector2(-553, -136)
