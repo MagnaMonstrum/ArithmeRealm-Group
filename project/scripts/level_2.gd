@@ -5,6 +5,7 @@ extends Node2D
 @onready var spawns = [
 		%PathFollow2DEnemy1,
 		%PathFollow2DEnemy2,
+		%PathFollow2DEnemy3,
 	]
 
 @export var max_enemies := 3 # Maximum number of enemies at once
