@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var InteractableBuy := $InteractableBuy
+@export var BuyScene: PackedScene = "res://project/scenes/levels/tutorial_level.tscn"
 
 var player: Node
 @export var gem_price = 10
@@ -27,4 +28,4 @@ func _on_yes_pressed() -> void:
 		player._on_remove_gems(gem_price)
 		Global.advance_level()
 		get_tree().paused = false
-		get_tree().change_scene_to_file("res://project/scenes/levels/map2.tscn")
+		get_tree().change_scene_to_file(BuyScene)
