@@ -804,5 +804,5 @@ position = Vector2(639, -156)
 [connection signal="body_entered" from="EnemySpawns/EnemySpawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_entered"]
 [connection signal="body_exited" from="EnemySpawns/EnemySpawn2/EnemyArea2" to="Player" method="_on_enemy_area_2_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/Pause" method="show"]
