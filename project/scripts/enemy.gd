@@ -19,16 +19,18 @@ var player_in_range := false
 var attack_windup := 0.5 # Delay before damage is applied
 var hitstun_duration := 0.4
 var knockback: Vector2 = Vector2.ZERO
-var knockback_decay := 10.0
+var knockback_decay := 50
 
 func _ready() -> void:
 	update_health(max_health, max_health)
-	# Ensure enemy is on correct collision layer (layer 3)
+	# Enemy on layer 3, collides with player (layer 2) and other enemies (layer 3)
 	collision_layer = 3
-	collision_mask = 3
+	collision_mask = 3 | 2
+	
+	# Prevent clipping into other bodies
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
 	animated_sprite.play("default")
-	# Connect HurtBox signals to detect player proximity
 	var hurtbox = get_node_or_null("HurtBox")
 	if hurtbox:
 		hurtbox.body_entered.connect(_on_hurtbox_body_entered)
@@ -38,11 +40,14 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Global.player_in_enemy_area:
 		move()
+	else:
+		velocity = Vector2.ZERO
+		move_and_slide()
+	
 	handle_death()
 
 	# Apply knockback decay
 	if knockback.length() > 0.1:
-		velocity += knockback
 		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * _delta)
 
 	# Trigger attack if conditions met
@@ -50,10 +55,23 @@ func _physics_process(_delta: float) -> void:
 		_attacking_sequence()
 
 func move() -> void:
-	# Simple chase towards the player, speed via constant
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
-	move_and_slide()
+	
+	# Apply any active knockback to velocity
+	if knockback.length() > 0.1:
+		velocity += knockback
+	
+	var collision = move_and_slide()
+	
+	# If we collided with the player, stop moving toward them
+	if collision:
+		# Check if the collision is with the player
+		for i in get_slide_collision_count():
+			var collision_info = get_slide_collision(i)
+			if collision_info.get_collider().is_in_group("player"):
+				velocity = Vector2.ZERO
+				break
 
 func handle_death() -> void:
 	var death_position = global_position
@@ -71,7 +89,7 @@ func take_damage(dmg: int) -> void:
 	attacking = false
 	if player:
 		var away = (global_position - player.global_position).normalized()
-		knockback = away * 120.0
+		knockback = away * 60.0
 	await get_tree().create_timer(hitstun_duration).timeout
 	can_attack = true
 

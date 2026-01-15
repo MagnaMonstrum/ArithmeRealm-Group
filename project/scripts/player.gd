@@ -59,6 +59,10 @@ func _ready() -> void:
 
 		hud.update_gem_counter(Global.gem_amount)
 
+	# Ensure damage area is connected
+	if damage_area:
+		damage_area.area_entered.connect(_on_damage_area_entered)
+
 	if level_tilemap_layer == null:
 		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
 		return
@@ -182,9 +186,10 @@ func _on_remove_gems(count: int) -> void:
 	if hud:
 		hud.update_gem_counter(Global.gem_amount)
 
-func _on_damage_area_entered(area: Area2D) -> void:
-	if (area.get_parent().has_method("take_damage")):
-		area.get_parent().take_damage(attack_damage)
+func _on_damage_area_entered(body: Node2D) -> void:
+	# Only deal damage if we're actively attacking and it's not ourselves
+	if attacking and body != self and body.has_method("take_damage"):
+		body.take_damage(attack_damage)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
