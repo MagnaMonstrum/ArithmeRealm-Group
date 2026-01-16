@@ -40,6 +40,8 @@ func _ready() -> void:
 	var timer := get_node_or_null("Timer") as Timer
 	if timer:
 		timer.wait_time = spawn_interval
+	
+	get_tree().current_scene.get_node("AdditionBlob").visible = false
 
 
 func spawn_enemy(path_follow: PathFollow2D) -> void:

@@ -9,12 +9,22 @@ var can_interact := true
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _clean_interactions() -> void:
+	# Remove hidden or non-interactable items from the list
+	var filtered = []
+	for area in current_interactions:
+		if area and area.is_visible_in_tree():
+			if "is_interactable" in area and area.is_interactable:
+				filtered.append(area)
+	current_interactions = filtered
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_interact:
+		_clean_interactions()
 		if current_interactions:
 			var nearest = current_interactions[0]
 			# Only interact if it's an actual interactable object
-			if nearest.has_method("get") and "interact" in nearest:
+			if "interact" in nearest:
 				can_interact = false
 				interact_label.hide()
 
@@ -24,12 +34,13 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	_clean_interactions()
+	
 	if current_interactions and can_interact:
 		current_interactions.sort_custom(_sort_by_nearest)
 		var nearest = current_interactions[0]
-		if nearest.has_method("get") and "is_interactable" in nearest and nearest.is_interactable:
-			interact_label.text = nearest.interaction_name
-			interact_label.show()
+		interact_label.text = nearest.interaction_name
+		interact_label.show()
 	else:
 		interact_label.hide()
 

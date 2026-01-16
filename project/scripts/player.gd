@@ -59,6 +59,10 @@ func _ready() -> void:
 
 		hud.update_gem_counter(Global.gem_amount)
 
+	# Ensure damage area is connected
+	if damage_area:
+		damage_area.area_entered.connect(_on_damage_area_entered)
+
 	if level_tilemap_layer == null:
 		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
 		return
@@ -154,6 +158,7 @@ func handle_attack() -> void:
 
 		damage_collision.disabled = true
 
+var spawnAlertWasShown : bool = false
 
 func collect(loot_num: LootNumResource) -> bool:
 	if (Global.firstFight == false):
@@ -161,12 +166,11 @@ func collect(loot_num: LootNumResource) -> bool:
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 	print()
-	if inventory.get_amount_of_nums_in_inventory() > 2:
+	if inventory.get_amount_of_nums_in_inventory() > 2 && !spawnAlertWasShown:
 		get_tree().current_scene.get_node("AdditionBlob").visible = true
 		if hud:
 			hud.show_spawn_alert()
-	else:
-		get_tree().current_scene.get_node("AdditionBlob").visible = false
+			spawnAlertWasShown = true
 
 	return successful
 
@@ -182,9 +186,10 @@ func _on_remove_gems(count: int) -> void:
 	if hud:
 		hud.update_gem_counter(Global.gem_amount)
 
-func _on_damage_area_entered(area: Area2D) -> void:
-	if (area.get_parent().has_method("take_damage")):
-		area.get_parent().take_damage(attack_damage)
+func _on_damage_area_entered(body: Node2D) -> void:
+	# Only deal damage if we're actively attacking and it's not ourselves
+	if attacking and body != self and body.has_method("take_damage"):
+		body.take_damage(attack_damage)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
