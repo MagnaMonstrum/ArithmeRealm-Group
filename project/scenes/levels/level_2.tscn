@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://c4i4j01p7tcpu"]
+[gd_scene load_steps=56 format=4 uid="uid://c4i4j01p7tcpu"]
 
 [ext_resource type="Script" path="res://project/scripts/level_2.gd" id="1_2hx2r"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="1_fs6ku"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://caqgtsdbjuace" path="res://project/art/sprites/objects/objects.png" id="11_khqd6"]
 [ext_resource type="Texture2D" uid="uid://bakjgu5pi1vbo" path="res://project/art/sprites/tilesets/walls/wooden_door_b.png" id="12_autko"]
 [ext_resource type="Texture2D" uid="uid://cx7tb56edxigj" path="res://project/art/sprites/tilesets/walls/wooden_door.png" id="13_kkvxu"]
+[ext_resource type="Texture2D" uid="uid://dww7st6ucposl" path="res://project/art/sprites/objects/de kers op de taart v2.png" id="14_kkvxu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7lf8"]
 texture = ExtResource("2_3eoce")
@@ -1013,6 +1014,20 @@ sources/7 = SubResource("TileSetAtlasSource_u01t3")
 sources/8 = SubResource("TileSetAtlasSource_rvkp1")
 sources/9 = SubResource("TileSetAtlasSource_5ca3m")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_adonb"]
+texture = ExtResource("14_kkvxu")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l771t"]
 texture = ExtResource("11_khqd6")
 0:0/0 = 0
@@ -1126,6 +1141,7 @@ texture = ExtResource("11_khqd6")
 
 [sub_resource type="TileSet" id="TileSet_4nsr8"]
 sources/1 = SubResource("TileSetAtlasSource_l771t")
+sources/0 = SubResource("TileSetAtlasSource_adonb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_autko"]
 texture = ExtResource("11_khqd6")
@@ -1405,7 +1421,7 @@ tile_map_data = PackedByteArray("AADH/7n/AQACAAUAAADH/7r/AQACAAUAAADH/7v/AQACAAU
 tile_set = SubResource("TileSet_7avwa")
 
 [node name="Furniture" type="TileMapLayer" parent="Entire/OnGround"]
-tile_map_data = PackedByteArray("AAAbAP//AQAJAAEAAAAcAP//AQALAAEAAAAcAP7/AQAMAAMAAAAcAP3/AQAMAAIAAAAeAAQAAQAJAAMAAAAeAAMAAQAJAAIAAAA=")
+tile_map_data = PackedByteArray("AAAbAP//AQAJAAEAAAAcAP//AQALAAEAAAAcAP7/AQAMAAMAAAAcAP3/AQAMAAIAAAAeAAQAAQAJAAMAAAAeAAMAAQAJAAIAAAADAAAAAAAAAAEAAAADAAEAAAAAAAIAAAAEAP//AAABAAAAAAAEAAAAAAABAAEAAAAEAAEAAAABAAIAAAAFAP//AAACAAAAAAAFAAAAAAACAAEAAAAFAAEAAAACAAIAAAAGAP//AAADAAAAAAAGAAAAAAADAAEAAAAGAAEAAAADAAIAAAA=")
 tile_set = SubResource("TileSet_4nsr8")
 
 [node name="Elevated" type="TileMapLayer" parent="Entire"]
@@ -1417,7 +1433,7 @@ tile_set = SubResource("TileSet_kkvxu")
 position = Vector2(448, -25)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("2_2hx2r")]
-position = Vector2(-407, -474)
+position = Vector2(275, 40)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
 SPEED = 200.0
