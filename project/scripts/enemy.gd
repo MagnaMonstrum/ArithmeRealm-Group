@@ -38,7 +38,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if Global.player_in_enemy_area:
+	# Move towards player if in enemy area, or if player is still relatively close
+	var distance_to_player = global_position.distance_to(player.global_position) if player else 0
+	if Global.player_in_enemy_area or distance_to_player < 150:
 		move()
 	else:
 		velocity = Vector2.ZERO

@@ -158,6 +158,7 @@ func handle_attack() -> void:
 
 		damage_collision.disabled = true
 
+var spawnAlertWasShown : bool = false
 
 func collect(loot_num: LootNumResource) -> bool:
 	if (Global.firstFight == false):
@@ -165,12 +166,11 @@ func collect(loot_num: LootNumResource) -> bool:
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 	print()
-	if inventory.get_amount_of_nums_in_inventory() > 2:
+	if inventory.get_amount_of_nums_in_inventory() > 2 && !spawnAlertWasShown:
 		get_tree().current_scene.get_node("AdditionBlob").visible = true
 		if hud:
 			hud.show_spawn_alert()
-	else:
-		get_tree().current_scene.get_node("AdditionBlob").visible = false
+			spawnAlertWasShown = true
 
 	return successful
 
