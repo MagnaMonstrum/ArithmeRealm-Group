@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://c31xjnf3llgy5"]
+[gd_scene load_steps=39 format=4 uid="uid://c31xjnf3llgy5"]
 
 [ext_resource type="Script" uid="uid://bqlp8buufux7c" path="res://project/scripts/tutorial_level.gd" id="1_fsmf3"]
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="2_b3w10"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="9_h021s"]
 [ext_resource type="Texture2D" uid="uid://sh0dqva04ljr" path="res://project/art/sprites/tilesets/floors/wooden.png" id="9_l2eku"]
 [ext_resource type="Texture2D" uid="uid://ycan4efbpoyd" path="res://project/art/sprites/tilesets/fences.png" id="10_krkpq"]
+[ext_resource type="PackedScene" uid="uid://dw5k8nap3x2yn" path="res://project/scenes/healing_beacon.tscn" id="13_healing"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="14_l2eku"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ttk4"]
@@ -796,6 +797,9 @@ offset_right = 0.0
 
 [node name="Chest" parent="." instance=ExtResource("9_h021s")]
 position = Vector2(-240, -78)
+
+[node name="HealingBeacon" parent="." instance=ExtResource("13_healing")]
+position = Vector2(87, -240)
 
 [node name="Buy" parent="." instance=ExtResource("14_l2eku")]
 position = Vector2(639, -156)
