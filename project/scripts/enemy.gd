@@ -21,12 +21,13 @@ var hitstun_duration := 0.4
 var knockback: Vector2 = Vector2.ZERO
 var knockback_decay := 50
 
+var enemy_area: String
 func _ready() -> void:
 	update_health(max_health, max_health)
 	# Enemy on layer 3, collides with player (layer 2) and other enemies (layer 3)
 	collision_layer = 3
 	collision_mask = 3 | 2
-	
+
 	# Prevent clipping into other bodies
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
@@ -40,12 +41,13 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# Move towards player if in enemy area, or if player is still relatively close
 	var distance_to_player = global_position.distance_to(player.global_position) if player else 0
-	if Global.player_in_enemy_area or distance_to_player < 150:
+	# print(Global.enemy)
+	if (Global.player_current_enemy_area == enemy_area) or distance_to_player < 100:
 		move()
 	else:
 		velocity = Vector2.ZERO
 		move_and_slide()
-	
+
 	handle_death()
 
 	# Apply knockback decay
@@ -59,13 +61,13 @@ func _physics_process(_delta: float) -> void:
 func move() -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
-	
+
 	# Apply any active knockback to velocity
 	if knockback.length() > 0.1:
 		velocity += knockback
-	
+
 	var collision = move_and_slide()
-	
+
 	# If we collided with the player, stop moving toward them
 	if collision:
 		# Check if the collision is with the player
