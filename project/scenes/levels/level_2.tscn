@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dshhh5w2accjh"]
+[gd_scene load_steps=24 format=4 uid="uid://chgfljb46rffl"]
 
 [ext_resource type="Script" path="res://project/scripts/level_2.gd" id="1_2hx2r"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="1_fs6ku"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="5_styun"]
 [ext_resource type="TileSet" uid="uid://bg87t87k38itc" path="res://project/scenes/CollisionLayers/elevated_collisions.tres" id="7_dusoi"]
 [ext_resource type="Texture2D" uid="uid://caqgtsdbjuace" path="res://project/art/sprites/objects/objects.png" id="11_khqd6"]
+[ext_resource type="PackedScene" uid="uid://d3n66duy0fq2h" path="res://project/scenes/levels/level_3.tscn" id="13_dusoi"]
 [ext_resource type="Texture2D" uid="uid://dww7st6ucposl" path="res://project/art/sprites/objects/de kers op de taart v2.png" id="14_kkvxu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_adonb"]
@@ -296,6 +297,7 @@ position = Vector2(761, -646)
 
 [node name="Buy" parent="." instance=ExtResource("5_styun")]
 position = Vector2(384, 412)
+BuyScene = ExtResource("13_dusoi")
 
 [connection signal="body_entered" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
 [connection signal="body_exited" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
