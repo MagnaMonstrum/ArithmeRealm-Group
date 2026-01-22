@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d1b5p27ddprw8"]
 
-[ext_resource type="Script" uid="uid://d2kcq0f7vsubm" path="res://project/scenes/menus/controls.gd" id="1_f1ikg"]
+[ext_resource type="Script" uid="uid://d2kcq0f7vsubm" path="res://project/scripts/controls.gd" id="1_f1ikg"]
 [ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="2_8bb8g"]
 [ext_resource type="Texture2D" uid="uid://cgfj23ymwkq7w" path="res://project/art/controls/G_Key_Light.png" id="3_dp201"]
 [ext_resource type="Texture2D" uid="uid://vgjxfktnnpat" path="res://project/art/controls/Mouse_Left_Key_Light.png" id="3_ply3o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://yer2aj2tr3k7" path="res://project/art/controls/A_Key_Light.png" id="7_81gh0"]
 [ext_resource type="Texture2D" uid="uid://du7xue06763sd" path="res://project/art/controls/S_Key_Light.png" id="8_8tffc"]
 [ext_resource type="Texture2D" uid="uid://c4emjd0usafjr" path="res://project/art/controls/D_Key_Light.png" id="9_oyn4g"]
+
 
 [node name="Controls" type="Control"]
 layout_mode = 3
