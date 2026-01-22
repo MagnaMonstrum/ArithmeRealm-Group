@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://c31xjnf3llgy5"]
+[gd_scene load_steps=40 format=4 uid="uid://c31xjnf3llgy5"]
 
 [ext_resource type="Script" uid="uid://bqlp8buufux7c" path="res://project/scripts/tutorial_level.gd" id="1_fsmf3"]
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="2_b3w10"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ycan4efbpoyd" path="res://project/art/sprites/tilesets/fences.png" id="10_krkpq"]
 [ext_resource type="PackedScene" uid="uid://dw5k8nap3x2yn" path="res://project/scenes/healing_beacon.tscn" id="13_healing"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="14_l2eku"]
+[ext_resource type="PackedScene" uid="uid://chgfljb46rffl" path="res://project/scenes/levels/level_2.tscn" id="17_a1ron"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ttk4"]
 texture = ExtResource("2_cgjuf")
@@ -804,6 +805,7 @@ position = Vector2(87, -240)
 
 [node name="Buy" parent="." instance=ExtResource("14_l2eku")]
 position = Vector2(639, -156)
+BuyScene = ExtResource("17_a1ron")
 
 [connection signal="body_entered" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
 [connection signal="body_exited" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
