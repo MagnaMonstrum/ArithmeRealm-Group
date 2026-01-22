@@ -110,7 +110,7 @@ func _attacking_sequence() -> void:
 	await get_tree().create_timer(attack_windup).timeout
 	if player_in_range and can_attack and is_instance_valid(player):
 		if player.has_method("take_damage"):
-			player.take_damage(attack_damage)
+			player.take_damage(attack_damage, global_position, 140.0)
 			can_attack = false
 			# Wait for cooldown before the next attack
 			await get_tree().create_timer(attack_cooldown).timeout
