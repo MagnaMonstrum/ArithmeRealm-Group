@@ -41,6 +41,8 @@ var attack_animations := ["attack_e", "attack_n", "attack_s"]
 
 var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
 
+var current_enemy_area: Area2D = null
+
 
 signal provide_inv(loot_num_values: Array)
 
@@ -158,7 +160,7 @@ func handle_attack() -> void:
 
 		damage_collision.disabled = true
 
-var spawnAlertWasShown : bool = false
+var spawnAlertWasShown: bool = false
 
 func collect(loot_num: LootNumResource) -> bool:
 	if (Global.firstFight == false):
@@ -269,35 +271,27 @@ func _on_gem_counter_changed(current_gem_amount: int) -> void:
 	if hud and hud.has_method("update_gem_counter"):
 		hud.update_gem_counter(current_gem_amount)
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		Global.player_in_enemy_area = false
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		Global.player_in_enemy_area = true
-
-
 func _on_enemy_area_1_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea1"
 
 func _on_enemy_area_1_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"
+
 
 func _on_enemy_area_2_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea2"
 
 func _on_enemy_area_2_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"
 
 func _on_enemy_area_3_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea3"
 
 func _on_enemy_area_3_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"

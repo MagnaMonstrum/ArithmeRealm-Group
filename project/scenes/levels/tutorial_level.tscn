@@ -710,6 +710,7 @@ position = Vector2(639, 68)
 position = Vector2(-402, 222)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
+SPEED = 300.0
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 

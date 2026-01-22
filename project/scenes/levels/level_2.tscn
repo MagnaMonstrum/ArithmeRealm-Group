@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://chgfljb46rffl"]
 
-[ext_resource type="Script" path="res://project/scripts/level_2.gd" id="1_2hx2r"]
+[ext_resource type="Script" uid="uid://d285m6iam01h0" path="res://project/scripts/level_2.gd" id="1_2hx2r"]
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="1_fs6ku"]
 [ext_resource type="PackedScene" uid="uid://bcx507qw46mnd" path="res://project/scenes/player.tscn" id="2_2hx2r"]
 [ext_resource type="TileSet" uid="uid://dku3hi5xsbuw6" path="res://project/scenes/CollisionLayers/ground_layer_collisions.tres" id="2_autko"]
@@ -210,6 +210,7 @@ position = Vector2(448, -25)
 position = Vector2(-727, -241)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
+SPEED = 400.0
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -298,6 +299,7 @@ position = Vector2(761, -646)
 [node name="Buy" parent="." instance=ExtResource("5_styun")]
 position = Vector2(384, 412)
 BuyScene = ExtResource("13_dusoi")
+gem_price = 30
 
 [connection signal="body_entered" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_entered"]
 [connection signal="body_exited" from="EnemySpawns/EnemySpawn1/EnemyArea1" to="Player" method="_on_enemy_area_1_body_exited"]
