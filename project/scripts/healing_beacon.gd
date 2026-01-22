@@ -21,16 +21,16 @@ var incorrect_guesses := 0
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:		
+func _ready() -> void:
 	interactable.interact = _on_interact
-	interactable.interaction_name = "Use Healing Beacon"
+	interactable.interaction_name = "Gebruik Healing Beacon"
 	rng.randomize()
 	generate_problem()
 
 func _process(_delta: float) -> void:
 	if is_used or is_fading:
 		return
-	
+
 	# Update interactability based on player health
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if player:
@@ -41,12 +41,12 @@ func _process(_delta: float) -> void:
 func _on_interact() -> void:
 	if is_used or is_fading:
 		return
-	
+
 	# Check if player is at full health
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if player and player.current_health >= player.max_health:
 		return # Can't use beacon at full health
-	
+
 	if !is_instance_valid(chest_ui):
 		chest_ui = ChestUiScene.instantiate()
 		chest_ui.top_level = true
@@ -55,7 +55,7 @@ func _on_interact() -> void:
 
 	if !chest_ui.is_node_ready():
 		await chest_ui.ready
-	
+
 	chest_ui.open(self, problem_data)
 
 func generate_problem() -> void:
@@ -69,19 +69,19 @@ func on_correct_answer() -> void:
 		return
 	is_used = true
 	is_fading = true
-	
+
 	# Heal the player (current health + 25% of max health)
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if player and player.has_method("heal"):
 		var heal_amount := int(player.max_health * 0.25)
 		player.heal(heal_amount)
-	
+
 	# Disable collisions while fading away
 	if static_collision:
 		static_collision.disabled = true
 	if interactable:
 		interactable.is_interactable = false
-	
+
 	# Fade away and disappear after correct answer
 	animation_player.play("fade_away")
 	await animation_player.animation_finished
@@ -89,19 +89,19 @@ func on_correct_answer() -> void:
 
 func on_wrong_answer() -> void:
 	incorrect_guesses += 1
-	
+
 	if incorrect_guesses >= 3:
 		# Too many wrong answers - fade away without healing
 		if is_fading:
 			return
 		is_fading = true
-		
+
 		# Disable collisions while fading away
 		if static_collision:
 			static_collision.disabled = true
 		if interactable:
 			interactable.is_interactable = false
-		
+
 		# Fade away and disappear
 		animation_player.play("fade_away")
 		await animation_player.animation_finished

@@ -29,14 +29,14 @@ func _ready():
 	rng.randomize()
 	if sfx:
 		sfx.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	
+
 	if submit_button:
 		submit_button.pressed.connect(_on_submit_pressed)
-	
+
 	if line_edit:
 		line_edit.text_submitted.connect(_on_text_submitted)
 		line_edit.text_changed.connect(_on_text_changed)
-	
+
 	if feedback_label:
 		feedback_label.text = ""
 		feedback_label.modulate = Color.WHITE
@@ -47,27 +47,27 @@ func open(chest_node: Node, problem: Dictionary) -> void:
 	self.int_B = problem.get("b", 0)
 	self.target_answer = problem.get("answer", int_A + int_B)
 	op_symbol = problem.get("operator_symbol", "+")
-	
+
 	paused_before_open = get_tree().paused
 	get_tree().paused = true
-	
+
 	# Set the problem text
 	if label:
 		label.text = "%d %s %d = ?" % [int_A, op_symbol, int_B]
-	
+
 	# Clear input and feedback
 	if line_edit:
 		line_edit.text = ""
-	
+
 	if feedback_label:
 		feedback_label.text = ""
-	
+
 	self.visible = true
-	
+
 	# Grab focus after a frame to avoid capturing the 'E' key press
 	await get_tree().process_frame
 	if line_edit:
-		line_edit.text = ""  # Clear again in case E was captured
+		line_edit.text = "" # Clear again in case E was captured
 		line_edit.grab_focus()
 
 func close() -> void:
@@ -88,17 +88,17 @@ func _on_text_submitted(_text: String) -> void:
 func _check_answer() -> void:
 	if not line_edit:
 		return
-	
+
 	var input_text = line_edit.text.strip_edges()
-	
+
 	if input_text.is_empty():
 		if feedback_label:
-			feedback_label.text = "Please enter an answer!"
+			feedback_label.text = "Vul alsjeblieft een antwoord in!"
 			feedback_label.modulate = Color.YELLOW
 		return
-	
+
 	var input_value = input_text.to_int()
-	
+
 	if input_value == target_answer:
 		_on_correct_answer()
 	else:
@@ -120,7 +120,7 @@ func _on_text_changed(new_text: String) -> void:
 
 func _on_correct_answer() -> void:
 	if feedback_label:
-		feedback_label.text = "Good job!"
+		feedback_label.text = "Goed gedaan!"
 		feedback_label.modulate = Color.GREEN
 
 	# Play success sound
@@ -128,11 +128,11 @@ func _on_correct_answer() -> void:
 		sfx.stop()
 		sfx.stream = SUCCESS_SFX
 		sfx.play()
-	
+
 	# Tell the chest to open
 	if chest and chest.has_method("on_correct_answer"):
 		chest.on_correct_answer()
-	
+
 	# Award 2-5 gems to the player
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if player:
@@ -144,12 +144,12 @@ func _on_correct_answer() -> void:
 	# Wait for sound to finish before closing
 	if sfx:
 		await sfx.finished
-	
+
 	close()
 
 func _on_wrong_answer() -> void:
 	if feedback_label:
-		feedback_label.text = "Uh oh, that was not right!"
+		feedback_label.text = "Uh oh, dat was niet correct!"
 		feedback_label.modulate = Color.RED
 
 	# Play incorrect sound
@@ -157,13 +157,13 @@ func _on_wrong_answer() -> void:
 		sfx.stop()
 		sfx.stream = INCORRECT_SFX
 		sfx.play()
-	
+
 	# Tell the chest to fade away
 	if chest and chest.has_method("on_wrong_answer"):
 		chest.on_wrong_answer()
-	
+
 	# Wait for sound to finish before closing
 	if sfx:
 		await sfx.finished
-	
+
 	close()
