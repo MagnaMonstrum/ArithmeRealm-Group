@@ -7,6 +7,11 @@ extends Node2D
 		%PathFollow2DEnemy2,
 	]
 
+@onready var enemy_areas = [
+	"EnemyArea1",
+	"EnemyArea2",
+]
+
 @export var max_enemies := 3 # Maximum number of enemies at once
 @export var spawn_interval := 4.5 # Time interval between spawns (seconds)
 @export var safe_spawn_distance := 140.0 # Minimum distance to player when spawning
@@ -40,11 +45,11 @@ func _ready() -> void:
 	var timer := get_node_or_null("Timer") as Timer
 	if timer:
 		timer.wait_time = spawn_interval
-	
+
 	get_tree().current_scene.get_node("AdditionBlob").visible = false
 
 
-func spawn_enemy(path_follow: PathFollow2D) -> void:
+func spawn_enemy(path_follow: PathFollow2D, enemy_area: String) -> void:
 	if (Global.firstFight):
 		%Fighting.visible = false
 	# Choose a spawn point along the path that isn't too close to the player.
@@ -64,6 +69,7 @@ func spawn_enemy(path_follow: PathFollow2D) -> void:
 		return
 
 	var new_mob = preload("res://project/scenes/enemy.tscn").instantiate()
+	new_mob.enemy_area = enemy_area
 	new_mob.global_position = spawn_pos
 	add_child(new_mob)
 
@@ -85,7 +91,7 @@ func _on_enemy_removed() -> void:
 func _on_timer_timeout() -> void:
 	if current_enemy_count < max_enemies:
 		for i in range(len(spawns)):
-			spawn_enemy(spawns[i])
+			spawn_enemy(spawns[i], enemy_areas[i])
 
 
 func _on_button_pressed() -> void:
