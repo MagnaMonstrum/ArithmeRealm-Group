@@ -43,15 +43,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -256.5
-offset_top = -3.0
-offset_right = 256.5
-offset_bottom = 80.0
+offset_left = -141.0
+offset_right = 141.0
+offset_bottom = 83.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 15
 theme_override_font_sizes/font_size = 60
-text = "Besturing Scherm"
+text = "Besturing"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -92,7 +91,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 12
 theme_override_font_sizes/font_size = 45
-text = "Interacten"
+text = "Interactie"
 
 [node name="G Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -107,7 +106,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 12
 theme_override_font_sizes/font_size = 45
-text = "Inventory openen/sluiten"
+text = "Inventaris openen/sluiten"
 
 [node name="W Uitleg" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -183,5 +182,5 @@ offset_right = 56.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
-text = "Back
+text = "Terug
 "
