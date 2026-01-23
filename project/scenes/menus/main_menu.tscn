@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1wf5u0688elr"]
 
-[ext_resource type="Script" uid="uid://b65qo6bp7yawk" path="res://project/scripts/main_menu.gd" id="1_7bf60"]
+[ext_resource type="Script" path="res://project/scripts/main_menu.gd" id="1_v0c3b"]
 [ext_resource type="PackedScene" uid="uid://cnt34xc6kdyc8" path="res://project/scenes/menus/settings_menu.tscn" id="2_l2nei"]
 [ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="2_v0c3b"]
 [ext_resource type="PackedScene" uid="uid://d1b5p27ddprw8" path="res://project/scenes/menus/control_menu.tscn" id="3_v0c3b"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7bf60")
+script = ExtResource("1_v0c3b")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
