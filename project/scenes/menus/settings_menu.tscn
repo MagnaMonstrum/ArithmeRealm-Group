@@ -67,7 +67,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 50
-text = "Full Screen"
+text = "Volledig Scherm"
 
 [node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -90,6 +90,6 @@ offset_right = 55.5
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
-text = "Back"
+text = "Terug"
 
 [connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc11td4isff25"]
+
+[ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="1_gdpbd"]
+[ext_resource type="Script" uid="uid://4clcvew662x" path="res://project/scripts/exposition.gd" id="1_k1ilg"]
+
+[node name="ExpositionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1ilg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gdpbd")
+expand_mode = 2
+
+[node name="TitleControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_bottom = 168.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="TitleControl"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -41.5
+offset_right = 170.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 60
+text = "Het Verhaal"
+
+[node name="StoryControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -470.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StoryText" type="RichTextLabel" parent="StoryControl"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+text = "
+Hallo Speler!
+
+Welkom in de wonderlijke wereld van ArithmeRealm! Dit is een wereld vol met avontuur! Maar de ArithmeRealm heeft jouw hulp nodig. De bewoners van de wereld, de blobs, hebben honger en de enige manier om ze te helpen is door hun eten te brengen. De blobs eten alleen getallen en de getallen moeten antwoord geven op de som die op dat moment op hun buik staat. Waar kun je die getallen vinden? Dat is een goede vraag! De enige manier om dit te doen is door de RekenRommels te verslaan! Wat dat zijn? RekenRommels zijn pure rekenkracht, net als wat jij hebt in je hoofd of wat de computer heeft. We wete niet waarom, maar soms raken de getallen in de rekenkracht verstrikt in elkaar en wanneer dit gebeurt verschijnen er RekenRommels. Gelukkig kunnen de RekenRommels alleen maar verschijnen op de tegels van steen.
+
+Kun jij de RekenRommels verslaan en de blobs voeren? Ze hebben honger!   "
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = 40.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Volgende"

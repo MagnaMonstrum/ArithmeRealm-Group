@@ -290,10 +290,10 @@ offset_right = 0.0
 [node name="Chests" type="Node2D" parent="."]
 
 [node name="Chest" parent="Chests" instance=ExtResource("4_dwovl")]
-position = Vector2(-435, -808)
+position = Vector2(-449, -800)
 
 [node name="Chest2" parent="Chests" instance=ExtResource("4_dwovl")]
-position = Vector2(761, -646)
+position = Vector2(749, -659)
 
 [node name="Buy" parent="." instance=ExtResource("5_styun")]
 position = Vector2(384, 412)
