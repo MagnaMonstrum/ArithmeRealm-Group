@@ -1,4 +1,7 @@
-[gd_scene load_steps=0 format=3 uid="uid://dpgcnbtr3e6he"]
+[gd_scene load_steps=3 format=3 uid="uid://dc11td4isff25"]
+
+[ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="1_gdpbd"]
+[ext_resource type="Script" uid="uid://4clcvew662x" path="res://project/scripts/exposition.gd" id="1_k1ilg"]
 
 [node name="ExpositionScreen" type="Control"]
 layout_mode = 3
@@ -7,6 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k1ilg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gdpbd")
+expand_mode = 2
 
 [node name="TitleControl" type="Control" parent="."]
 layout_mode = 1
@@ -63,3 +77,19 @@ Welkom in de wonderlijke wereld van ArithmeRealm! Dit is een wereld vol met avon
 
 Kun jij de RekenRommels verslaan en de blobs voeren? Ze hebben honger!   "
 horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = 40.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Volgende"
