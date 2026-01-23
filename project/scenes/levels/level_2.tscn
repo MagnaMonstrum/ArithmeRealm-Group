@@ -207,10 +207,9 @@ tile_set = ExtResource("7_dusoi")
 position = Vector2(448, -25)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("2_2hx2r")]
-position = Vector2(-727, -241)
+position = Vector2(378, 356)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
-SPEED = 400.0
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 position = Vector2(0, 1)

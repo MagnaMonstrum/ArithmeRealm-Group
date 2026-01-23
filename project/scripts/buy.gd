@@ -7,7 +7,7 @@ var player: Node
 @export var gem_price = 10
 
 func _ready() -> void:
-	%CostLabel.text = "It will cost you: " + str(gem_price) + " gems!"
+	%CostLabel.text = "Dat kost je: " + str(gem_price) + " gems!"
 	player = get_tree().current_scene.get_node_or_null("Player")
 
 	process_mode = PROCESS_MODE_WHEN_PAUSED

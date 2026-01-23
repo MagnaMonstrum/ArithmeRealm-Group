@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://d3n66duy0fq2h"]
 
-[ext_resource type="Script" path="res://project/scripts/level_3.gd" id="1_glif8"]
+[ext_resource type="Script" uid="uid://c54hiqpxctdo4" path="res://project/scripts/level_3.gd" id="1_glif8"]
 [ext_resource type="TileSet" uid="uid://dku3hi5xsbuw6" path="res://project/scenes/CollisionLayers/ground_layer_collisions.tres" id="2_xqcbt"]
 [ext_resource type="TileSet" uid="uid://cqi56ojp3s26b" path="res://project/scenes/CollisionLayers/on_ground_collisions.tres" id="3_q6bvs"]
 [ext_resource type="TileSet" uid="uid://bg87t87k38itc" path="res://project/scenes/CollisionLayers/elevated_collisions.tres" id="4_w0lmm"]
