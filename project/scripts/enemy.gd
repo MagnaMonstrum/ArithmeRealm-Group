@@ -6,6 +6,7 @@ signal drop_num(pos: Vector2, num_loot: int)
 @onready var enemy_health_bar = $EnemyHealth/ProgressBar
 @onready var player := get_tree().get_current_scene().get_node("Player")
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var damage_sfx: AudioStreamPlayer = $DamageSfx
 
 const SPEED := 18
 var max_health = 100
@@ -86,6 +87,10 @@ func handle_death() -> void:
 		queue_free()
 
 func take_damage(dmg: int) -> void:
+	if damage_sfx:
+		damage_sfx.stop()
+		damage_sfx.play()
+
 	current_health -= dmg
 	update_health(current_health, max_health)
 	# Brief hitstun and knockback to prevent instant mutual hits

@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxcrhsdhnf0sq"]
+[gd_scene load_steps=19 format=3 uid="uid://bxcrhsdhnf0sq"]
 
 [ext_resource type="Texture2D" uid="uid://c4lag5ow4wn7c" path="res://project/art/sprites/characters/ArithmeRealmEnemy-Sheet-Sheet.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://clvgfo5t2oasw" path="res://project/scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://cv36blgbjyq5q" path="res://project/art/sprites/numbers/sprite_sheet_nums.png" id="2_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://bwwqbnxideqcm" path="res://project/sounds/HitOnEnemy.wav" id="4_h6rad"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5uy6h"]
 particles_animation = true
@@ -134,7 +135,6 @@ autostart = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.069252, 0.0297947)
@@ -168,5 +168,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_h6rad")
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="DamageSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h6rad")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

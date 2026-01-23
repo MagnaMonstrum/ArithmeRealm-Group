@@ -707,7 +707,7 @@ tile_set = SubResource("TileSet_1letv")
 position = Vector2(639, 68)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("3_7gra0")]
-position = Vector2(-402, 222)
+position = Vector2(-390, -124)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
 
