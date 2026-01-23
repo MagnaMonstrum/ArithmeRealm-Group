@@ -26,6 +26,8 @@ var max_health := 100
 var current_health := 100
 var is_invincible := false
 var invincibility_duration := 0.5 # seconds of invincibility after taking damage
+var knockback: Vector2 = Vector2.ZERO
+var knockback_decay := 600.0
 
 @export var attack_damage = 10
 
@@ -75,12 +77,12 @@ func _ready() -> void:
 	_apply_camera_limits_from_tilemap(level_tilemap_layer)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if current_health <= 0:
 		return # Don't process if dead
 
 	set_direction()
-	handle_movement()
+	handle_movement(delta)
 	handle_attack()
 
 func set_direction() -> void:
@@ -97,9 +99,14 @@ func set_direction() -> void:
 		current_dir = facing_direction.SOUTH
 		damage_area.rotation = deg_to_rad(180)
 
-func handle_movement():
+func handle_movement(delta: float):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
+
+	# Apply residual knockback and decay it over time
+	if knockback.length() > 0.1:
+		velocity += knockback
+		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	move_and_slide()
 
 	var padding := Vector2.ZERO
@@ -200,7 +207,7 @@ func provide_loot_num_values(blob) -> void: # This function gives the inventory 
 	var inv_array := inventory.get_items()
 	blob.receive_inv_values(inv_array)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, attacker_position: Vector2 = Vector2.ZERO, knockback_force: float = 120.0) -> void:
 	# Player takes damage from enemies
 	if is_invincible or current_health <= 0:
 		return
@@ -211,6 +218,11 @@ func take_damage(damage: int) -> void:
 
 	current_health = max(0, current_health - damage)
 	health_changed.emit(current_health, max_health)
+
+	# Apply knockback away from the attacker when a position is provided
+	if attacker_position != Vector2.ZERO:
+		var away_dir := (global_position - attacker_position).normalized()
+		knockback = away_dir * knockback_force
 
 	if current_health <= 0:
 		handle_death()
