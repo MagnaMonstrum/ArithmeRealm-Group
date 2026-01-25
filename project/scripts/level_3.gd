@@ -46,8 +46,6 @@ func _ready() -> void:
 	if timer:
 		timer.wait_time = spawn_interval
 
-	get_tree().current_scene.get_node("AdditionBlob").visible = false
-
 
 func spawn_enemy(path_follow: PathFollow2D, enemy_area: String) -> void:
 	if (Global.firstFight):

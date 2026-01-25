@@ -5,11 +5,13 @@ extends Node2D
 @onready var spawns = [
 		%PathFollow2DEnemy1,
 		%PathFollow2DEnemy2,
+		%PathFollow2DEnemy3,
 	]
 
 @onready var enemy_areas = [
 	"EnemyArea1",
 	"EnemyArea2",
+	"EnemyArea3",
 ]
 
 @export var max_enemies := 3 # Maximum number of enemies at once
@@ -45,8 +47,6 @@ func _ready() -> void:
 	var timer := get_node_or_null("Timer") as Timer
 	if timer:
 		timer.wait_time = spawn_interval
-
-	get_tree().current_scene.get_node("AdditionBlob").visible = false
 
 
 func spawn_enemy(path_follow: PathFollow2D, enemy_area: String) -> void:

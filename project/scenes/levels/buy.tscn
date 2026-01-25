@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://eftgu3yxm55t"]
+[gd_scene load_steps=5 format=3 uid="uid://eftgu3yxm55t"]
 
 [ext_resource type="Script" uid="uid://ex7dot2nyvco" path="res://project/scripts/buy.gd" id="1_yx2u7"]
 [ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res://project/scenes/interactable.tscn" id="2_p2jja"]
-
-[sub_resource type="Gradient" id="Gradient_qj714"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yx2u7"]
-gradient = SubResource("Gradient_qj714")
+[ext_resource type="Texture2D" uid="uid://bao0nyq1u1rl7" path="res://project/art/sprites/objects/buy-portal.png" id="3_i70x3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2jja"]
 
@@ -17,8 +13,10 @@ script = ExtResource("1_yx2u7")
 interaction_name = "E om het volgende level te kopen"
 
 [node name="Sprite2D" type="Sprite2D" parent="InteractableBuy"]
-scale = Vector2(0.0585938, 13.5)
-texture = SubResource("GradientTexture1D_yx2u7")
+texture_filter = 1
+position = Vector2(1.19209e-07, -3.57628e-07)
+scale = Vector2(0.609376, 0.61805)
+texture = ExtResource("3_i70x3")
 
 [node name="buyCollision" type="CollisionShape2D" parent="InteractableBuy"]
 shape = SubResource("CircleShape2D_p2jja")
@@ -60,13 +58,13 @@ layout_mode = 2
 [node name="BuyLabel" type="Label" parent="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Do you want to buy the next level?"
+text = "Wil je het volgende level kopen?"
 
 [node name="CostLabel" type="Label" parent="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "It will cost you: 10 gems!"
+text = "Dat kost je: 10 gems!"
 
 [node name="answers" type="HBoxContainer" parent="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -74,12 +72,12 @@ layout_mode = 2
 [node name="Yes" type="Button" parent="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer/answers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Yes"
+text = "Ja"
 
 [node name="No" type="Button" parent="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer/answers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "No"
+text = "Nee"
 
 [connection signal="pressed" from="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer/answers/Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="CanvasLayer/BuyMenu/CenterContainer/VBoxContainer/answers/No" to="." method="_on_no_pressed"]

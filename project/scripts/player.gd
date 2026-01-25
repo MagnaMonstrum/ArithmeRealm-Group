@@ -26,8 +26,10 @@ var max_health := 100
 var current_health := 100
 var is_invincible := false
 var invincibility_duration := 0.5 # seconds of invincibility after taking damage
+var knockback: Vector2 = Vector2.ZERO
+var knockback_decay := 600.0
 
-@export var attack_damage = 10
+@export var attack_damage = 35
 
 signal health_changed(current_health: int, max_health: int)
 signal player_died
@@ -40,6 +42,8 @@ var attack_animations := ["attack_e", "attack_n", "attack_s"]
 
 
 var world_bounds: Rect2 = Rect2(0, 0, 0, 0)
+
+var current_enemy_area: Area2D = null
 
 
 signal provide_inv(loot_num_values: Array)
@@ -59,6 +63,10 @@ func _ready() -> void:
 
 		hud.update_gem_counter(Global.gem_amount)
 
+	# Ensure damage area is connected
+	if damage_area:
+		damage_area.area_entered.connect(_on_damage_area_entered)
+
 	if level_tilemap_layer == null:
 		push_warning("CameraBounds: 'tilemap_layer' is not set. Assign a TileMapLayer in the Inspector.")
 		return
@@ -69,12 +77,12 @@ func _ready() -> void:
 	_apply_camera_limits_from_tilemap(level_tilemap_layer)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if current_health <= 0:
 		return # Don't process if dead
 
 	set_direction()
-	handle_movement()
+	handle_movement(delta)
 	handle_attack()
 
 func set_direction() -> void:
@@ -91,9 +99,14 @@ func set_direction() -> void:
 		current_dir = facing_direction.SOUTH
 		damage_area.rotation = deg_to_rad(180)
 
-func handle_movement():
+func handle_movement(delta: float):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
+
+	# Apply residual knockback and decay it over time
+	if knockback.length() > 0.1:
+		velocity += knockback
+		knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	move_and_slide()
 
 	var padding := Vector2.ZERO
@@ -154,6 +167,7 @@ func handle_attack() -> void:
 
 		damage_collision.disabled = true
 
+var spawnAlertWasShown: bool = false
 
 func collect(loot_num: LootNumResource) -> bool:
 	if (Global.firstFight == false):
@@ -161,12 +175,11 @@ func collect(loot_num: LootNumResource) -> bool:
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 	print()
-	if inventory.get_amount_of_nums_in_inventory() > 2:
+	if inventory.get_amount_of_nums_in_inventory() > 2 && !spawnAlertWasShown:
 		get_tree().current_scene.get_node("AdditionBlob").visible = true
 		if hud:
 			hud.show_spawn_alert()
-	else:
-		get_tree().current_scene.get_node("AdditionBlob").visible = false
+			spawnAlertWasShown = true
 
 	return successful
 
@@ -182,9 +195,10 @@ func _on_remove_gems(count: int) -> void:
 	if hud:
 		hud.update_gem_counter(Global.gem_amount)
 
-func _on_damage_area_entered(area: Area2D) -> void:
-	if (area.get_parent().has_method("take_damage")):
-		area.get_parent().take_damage(attack_damage)
+func _on_damage_area_entered(body: Node2D) -> void:
+	# Only deal damage if we're actively attacking and it's not ourselves
+	if attacking and body != self and body.has_method("take_damage"):
+		body.take_damage(attack_damage)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
@@ -193,7 +207,7 @@ func provide_loot_num_values(blob) -> void: # This function gives the inventory 
 	var inv_array := inventory.get_items()
 	blob.receive_inv_values(inv_array)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, attacker_position: Vector2 = Vector2.ZERO, knockback_force: float = 120.0) -> void:
 	# Player takes damage from enemies
 	if is_invincible or current_health <= 0:
 		return
@@ -204,6 +218,11 @@ func take_damage(damage: int) -> void:
 
 	current_health = max(0, current_health - damage)
 	health_changed.emit(current_health, max_health)
+
+	# Apply knockback away from the attacker when a position is provided
+	if attacker_position != Vector2.ZERO:
+		var away_dir := (global_position - attacker_position).normalized()
+		knockback = away_dir * knockback_force
 
 	if current_health <= 0:
 		handle_death()
@@ -264,35 +283,27 @@ func _on_gem_counter_changed(current_gem_amount: int) -> void:
 	if hud and hud.has_method("update_gem_counter"):
 		hud.update_gem_counter(current_gem_amount)
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		Global.player_in_enemy_area = false
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		Global.player_in_enemy_area = true
-
-
 func _on_enemy_area_1_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea1"
 
 func _on_enemy_area_1_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"
+
 
 func _on_enemy_area_2_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea2"
 
 func _on_enemy_area_2_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"
 
 func _on_enemy_area_3_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = true
+		Global.player_current_enemy_area = "EnemyArea3"
 
 func _on_enemy_area_3_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.player_in_enemy_area = false
+		Global.player_current_enemy_area = "none"

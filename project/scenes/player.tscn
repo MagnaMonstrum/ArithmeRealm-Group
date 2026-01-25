@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdjwnt3hnjdlh" path="res://project/scenes/inv_ui.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cjwypl11ylp10" path="res://project/scenes/interacting_component.tscn" id="5_c52q7"]
 [ext_resource type="PackedScene" uid="uid://w0cvflea14qv" path="res://project/scenes/hud.tscn" id="6_dbuw4"]
-[ext_resource type="AudioStream" uid="uid://cq0ioax62n7qj" path="res://project/sounds/hit.ogg" id="7_hit"]
+[ext_resource type="AudioStream" uid="uid://krqs0o1kad6v" path="res://project/sounds/HitOnPlayer.wav" id="7_ciofn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
 atlas = ExtResource("1_3vyb7")
@@ -464,7 +464,7 @@ zoom = Vector2(2.8, 2.8)
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(0, 1)
@@ -484,7 +484,7 @@ scale = Vector2(0.7, 0.7)
 [node name="Hud" parent="." instance=ExtResource("6_dbuw4")]
 
 [node name="DamageSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_hit")
+stream = ExtResource("7_ciofn")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_entered"]

@@ -1,12 +1,13 @@
 extends Node2D
 
+@export var BuyScene: PackedScene
 @onready var InteractableBuy := $InteractableBuy
 
 var player: Node
 @export var gem_price = 10
 
 func _ready() -> void:
-	%CostLabel.text = "It will cost you: " + str(gem_price) + " gems!"
+	%CostLabel.text = "Dat kost je: " + str(gem_price) + " gems!"
 	player = get_tree().current_scene.get_node_or_null("Player")
 
 	process_mode = PROCESS_MODE_WHEN_PAUSED
@@ -27,4 +28,4 @@ func _on_yes_pressed() -> void:
 		player._on_remove_gems(gem_price)
 		Global.advance_level()
 		get_tree().paused = false
-		get_tree().change_scene_to_file("res://project/scenes/levels/map2.tscn")
+		get_tree().change_scene_to_packed(BuyScene)
