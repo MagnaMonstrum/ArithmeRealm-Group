@@ -207,7 +207,7 @@ tile_set = ExtResource("7_dusoi")
 position = Vector2(448, -25)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("2_2hx2r")]
-position = Vector2(378, 356)
+position = Vector2(-737, -233)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
 

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="9_h021s"]
 [ext_resource type="Texture2D" uid="uid://sh0dqva04ljr" path="res://project/art/sprites/tilesets/floors/wooden.png" id="9_l2eku"]
 [ext_resource type="Texture2D" uid="uid://ycan4efbpoyd" path="res://project/art/sprites/tilesets/fences.png" id="10_krkpq"]
-[ext_resource type="PackedScene" uid="uid://dw5k8nap3x2yn" path="res://project/scenes/healing_beacon.tscn" id="13_healing"]
+[ext_resource type="PackedScene" path="res://project/scenes/healing_beacon.tscn" id="13_healing"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="14_l2eku"]
 [ext_resource type="PackedScene" uid="uid://chgfljb46rffl" path="res://project/scenes/levels/level_2.tscn" id="17_a1ron"]
 
@@ -707,7 +707,7 @@ tile_set = SubResource("TileSet_1letv")
 position = Vector2(639, 68)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("3_7gra0")]
-position = Vector2(-390, 230)
+position = Vector2(-401, 213)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
 
