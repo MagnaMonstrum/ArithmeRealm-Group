@@ -29,7 +29,7 @@ var invincibility_duration := 0.5 # seconds of invincibility after taking damage
 var knockback: Vector2 = Vector2.ZERO
 var knockback_decay := 600.0
 
-@export var attack_damage = 10
+@export var attack_damage = 35
 
 signal health_changed(current_health: int, max_health: int)
 signal player_died
