@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://ba32leeatnqc6"]
+[gd_scene load_steps=56 format=4 uid="uid://ba32leeatnqc6"]
 
 [ext_resource type="Texture2D" uid="uid://dje4mdkvm7bac" path="res://project/art/sprites/tilesets/floors/plains.png" id="1_87h6n"]
 [ext_resource type="Script" uid="uid://bheyk3ixxln54" path="res://project/scripts/add_blobs_map.gd" id="1_qwqeu"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="19_8ty0v"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="20_eubj0"]
 [ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="21_chest"]
+[ext_resource type="PackedScene" uid="uid://rmkivmxiwpfd" path="res://project/scenes/parity_blob.tscn" id="22_parity"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gkipi"]
 
@@ -1139,6 +1140,9 @@ level_tilemap_layer = NodePath("../Entire/GroundLayer")
 unique_name_in_owner = true
 visible = false
 position = Vector2(127, 128)
+
+[node name="ParityBlob" parent="." instance=ExtResource("22_parity")]
+position = Vector2(202, 130)
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(8.18952, 121.005)
