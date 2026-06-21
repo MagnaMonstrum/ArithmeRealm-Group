@@ -54,8 +54,6 @@ func _ready() -> void:
 
 
 func spawn_enemy(path_follow: PathFollow2D, enemy_area: String) -> void:
-	if (Global.firstFight):
-		%Fighting.visible = false
 	# Choose a spawn point along the path that isn't too close to the player.
 	var tries := 6
 	var spawn_pos := Vector2.ZERO

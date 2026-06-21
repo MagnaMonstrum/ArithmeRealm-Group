@@ -170,8 +170,6 @@ func handle_attack() -> void:
 var spawnAlertWasShown: bool = false
 
 func collect(loot_num: LootNumResource) -> bool:
-	if (Global.firstFight == false):
-		Global.firstFight = true
 	var successful = inventory.insert(loot_num.value)
 	inv.update_slots(inventory.slots)
 	print()
