@@ -35,12 +35,12 @@ func _input(event: InputEvent) -> void:
 
 
 func parse_line(line: String) -> Dictionary:
-	var line_info = line.split(":")
-	assert(len(line_info) >= 2)
+	var colon_index = line.find(":")
+	assert(colon_index != -1)
 	return {
-		"speaker_name": line_info[0],
-		"dialog_line": line_info[1]
-	}
+        "speaker_name": line.substr(0, colon_index),
+        "dialog_line": line.substr(colon_index + 1)
+    }
 
 
 func process_current_line() -> void:
