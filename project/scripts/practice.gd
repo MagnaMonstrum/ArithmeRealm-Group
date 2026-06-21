@@ -11,7 +11,7 @@ extends Control
 var correct_answer: float = 0.0
 var score: int = 0
 var total: int = 0
-var max_number: int = 20
+var max_number: int = 10
 
 func _ready() -> void:
 	%Back.pressed.connect(back)
