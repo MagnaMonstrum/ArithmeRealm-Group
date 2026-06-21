@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cnt34xc6kdyc8" path="res://project/scenes/menus/settings_menu.tscn" id="3_8e32q"]
 [ext_resource type="PackedScene" uid="uid://d1b5p27ddprw8" path="res://project/scenes/menus/control_menu.tscn" id="4_xmkn0"]
 
-[node name="Levels" type="Control"]
+[node name="levels" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
