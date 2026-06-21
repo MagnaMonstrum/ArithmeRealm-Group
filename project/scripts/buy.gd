@@ -5,6 +5,7 @@ extends Node2D
 
 var player: Node
 @export var gem_price = 10
+@export var end = false
 
 func _ready() -> void:
 	%CostLabel.text = "Dat kost je: " + str(gem_price) + " gems!"
@@ -25,7 +26,11 @@ func _on_no_pressed() -> void:
 
 func _on_yes_pressed() -> void:
 	if Global.gem_amount >= gem_price:
-		player._on_remove_gems(gem_price)
-		Global.advance_level()
-		get_tree().paused = false
-		get_tree().change_scene_to_packed(BuyScene)
+		if (end):
+			# Show end screen
+			%End.visible = true
+		else:
+			player._on_remove_gems(gem_price)
+			Global.advance_level()
+			get_tree().paused = false
+			get_tree().change_scene_to_packed(BuyScene)
