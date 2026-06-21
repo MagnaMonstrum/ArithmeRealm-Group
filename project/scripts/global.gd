@@ -1,7 +1,7 @@
 extends Node
 
 var player_current_enemy_area: String = ""
-var gem_amount := 0
+var gem_amount := 100
 
 
 const MAX_LEVEL := 3
