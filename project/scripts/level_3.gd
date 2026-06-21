@@ -45,6 +45,10 @@ func _ready() -> void:
 	var timer := get_node_or_null("Timer") as Timer
 	if timer:
 		timer.wait_time = spawn_interval
+		if not timer.timeout.is_connected(_on_timer_timeout):
+			timer.timeout.connect(_on_timer_timeout)
+		if timer.is_stopped():
+			timer.start()
 
 
 func spawn_enemy(path_follow: PathFollow2D, enemy_area: String) -> void:
