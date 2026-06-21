@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://c31xjnf3llgy5"]
+[gd_scene load_steps=42 format=4 uid="uid://c31xjnf3llgy5"]
 
 [ext_resource type="Script" uid="uid://bqlp8buufux7c" path="res://project/scripts/tutorial_level.gd" id="1_fsmf3"]
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="2_b3w10"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="14_l2eku"]
 [ext_resource type="PackedScene" uid="uid://chgfljb46rffl" path="res://project/scenes/levels/level_2.tscn" id="17_a1ron"]
 [ext_resource type="PackedScene" uid="uid://rmkivmxiwpfd" path="res://project/scenes/parity_blob.tscn" id="18_uhivd"]
+[ext_resource type="PackedScene" uid="uid://cyrotmnhn54re" path="res://project/scenes/prof.tscn" id="19_iq00a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ttk4"]
 texture = ExtResource("2_cgjuf")
@@ -708,7 +709,7 @@ tile_set = SubResource("TileSet_1letv")
 position = Vector2(639, 68)
 
 [node name="Player" parent="." node_paths=PackedStringArray("level_tilemap_layer") instance=ExtResource("3_7gra0")]
-position = Vector2(-401, 213)
+position = Vector2(-399, 219)
 rotation = -0.000527713
 level_tilemap_layer = NodePath("../Entire/OnGround")
 
@@ -806,6 +807,23 @@ position = Vector2(87, -240)
 [node name="Buy" parent="." instance=ExtResource("14_l2eku")]
 position = Vector2(639, -156)
 BuyScene = ExtResource("17_a1ron")
+
+[node name="Profs" type="Node2D" parent="."]
+
+[node name="ProfStart" parent="Profs" instance=ExtResource("19_iq00a")]
+position = Vector2(-367, 106)
+
+[node name="ProfHealingBeacon" parent="Profs" instance=ExtResource("19_iq00a")]
+position = Vector2(43, -233)
+
+[node name="ProfGem" parent="Profs" instance=ExtResource("19_iq00a")]
+position = Vector2(572, 57)
+
+[node name="ProfEnd" parent="Profs" instance=ExtResource("19_iq00a")]
+position = Vector2(622, -120)
+
+[node name="ProfChest" parent="Profs" instance=ExtResource("19_iq00a")]
+position = Vector2(-205, -40)
 
 [node name="ParityBlob" parent="." instance=ExtResource("18_uhivd")]
 position = Vector2(-186, -240)
