@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjhoerdyxjqjy"]
+
+[ext_resource type="Script" uid="uid://godikyuyn604" path="res://project/scenes/menus/levels.gd" id="1_eho2r"]
+[ext_resource type="Texture2D" uid="uid://dt7a8bs8xcdub" path="res://project/art/backgrounds/mainmenu.jpg" id="2_xq54y"]
+[ext_resource type="PackedScene" uid="uid://cnt34xc6kdyc8" path="res://project/scenes/menus/settings_menu.tscn" id="3_8e32q"]
+[ext_resource type="PackedScene" uid="uid://d1b5p27ddprw8" path="res://project/scenes/menus/control_menu.tscn" id="4_xmkn0"]
+
+[node name="Levels" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eho2r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.000278697, 0.000344163, 0.000413104, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xq54y")
+expand_mode = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.0
+offset_top = 52.0
+offset_right = 198.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 60
+text = "Level kiezer"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Tutorial" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Tutorial level"
+
+[node name="Level2" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Level 3"
+
+[node name="Settings" parent="." instance=ExtResource("3_8e32q")]
+visible = false
+layout_mode = 1
+
+[node name="Controls" parent="." instance=ExtResource("4_xmkn0")]
+visible = false
+layout_mode = 1
+
+[node name="Back" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -63.0
+offset_right = 55.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Hoofdmenu"

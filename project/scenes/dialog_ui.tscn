@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0gwlm58f8h3s"]
+
+[ext_resource type="Theme" uid="uid://bkoptnk2acscs" path="res://project/resources/new_theme.tres" id="1_xh3aw"]
+[ext_resource type="Script" path="res://project/scripts/dialog_ui.gd" id="2_yjvli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xh3aw"]
+font_size = 25
+
+[node name="DialogUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xh3aw")
+script = ExtResource("2_yjvli")
+
+[node name="DialogBox" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -189.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogLine" type="RichTextLabel" parent="DialogBox"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "This is a line of dialog
+"
+
+[node name="SpeakerBox" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -238.0
+offset_right = 200.0
+offset_bottom = -188.0
+grow_vertical = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="SpeakerBox"]
+color = Color(0.137255, 0.372549, 1, 0.588235)
+polygon = PackedVector2Array(0, 0, 180, 0, 200, 50, 0, 50)
+
+[node name="SpeakerName" type="Label" parent="SpeakerBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -11.5
+offset_right = 23.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_xh3aw")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="Control"]
+position = Vector2(-22, -15)
+polygon = PackedVector2Array(0, 0, 40, 20, 0, 40)

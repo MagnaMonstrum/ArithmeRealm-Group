@@ -65,6 +65,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Spelen"
 
+[node name="Practice" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Oefen modus"
+
+[node name="Levels" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Levels"
+
 [node name="Controls" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40

@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyrotmnhn54re"]
+
+[ext_resource type="Script" uid="uid://cl80cmntkhxfq" path="res://project/scripts/prof.gd" id="1_42ofp"]
+[ext_resource type="Texture2D" uid="uid://ov3jq7f4ti32" path="res://project/art/sprites/characters/slime.png" id="1_iidqu"]
+[ext_resource type="PackedScene" uid="uid://b45fc31iym480" path="res://project/scenes/interactable.tscn" id="2_x67kx"]
+[ext_resource type="PackedScene" uid="uid://d0gwlm58f8h3s" path="res://project/scenes/dialog_ui.tscn" id="4_5bhwl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x67kx"]
+atlas = ExtResource("1_iidqu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42ofp"]
+atlas = ExtResource("1_iidqu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bhwl"]
+atlas = ExtResource("1_iidqu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uu40"]
+atlas = ExtResource("1_iidqu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3salt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x67kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42ofp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bhwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uu40")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjo8b"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42ofp"]
+radius = 12.0
+
+[node name="Prof" type="CharacterBody2D"]
+script = ExtResource("1_42ofp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3salt")
+animation = &"idle"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_jjo8b")
+
+[node name="Interactable" parent="." instance=ExtResource("2_x67kx")]
+interaction_name = "Praat met de professor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_42ofp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogUI" parent="CanvasLayer" instance=ExtResource("4_5bhwl")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Next" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = 40.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Volgende"
