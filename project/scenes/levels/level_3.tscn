@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://6n1ps3kk17bg" path="res://project/scenes/addition_blob.tscn" id="11_dx4kc"]
 [ext_resource type="PackedScene" uid="uid://eftgu3yxm55t" path="res://project/scenes/levels/buy.tscn" id="11_xqcbt"]
 [ext_resource type="PackedScene" uid="uid://bcx507qw46mnd" path="res://project/scenes/player.tscn" id="12_d1j71"]
-[ext_resource type="PackedScene" uid="uid://chgfljb46rffl" path="res://project/scenes/levels/level_2.tscn" id="12_fssyc"]
+[ext_resource type="PackedScene" uid="uid://btxkf5qr6ctai" path="res://project/scenes/levels/sample.tscn" id="12_ix22q"]
 [ext_resource type="PackedScene" uid="uid://bqm6q8hx4x7py" path="res://project/scenes/chest.tscn" id="13_wjrvx"]
 [ext_resource type="PackedScene" uid="uid://q3virnvx827g" path="res://project/scenes/menus/pause_menu.tscn" id="15_kqi33"]
 
@@ -141,7 +141,7 @@ position = Vector2(508, -872)
 
 [node name="Buy" parent="." instance=ExtResource("11_xqcbt")]
 position = Vector2(-500, -172)
-BuyScene = ExtResource("12_fssyc")
+BuyScene = ExtResource("12_ix22q")
 gem_price = 100
 end = true
 
